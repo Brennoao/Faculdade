@@ -67,3 +67,13 @@ Route.get('/TurmaAlunos', 'TurmaAlunosController.index')
 Route.post('/TurmaAlunos', 'TurmaAlunosController.store')
 
 // 8
+
+Route.get('/Disciplinas', 'DisciplinasController.index')
+
+Route.post('/Disciplinas', 'DisciplinasController.store')
+
+// 9
+
+Route.get('/Alunos', 'AlunosController.index')
+
+Route.post('/Alunos', 'AlunosController.store')
