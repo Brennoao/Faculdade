@@ -14,20 +14,12 @@
 | and then import them inside `start/routes.ts` as follows
 |
 | import './routes/cart'
-| import './routes/customer''
+| import './routes/customer'
 |
 */
 
 import Route from '@ioc:Adonis/Core/Route'
 
-Route.get('/', async ({ view }) => {
-  return view.render('welcome')
+Route.get('/', async () => {
+  return { hello: 'world' }
 })
-
-Route.post('/Revisao', 'RevisaosController.ex1')
-
-Route.post('/Revisao2', 'RevisaosController.ex2')
-
-Route.post('/Revisao3', 'RevisaosController.ex3')
-
-Route.post('/Revisao4', 'RevisaosController.ex4')
