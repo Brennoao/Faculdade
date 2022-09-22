@@ -31,3 +31,11 @@ Route.post('/Revisao2', 'RevisaosController.ex2')
 Route.post('/Revisao3', 'RevisaosController.ex3')
 
 Route.post('/Revisao4', 'RevisaosController.ex4')
+
+Route.post('/Revisao5', 'RevisaosController.ex5')
+
+Route.post('/Revisao6', 'RevisaosController.ex6')
+
+Route.post('/Revisao7', 'RevisaosController.ex7')
+
+Route.post('/Revisao8', 'RevisaosController.ex8')
