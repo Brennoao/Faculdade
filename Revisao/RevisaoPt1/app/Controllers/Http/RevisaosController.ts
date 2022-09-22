@@ -16,7 +16,6 @@ export default class RevisaosController {
             SalarioLiquido = SalaraioBruto * 1.3
         }
 
-
         return SalarioLiquido
     }
 
@@ -39,14 +38,12 @@ export default class RevisaosController {
         }
 
         return (`${maior} é o número maior`)
-
     }
 
     ex3({ request }) {
 
         const dados = request.all()
 
-        // const tulipadechopp = 4.80
         const QuantidadeChopp = dados.QuantidadeChopp * 4.80
         const pizzamistagrande = 17.00
         const coberturas = dados.coberturas
@@ -57,7 +54,6 @@ export default class RevisaosController {
         const calculoGarcon = calculoValor * 0.1
 
         return (`O garçon receberá R$: ${calculoGarcon} e cada um terá que pagar o valor de R$: ${(calculoValor + calculoGarcon) / turma}`)
-
     }
 
     ex4({ request }) {
@@ -93,7 +89,6 @@ export default class RevisaosController {
         const salarioaReceber = SalarioLiquido + gratificacao
 
         return { salarioaReceber }
-
     }
 
     ex5({ request }) {
@@ -111,8 +106,6 @@ export default class RevisaosController {
         if (n1 > 10 || n2 > 10 || n3 > 10 || ME > 10) {
             return { Mensagen, Conceito }
         } else {
-
-
 
             const MA = (n1 + n2 * 2 + n3 * 3 + ME) / 7
 
@@ -147,7 +140,6 @@ export default class RevisaosController {
         const Mulher = (62.1 * altura) - 44.7
 
         return (`a altura do homen é ${Homen} e a altura da Mulher e ${Mulher}`)
-
     }
 
     ex7({ request }) {
@@ -194,6 +186,33 @@ export default class RevisaosController {
 
         return { primeiro, segundo, soma }
 
+    }
+
+    ex8({ request }) {
+
+        const dados = request.all()
+
+        const Codigo = dados.codigo
+        const salarioAtual = dados.salarioAtual
+
+        const C101 = 0.05
+        const C102 = 0.075
+        const C103 = 0.1
+        const semCodigo = 0.15
+
+        let novoSalario
+
+        if (Codigo == 101 ) {
+            novoSalario = salarioAtual * C101
+        }else if (Codigo == 102) {
+            novoSalario = salarioAtual * C102
+        }else if (Codigo == 103) {
+            novoSalario = salarioAtual * C103
+        }else {
+            novoSalario = salarioAtual * semCodigo
+        }
+
+        return ( `Este sera seu novo salário ${novoSalario} / Salário antigo ${salarioAtual} / A diferença entre os dois é de ${novoSalario - salarioAtual}` )
     }
 
 
