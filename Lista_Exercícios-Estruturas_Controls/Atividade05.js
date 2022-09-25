@@ -1,4 +1,3 @@
-
 const texto = 'xxx'
 
 for(let i = ''; i.length.toString().length != texto.length; i += 'x') {
