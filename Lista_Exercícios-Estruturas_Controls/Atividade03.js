@@ -1,19 +1,92 @@
-var codigo1 = ("100")
-var codigo = JSON.parse(codigo1)
+
+
 
 const Produtos = [
-    {Codigo: 100, Produto: "Cachorro Quente", PreçoUnitárioR$: 1.70},
-    {Codigo: 101, Produto: "Bauru Simples", PreçoUnitárioR$: 2.30},
-    {Codigo: 102, Produto: "Bauru com Ovo", PreçoUnitárioR$: 2.60},
-    {Codigo: 103, Produto: "Hamburguer", PreçoUnitárioR$: 2.40},
-    {Codigo: 104, Produto: "Cheeseburguer", PreçoUnitárioR$: 1.50},
-    {Codigo: 105, Produto: "Refrigerante", PreçoUnitárioR$: 1.00}
+    {Codigo: 100, Produto: "Cachorro Quente", Preço_Unitário_R$: 1.70},
+    {Codigo: 101, Produto: "Bauru Simples", Preço_Unitário_R$: 2.30},
+    {Codigo: 102, Produto: "Bauru com Ovo", Preço_Unitário_R$: 2.60},
+    {Codigo: 103, Produto: "Hamburguer", Preço_Unitário_R$: 2.40},
+    {Codigo: 104, Produto: "Cheeseburguer", Preço_Unitário_R$: 1.50},
+    {Codigo: 105, Produto: "Refrigerante", Preço_Unitário_R$: 1.00}
 ]
 
-if (codigo == Produtos) {
-   document.write (Produtos["Codigo"])
-} else {
-    console.log("Azedo o role")
-}
+// console.log(Produtos[0])
 
-// Pegar o valor do index 1 e multiplicar pelo valor da quantide
+
+
+let Codigo1
+let Carrinho = []
+
+while (true) {
+    
+    var codigo1 = prompt("Digite o Codigo")
+    if (codigo1 == 100) {
+        var quantidade = prompt("Digite a quantidade")
+        const ValorCQ = 1.70 * quantidade
+        Carrinho.push(ValorCQ)
+        console.log(Produtos[0])
+        console.log(`O item Cachorro Quente foi Adicionado ao carrinho no valor de ${ValorCQ} com a quantidade de ${quantidade}`)
+    }if (codigo1 == 101) {
+        var quantidade = prompt("Digite a quantidade")
+        const ValorCQ = 2.30 * quantidade
+        Carrinho.push(ValorCQ)
+        console.log(Produtos[1])
+        console.log(`O item Bauru Simples foi Adicionado ao carrinho no valor de ${ValorCQ} com a quantidade de ${quantidade}`)
+    }if (codigo1 == 102) {
+        var quantidade = prompt("Digite a quantidade")
+        const ValorCQ = 2.60 * quantidade
+        Carrinho.push(ValorCQ)
+        console.log(Produtos[2])
+        console.log(`O item Bauru com Ovo foi Adicionado ao carrinho no valor de ${ValorCQ} com a quantidade de ${quantidade}`)
+    }if (codigo1 == 103) {
+        var quantidade = prompt("Digite a quantidade")
+        const ValorCQ = 2.40 * quantidade
+        Carrinho.push(ValorCQ)
+        console.log(Produtos[3])
+        console.log(`O item Hamburguer foi Adicionado ao carrinho no valor de ${ValorCQ} com a quantidade de ${quantidade}`)
+    }if (codigo1 == 104) {
+        var quantidade = prompt("Digite a quantidade")
+        const ValorCQ = 1.50 * quantidade
+        Carrinho.push(ValorCQ)
+        console.log(Produtos[4])
+        console.log(`O item Cheeseburguer foi Adicionado ao carrinho no valor de ${ValorCQ} com a quantidade de ${quantidade}`)
+    }if (codigo1 == 105) {
+        var quantidade = prompt("Digite a quantidade")
+        const ValorCQ = 1.00 * quantidade
+        Carrinho.push(ValorCQ)
+        console.log(Produtos[5])
+        console.log(`O item Refrigerante foi Adicionado ao carrinho no valor de ${ValorCQ} com a quantidade de ${quantidade}`)
+    }else if (Codigo1 == 0) {
+        break   
+    }
+    
+    console.log(Carrinho)
+}    
+
+
+
+
+// if (codigo1 == 101) {
+//     console.log(Produtos[1])
+// }
+
+// if (codigo1 == 102) {
+//     console.log(Produtos[2])
+// }
+
+// if (codigo1 == 103) {
+//     console.log(Produtos[3])
+// }
+
+// while (true) {
+
+//     if (codigo1 == Codigo) {
+//        document.write (Produtos["Codigo"])
+//     } else {
+//         console.log("Azedo o role")
+//     }
+// }
+
+
+
+// let o codigo do item e quantidade para mostrar o tetal consumido

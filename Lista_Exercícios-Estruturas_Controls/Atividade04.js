@@ -10,6 +10,7 @@ for(i = 0; i < 2;){
     var codigo = Number(prompt("Codigo Utilizado (1 sendo coelhos ou 2 sendo rato): "))
     qcobaiasT = qcobaiasT + qcobaias
     i++
+
     if(codigo == 1){
         console.log(`${qcobaias} Coelho(s) no ${[i]} teste`)
         c++
@@ -24,7 +25,7 @@ for(i = 0; i < 2;){
  var PercentualC = quantidadeC / 100
  var PercentualR = quantidadeR / 100
 
-console.log(`O total de cobaias Utilizada foi: ${qcobaiasT}`)
-console.log(`O total de ratos foi ${r} e de Coelhos foi ${c} \n
- Com um precentual de ${PercentualC} ou ${PercentualC * 100}% para Coelho \n
- e ${PercentualR} ou ${PercentualC * 100}% para Rato`)
+console.log(` O total de cobaias Utilizada foi: ${qcobaiasT} `)
+console.log(` O total de ratos foi ${r} e de Coelhos foi ${c} \n
+ Com um precentual de ${PercentualC} ou ${PercentualC * 100} % para Coelho \n
+ e ${PercentualR} ou ${PercentualC * 100} % para Rato`)
