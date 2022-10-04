@@ -1,4 +1,3 @@
-
     var qcobaiasT = 0
     var quantidadeR = 0
     var quantidadeC = 0
