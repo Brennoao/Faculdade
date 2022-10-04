@@ -12,4 +12,21 @@ export default class SalasController {
         
         return await Sala.create(data)
     }
+
+    show({request}) {
+        const id = request.param('id')
+
+        return Sala.find(id)
+    }
+
+    async destroy({request}) {
+        const id = request.param('id')
+        const sala = await Sala.findOrFail(id)
+        
+        return sala.delete()
+    }
+
+    update(id) {
+        
+    }
 }

@@ -12,4 +12,21 @@ export default class TurmaAlunosController {
 
         return await TurmaAluno.create(data)
     }
+
+    show({request}) {
+        const id = request.param('id')
+
+        return TurmaAluno.find(id)
+    }
+
+    async destroy({request}) {
+        const id = request.param('id')
+        const turmaAluno = await TurmaAluno.findOrFail(id)
+
+        return turmaAluno.delete()
+    }
+
+    update(id) {
+        
+    }
 }

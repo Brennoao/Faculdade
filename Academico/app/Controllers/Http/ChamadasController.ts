@@ -12,4 +12,21 @@ export default class ChamadasController {
 
         return await Chamada.create(dados)
     }
+
+    show({request}) {
+        const id = request.param('id')
+        
+        return Chamada.find(id)
+    }
+
+    async destroy({request}) {
+        const id = request.param('id')
+        const chamada = await Chamada.findOrFail(id)
+
+        return chamada.delete()
+    }
+
+    update(id) {
+
+    }
 }

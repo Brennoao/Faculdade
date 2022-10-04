@@ -13,4 +13,21 @@ export default class AulasController {
         
         return await Aula.create(dados)
     }
+
+    show({request}) {
+        const id = request.param('id')
+
+        return Aula.find(id)
+    }
+
+    async destroy({request}) {
+        const id = request.param('id')
+        const aula = await Aula.findOrFail(id)
+
+        return aula.delete()
+    }
+
+    update(id) {
+        
+    }
 }

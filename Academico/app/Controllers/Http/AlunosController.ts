@@ -12,4 +12,21 @@ export default class AlunosController {
 
         return await Aluno.create(data)
     }
+
+    show({request}) {
+        const id = request.param('id')
+
+        return Aluno.find(id)
+    }
+
+    async destroy({request}) {
+        const id = request.param('id')
+        const aluno = await Aluno.findOrFail(id)
+
+        return aluno.delete()
+    }
+
+    update(id) {
+
+    }
 }
