@@ -26,9 +26,7 @@ Route.get('/', async () => {
 
 // 1
 
-Route.get('/cursos', 'CursosController.index')
-
-Route.post('/cursos', 'CursosController.store')
+Route.resource('/cursos', 'CursosController')
 
 // 2
 
