@@ -84,5 +84,24 @@ while(mes <= 12) {
             break;
     }
 
+    // percorrendo a matriz para incluir os dias
+
+    let dia = 1
+
+    // interação para percorrer as linhas das grades dos meses
+
+    console.log('D ', "S ", "T ", "Q ", "Q ", "S ", "S ", )
+
+    for (let linha = 0; linha < linha < 6; linha++) {
+        
+        // interação para percorrer os dias da semana
+
+        for (let coluna = 0; coluna < 7; coluna++){
+            console.log(dia + ' ')
+            dia++
+        }
+        
+    }
+
     mes++
 }
