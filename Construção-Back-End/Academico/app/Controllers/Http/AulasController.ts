@@ -4,8 +4,19 @@ import Aula from "App/Models/Aula";
 
 export default class AulasController {
 
-    index(){
-        return Aula.all()
+    index({request}){
+        const {data, conteudo, turmaId} = request.all()
+        const aulas = Aula.query().select(['id', 'data', 'conteudo', 'turmaId'])
+
+        if (data) {
+            aulas.where('data', data)
+        }else if (conteudo) {
+            aulas.where('conteudo', conteudo)
+        }else if (turmaId) {
+            aulas.where('turmaId', turmaId)
+        }
+
+        return aulas
     }
 
     async store({request}){
@@ -27,7 +38,13 @@ export default class AulasController {
         return aula.delete()
     }
 
-    update(id) {
-        
+    async update({request}) {
+        const id = request.param('id')
+        const data = request.only(['data', 'conteudo', 'turmaId'])
+
+        const update = await Aula.findOrFail(id)
+        update.merge(data).save()
+
+        return update
     }
 }

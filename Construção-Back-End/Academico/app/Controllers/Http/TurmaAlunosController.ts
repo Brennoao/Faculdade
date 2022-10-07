@@ -3,8 +3,17 @@
 import TurmaAluno from "App/Models/TurmaAluno";
 
 export default class TurmaAlunosController {
-    index (){
-        return TurmaAluno.all()
+    index ({request}){
+        const {tumasId, alunosId} = request.all()
+        const turmaAluno = TurmaAluno.query().select(["tumasId", "alunosId"])
+
+        if (tumasId) {
+            turmaAluno.where('tumasId', tumasId)
+        }else if (alunosId) {
+            turmaAluno.where('alunosId', alunosId)
+        }
+
+        return turmaAluno
     }
 
     async store ({request}){
@@ -26,7 +35,13 @@ export default class TurmaAlunosController {
         return turmaAluno.delete()
     }
 
-    update(id) {
-        
+    async update({request}) {
+        const id = request.param('id')
+        const data = request.only(["tumasId", "alunosId"])
+
+        const update = await TurmaAluno.findOrFail(id)
+        update.merge(data).save()
+
+        return update
     }
 }

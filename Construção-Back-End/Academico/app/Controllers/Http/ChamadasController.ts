@@ -3,8 +3,19 @@
 import Chamada from "App/Models/Chamada";
 
 export default class ChamadasController {
-    index (){
-        return Chamada.all()
+    index ({request}){
+        const {aulaId, alunosId, presenca} = request.all()
+        const chamada = Chamada.query().select(["aulaId", "alunosId", "presenca"])
+
+        if (aulaId) {
+            chamada.where('aulaId', aulaId)            
+        }else if (alunosId) {
+            chamada.where('alunosId', alunosId)
+        }else if (presenca) {
+            chamada.where('presenca', presenca)
+        }
+
+        return chamada
     }
 
     async store ({request}){
@@ -26,7 +37,13 @@ export default class ChamadasController {
         return chamada.delete()
     }
 
-    update(id) {
+    async update({request}) {
+        const id  = request.param('id')
+        const data = request.only(["aulaId", "alunosId", "presenca"])
 
+        const update = await Chamada.findOrFail(id)
+        update.merge(data).save()
+
+        return update
     }
 }

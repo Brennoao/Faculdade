@@ -3,8 +3,19 @@
 import Semestre from "App/Models/Semestre";
 
 export default class SemestresController {
-    index (){
-        return Semestre.all()
+    index ({request}){
+        const {nome, dataInicio, dataFim} = request.all()
+        const semestre = Semestre.query().select(["nome", "dataInicio", "dataFim"])
+
+        if (nome) {
+            semestre.where('nome', nome)
+        }else if (dataInicio) {
+            semestre.where('dataInicio', dataInicio)
+        }else if (dataFim) {
+            semestre.where('dataFim', dataFim)
+        }
+
+        return semestre
     }
 
     async store ({request}){
@@ -26,7 +37,13 @@ export default class SemestresController {
         return semestre.delete()
     }
 
-    update(id) {
-        
+    async update({request}) {
+        const id = request.param('id')
+        const data = request.only(["nome", "dataInicio", "dataFim"])
+
+        const update = await Semestre.findOrFail(id)
+        update.merge(data).save()
+
+        return update
     }
 }

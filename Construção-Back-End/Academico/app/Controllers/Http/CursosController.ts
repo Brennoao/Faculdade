@@ -4,8 +4,22 @@ import Curso from "App/Models/Curso";
 
 export default class CursosController {
 
-    index(){
-        return Curso.all()
+    index({request}){
+        const {nome, duracao, modalidade} = request.all()
+        const curso = Curso.query().select(['id', 'nome', 'duracao', 'modalidade'])
+
+        if (duracao) {
+            curso.where('duracao', duracao)
+            
+        }else if (nome) {
+            curso.where('nome', nome)
+            
+        }else if (modalidade) {
+            curso.where('modalidade', modalidade)
+            
+        }
+        
+        return curso
     }
 
     async store({request}){
@@ -28,7 +42,13 @@ export default class CursosController {
         return curso.delete()
     }
 
-    update(id) {
+    async update({request}) {
+        const id = request.param('id')
+        const data = request.only(['nome', 'duracao', 'modalidade'])
 
+        const update = await Curso.findOrFail(id)
+        update.merge(data).save()
+
+        return update
     }
 }

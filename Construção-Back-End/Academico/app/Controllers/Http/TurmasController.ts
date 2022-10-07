@@ -3,8 +3,23 @@
 import Turma from "App/Models/Turma";
 
 export default class TurmasController {
-    index(){
-        return Turma.all()
+    index({request}){
+        const {nome, professorId, semestreId, disciplinaId, salaId, turno} = request.all()
+        const turmas = Turma.query().select(["nome", "professorId", "semestreId", "disciplinaId", "salaId", "turno"])
+
+        if (nome) {
+            turmas.where('nome', nome)
+        }else if (professorId) {
+            turmas.where('semestreId', semestreId)
+        }else if (disciplinaId) {
+            turmas.where('disciplinaId', disciplinaId)
+        }else if (salaId) {
+            turmas.where('salaId', salaId)
+        }else if (turno) {
+            turmas.where('turno', turno)
+        }
+
+        return turmas
     }
 
     async store({request}){
@@ -26,7 +41,13 @@ export default class TurmasController {
         return turma.delete()
     }
 
-    update(id) {
-        
+    async update({request}) {
+        const id = request.param('id')
+        const data =request.only(["nome", "professorId", "semestreId", "disciplinaId", "salaId", "turno"])
+
+        const update = await Turma.findOrFail(id)
+        update.merge(data).save()
+
+        return update
     }
 }

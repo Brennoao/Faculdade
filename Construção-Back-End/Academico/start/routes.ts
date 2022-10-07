@@ -26,52 +26,38 @@ Route.get('/', async () => {
 
 // 1
 
-Route.resource('/cursos', 'CursosController')
+Route.resource('/cursos', 'CursosController').apiOnly()
 
 // 2
 
-Route.get('/Professores', 'ProfessoresController.index')
+Route.resource('/Professores', 'ProfessoresController').apiOnly()
 
-Route.post('/Professores', 'ProfessoresController.store')
 
 // 3
 
-Route.get('/Aulas', 'AulasController.index')
-
-Route.post('/Aulas', 'AulasController.store')
+Route.resource('/Aulas', 'AulasController').apiOnly()
 
 // 4
 
-Route.get('/Semestres', 'SemestresController.index')
+Route.resource('/Semestres', 'SemestresController').apiOnly()
 
-Route.post('/Semestres', 'SemestresController.store')
 
 // 5
 
-Route.get('/Salas', 'SalasController.index')
-
-Route.post('/Salas', 'SalasController.store')
+Route.resource('/Salas', 'SalasController').apiOnly()
 
 // 6
 
-Route.get('/Chamadas', 'ChamadasController.index')
-
-Route.post('/Chamadas', 'ChamadasController.store')
+Route.resource('/Chamadas', 'ChamadasController').apiOnly()
 
 // 7
 
-Route.get('/TurmaAlunos', 'TurmaAlunosController.index')
-
-Route.post('/TurmaAlunos', 'TurmaAlunosController.store')
+Route.resource('/TurmaAlunos', 'TurmaAlunosController').apiOnly()
 
 // 8
 
-Route.get('/Disciplinas', 'DisciplinasController.index')
-
-Route.post('/Disciplinas', 'DisciplinasController.store')
+Route.resource('/Disciplinas', 'DisciplinasController').apiOnly()
 
 // 9
 
-Route.get('/Alunos', 'AlunosController.index')
-
-Route.post('/Alunos', 'AlunosController.store')
+Route.resource('/Alunos', 'AlunosController').apiOnly()

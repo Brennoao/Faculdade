@@ -3,8 +3,19 @@
 import Sala from "App/Models/Sala";
 
 export default class SalasController {
-    index (){
-        return Sala.all()
+    index ({request}){
+        const {nome, capacidade, tipo} = request.all()
+        const sala = Sala.query().select(["nome", "capacidade", "tipo"])
+
+        if (nome) {
+            sala.where('nome', nome)
+        }else if (capacidade) {
+            sala.where('capacidade', capacidade)
+        }else if (tipo) {
+            sala.where('tipo', tipo)
+        }
+
+        return sala
     }
 
     async store ({request}){
@@ -26,7 +37,13 @@ export default class SalasController {
         return sala.delete()
     }
 
-    update(id) {
-        
+    async update({request}) {
+        const id = request.param('id')
+        const data = request.only(["nome", "capacidade", "tipo"])
+
+        const update = await Sala.findOrFail(id)
+        update.merge(data).save()
+
+        return update
     }
 }

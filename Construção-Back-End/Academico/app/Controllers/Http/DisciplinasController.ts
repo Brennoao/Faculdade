@@ -3,8 +3,17 @@
 import Disciplina from "App/Models/Disciplina";
 
 export default class DisciplinasController {
-    index (){
-        return Disciplina.all()
+    index ({request}){
+        const {nome, cursoId} = request.all()
+        const disciplina = Disciplina.query().select(['nome', 'cursoId'])
+
+        if (nome) {
+            disciplina.where('nome', nome)
+        }if (cursoId) {
+            disciplina.where('cursoId', cursoId)
+        }
+
+        return disciplina
     }
 
     async store ({request}) {
@@ -26,7 +35,13 @@ export default class DisciplinasController {
         return disciplina.delete()
     }
 
-    update(id) {
-        
+    async update({request}) {
+        const id = request.param('id')
+        const data = request.only(["nome", "cursoId"])
+
+        const update = await Disciplina.findOrFail(id)
+        update.merge(data).save()
+
+        return update
     }
 }

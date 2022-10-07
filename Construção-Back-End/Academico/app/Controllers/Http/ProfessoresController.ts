@@ -1,13 +1,38 @@
 // import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
-import Disciplina from "App/Models/Disciplina";
 import Professore from "App/Models/Professore";
 
 export default class ProfessoresController {
 
-    index(){
+    index({request}){
+        const {nome, cpf, matricula, salario, email, telefone, cep, logradouro, complemento, numero, bairro} = request.all()
+        const professore = Professore.query().select(['nome', 'cpf', 'matricula', 'salario', 'email', 'telefone', 'cep', 'logradouro', 'complemento', 'numero', 'bairro'])
 
-        return Professore.all()
+        if (nome) {
+            professore.where('nome', nome)
+        }else if (cpf) {
+            professore.where('cpf', cpf)
+        }else if (matricula) {
+            professore.where('matricula', matricula)
+        }else if (salario) {
+            professore.where('salario', salario)
+        }else if (email) {
+            professore.where('email', email)
+        }else if (telefone) {
+            professore.where('telefone', telefone)
+        }else if (cep) {
+            professore.where('cep', cep)
+        }else if (logradouro) {
+            professore.where('logradouro', logradouro)
+        }else if (complemento) {
+            professore.where('complemento', complemento)
+        }else if (numero) {
+            professore.where('numero', numero)
+        }else if (bairro) {
+            professore.where('bairro', bairro)
+        }
+
+        return professore
 
     }
 
@@ -20,7 +45,7 @@ export default class ProfessoresController {
     show({request}) {
         const id = request.param('id')
         
-        return Disciplina.find(id)
+        return Professore.find(id)
     }
 
     async destroy({request}) {
@@ -30,7 +55,13 @@ export default class ProfessoresController {
         return professore.delete()
     }
 
-    update(id) {
-        
+    async update({request}) {
+        const id = request.param('id')
+        const data = request.only(['nome', 'cpf', 'matricula', 'salario', 'email', 'telefone', 'cep', 'logradouro', 'complemento', 'numero', 'bairro'])
+
+        const update = await Professore.findOrFail(id)
+        update.merge(data).save()
+
+        return update
     }
 }
