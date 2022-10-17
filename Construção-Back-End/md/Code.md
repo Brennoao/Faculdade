@@ -12,3 +12,4 @@ git commit -m ""
 
 <!-- ATUALIZAR OS SERVIDORES DO GITHUNB -->
 git push
+
