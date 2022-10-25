@@ -5,7 +5,7 @@ import Disciplina from "App/Models/Disciplina";
 export default class DisciplinasController {
     index ({request}){
         const {nome, cursoId} = request.all()
-        const disciplina = Disciplina.query().select(['nome', 'cursoId'])
+        const disciplina = Disciplina.query().select(['nome', 'cursoId']).preload("Curso")
 
         if (nome) {
             disciplina.where('nome', nome)

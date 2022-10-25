@@ -1,5 +1,6 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, column, ManyToMany, manyToMany } from '@ioc:Adonis/Lucid/Orm'
+import Aluno from './Aluno'
 
 export default class Turma extends BaseModel {
   @column({ isPrimary: true })
@@ -28,4 +29,8 @@ export default class Turma extends BaseModel {
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
+
+  @manyToMany(() => Aluno)
+  Alunos: ManyToMany <typeof Aluno>
+  
 }

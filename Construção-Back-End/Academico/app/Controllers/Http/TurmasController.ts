@@ -5,7 +5,7 @@ import Turma from "App/Models/Turma";
 export default class TurmasController {
     index({request}){
         const {nome, professorId, semestreId, disciplinaId, salaId, turno} = request.all()
-        const turmas = Turma.query().select(["nome", "professorId", "semestreId", "disciplinaId", "salaId", "turno"])
+        const turmas = Turma.query().select(["nome", "professorId", "semestreId", "disciplinaId", "salaId", "turno"]).preload("Alunos")
 
         if (nome) {
             turmas.where('nome', nome)
