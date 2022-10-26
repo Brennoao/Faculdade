@@ -26,20 +26,26 @@ node ace serve --watch
 <!-- ARQUIVO DE CRIAÇÃO DE CONTROLLER DO ADONIS -->
 node ace make:controller nome-do-arquivo
 
+<!-- CRIAR ARQUIVOS PARA O PRE-CADASTRO DO BANCO DE DADOS -->
+node ace make:seeder
+
 <!-- ARQUIVO DE CRIAÇÃO DE MODEL DO ADONIS -->
 node ace make:model nome-do-arquivo
 
-<!-- ARQUIVO DE CRIAÇÃO DE MODEL E CONTROLLER JUNTOS DO ADONIS -->
+<!-- ARQUIVO DE CRIAÇÃO DE MODEL E MIGRATIONS JUNTOS DO ADONIS -->
 node ace make:model nome-do-arquivo -m
+
+<!-- CRIAR AS TABELAS COM O SEEDERS -->
+node ace migration:refresh --seed
 
 <!-- VISUALIZAR TODOS OS COMANDOS -->
 node ace make -h
 
-<!-- INSTALAÇÃO DO CLI -->
-npm i --global @adonis/cli
-
 <!-- MIGRATION -->
 node ace make:migration Nome-da-tabela
+
+<!-- INSTALAÇÃO DO CLI -->
+npm i --global @adonis/cli
 
 <!-- EXECUTA MIGRATION -->
 node ace migration:run
@@ -49,12 +55,6 @@ node ace migration:rollback
 
 <!-- APAGA O BANCO DE DADOS E RODA TUDO DE NOVO -->
 node ace migration:refresh
-
-<!-- CRIAR AS TABELAS COM O SEEDERS -->
-node ace migration:refresh --seed
-
-<!-- CRIAR ARQUIVOS PARA O PRE-CADASTRO DO BANCO DE DADOS -->
-node ace make:seeder
 
 <!-- EXECUTAR TODOS OS SEEDERS -->
 node ace db:seed
