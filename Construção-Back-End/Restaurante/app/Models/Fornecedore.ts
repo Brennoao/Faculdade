@@ -6,16 +6,16 @@ export default class Fornecedore extends BaseModel {
   public id: number
 
   @column()
-  public RazãSocial: number
+  public razaoSocial: string
 
   @column()
-  public CNPJ: number
+  public cnpj: number
 
   @column()
-  public CEP: number
+  public cep: number
 
   @column()
-  public endereço: string
+  public endereco: string
 
   @column()
   public telefone: number

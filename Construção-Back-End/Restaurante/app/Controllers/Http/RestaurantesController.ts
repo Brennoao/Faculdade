@@ -3,10 +3,8 @@
 import Restaurante from "App/Models/Restaurante"
 
 export default class RestaurantesController {
-    index ({request}) {
-          const restaurante = request.all()
-
-        return restaurante
+    index () {
+        return Restaurante.query()
     }
 
     async store ({request}) {
@@ -18,7 +16,7 @@ export default class RestaurantesController {
     show ({request}) {
         const id = request.param('id')
 
-        return Restaurante.find(id)
+        return Restaurante.findOrFail(id)
     }
 
     async destroy({request}) {

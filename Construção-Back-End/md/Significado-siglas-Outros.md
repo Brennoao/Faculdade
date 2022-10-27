@@ -7,4 +7,6 @@ IAAC =
 
 FK = FOREING KEY
 
-npm init adonis 
+notnull = OBRIGATOIO
+unique = UNICIDADE (CAMPO NAO REPETI)
+unsigned = NAO ACEITA NUMERO NEGATIVO

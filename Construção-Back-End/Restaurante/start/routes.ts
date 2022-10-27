@@ -25,3 +25,5 @@ Route.get('/', async () => {
 })
 
 Route.resource('/Restaurante', 'RestaurantesController').apiOnly()
+
+Route.resource('/Fornecedores', 'FornecedoresController').apiOnly()

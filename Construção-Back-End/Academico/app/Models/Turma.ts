@@ -1,6 +1,11 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column, ManyToMany, manyToMany } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, BelongsTo, belongsTo, column, HasMany, hasMany, ManyToMany, manyToMany} from '@ioc:Adonis/Lucid/Orm'
 import Aluno from './Aluno'
+import Sala from './Sala'
+import Semestre from './Semestre'
+import Professore from './Professore'
+import Disciplina from './Disciplina'
+import Aula from './Aula'
 
 export default class Turma extends BaseModel {
   @column({ isPrimary: true })
@@ -30,7 +35,23 @@ export default class Turma extends BaseModel {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
 
-  @manyToMany(() => Aluno)
-  Alunos: ManyToMany <typeof Aluno>
+  @belongsTo(() => Sala)
+  public Alunos: BelongsTo <typeof Sala>
+
+  @belongsTo(() => Semestre)
+  public Semestre: BelongsTo <typeof Semestre>
+
+  @belongsTo(() => Professore)
+  public Professore: BelongsTo <typeof Professore>
+
+  @belongsTo(() => Disciplina)
+  public Disciplina: BelongsTo <typeof Disciplina>
+
+  @hasMany(() => Aula)
+  public Aula: HasMany <typeof Aula>
+
+  @manyToMany(() => Aluno, {pivotTable: 'turma_aluno'})
+  public Aluno: ManyToMany <typeof Aluno>
+
   
 }

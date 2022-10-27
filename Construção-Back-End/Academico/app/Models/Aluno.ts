@@ -10,13 +10,16 @@ export default class Aluno extends BaseModel {
   public nome: string
 
   @column()
-  public cpf: string
+  public cpf: number
 
   @column()
   public matricula: number
 
   @column()
   public email: string
+
+  @column()
+  public telefone: number
 
   @column()
   public cep: number
@@ -28,7 +31,7 @@ export default class Aluno extends BaseModel {
   public complemento: string
 
   @column()
-  public numero: number
+  public numero: string
 
   @column()
   public bairro: string

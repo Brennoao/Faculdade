@@ -29,6 +29,9 @@ node ace make:controller nome-do-arquivo
 <!-- CRIAR ARQUIVOS PARA O PRE-CADASTRO DO BANCO DE DADOS -->
 node ace make:seeder
 
+<!-- CRIAR O VALIDADTOR -->
+node ace make:validator 
+
 <!-- ARQUIVO DE CRIAÇÃO DE MODEL DO ADONIS -->
 node ace make:model nome-do-arquivo
 
