@@ -110,4 +110,4 @@ console.log(deque.toString()) // Pedro, Camila
 deque.removeback() // Camila decide sair
 console.log(deque.toString())  // Pedro
 deque.addFront('João') // João retorna para pedir informação
-console.log(deque.toString())
+console.log(deque.toString()) // João, Pedro
