@@ -13,7 +13,7 @@ export default class Professore extends BaseModel {
   public cpf: number
 
   @column()
-  public matricula: string
+  public matricula: number
 
   @column()
   public salario: number

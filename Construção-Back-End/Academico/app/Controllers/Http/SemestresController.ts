@@ -1,6 +1,7 @@
 // import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
 import Semestre from "App/Models/Semestre";
+import SemestreValidator from "App/Validators/SemestreValidator";
 
 export default class SemestresController {
     index ({request}){
@@ -19,7 +20,7 @@ export default class SemestresController {
     }
 
     async store ({request}){
-        const data = request.only(["nome", "dataInicio", "dataFim"])
+        const data = await request.validate(SemestreValidator)
 
         return await Semestre.create(data)
     }

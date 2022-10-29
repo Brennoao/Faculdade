@@ -1,4 +1,4 @@
-class deque {
+class Deque {
     // Implementando o metodo construtor
     constructor() {
         // Count para controlar o tamanho do deque
@@ -11,7 +11,7 @@ class deque {
 
     addFront(element) { // Adicionar um novo elemeto na frente do deque
         // Primeiro cenario verifica se o deque está vazio
-        if (thisEmpty) {
+        if (this.isEmpty()) {
             // Neste caso chamamos o método addBack no final da deque
             this.addBack(element)
         }else if (this.lowestCount > 0) {
@@ -21,7 +21,7 @@ class deque {
         }else {
             // Se lowestCound é igual a zero e para adicionar um novo elemento na primeira posição, devemos mover para próxima posição e deixar o primeiro index livre
             for (var i = this.count; i > 0; i-- ) {
-                this.items[i] = this.items[i - i]
+                this.items[i] = this.items[i - 1]
             }
             this.count++
             this.lowestCount = 0
@@ -34,7 +34,7 @@ class deque {
         this.count++
     }
 
-    removeFront(element) { // Remove o primeiro elemento do deque
+    removeFront() { // Remove o primeiro elemento do deque
         if (this.isEmpty()) {
             return undefined
         }
@@ -50,27 +50,64 @@ class deque {
         return result
     }
 
-    removeback(element) { // Removo o ultimo elemento do deuqe
+    removeback() { // Removo o ultimo elemento do deuqe
+        if (this.isEmpty()) {
+            return undefined
+        }
 
+        this.count--
+        const result = this.items[this.count]
+        delete this.items[this.count]
+        return result
     }
 
-    peekfront(element) { // Devolve o peimeiro elemento do deque
+    peekfront() { // Devolve o peimeiro elemento do deque
+        if (this.isEmpty()) {
+            return undefined
+        }
 
+        return this.items[this.lowestCount]
     }
 
-    peekback(element) { // Devolve o ultimmo elemento do deque
-
+    peekback() { // Devolve o ultimmo elemento do deque
+        return this.items[this.items.length - 1]
     }
 
-    size(element) { // Para retornar o tamanho do deque
+    // para retornar o tamanho do deque basta retornar a diferença de count por lowestCount
 
+    size() { // Para retornar o tamanho do deque
+        return this.count - this.lowestCount
     }
 
-    isEmpty(element) { // Verificar se esta vazio
-
+    isEmpty() { // Verificar se esta vazio
+        return this.size() === 0
     }
 
-    toString(element) { // Apresenta o conteudo do deque
-
+    toString() { // Apresenta o conteudo do deque
+        if (this.isEmpty()) {
+            return ''
+        }
+        let objString = `${this.items[this.lowestCount]}`
+        for (let i = this.lowestCount + 1; i < this.count; i++) {
+            objString = `${objString}, ${this.items[i]}`
+        }
+        return objString
     }
 }
+
+// usando a classe Deque
+
+const deque = new Deque()
+console.log(deque.isEmpty()) // exibe true
+deque.addBack('João')
+deque.addBack('Pedro')
+console.log(deque.toString()) // João, Pedro
+deque.addBack('Camila') // João, Pedro, Camila
+console.log(deque.size()) // Exibe 3
+console.log(deque.isEmpty()) // Exibe false
+deque.removeFront() // Remove João
+console.log(deque.toString()) // Pedro, Camila
+deque.removeback() // Camila decide sair
+console.log(deque.toString())  // Pedro
+deque.addFront('João') // João retorna para pedir informação
+console.log(deque.toString())
