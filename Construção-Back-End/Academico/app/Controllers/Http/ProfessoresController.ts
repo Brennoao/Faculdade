@@ -1,6 +1,7 @@
 // import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
 import Professore from "App/Models/Professore";
+import ProfessoreValidator from "App/Validators/ProfessoreValidator";
 
 export default class ProfessoresController {
 
@@ -37,9 +38,9 @@ export default class ProfessoresController {
     }
 
     async store({request}){
-        const dados = request.only(['nome', 'cpf', 'matricula', 'salario', 'email', 'telefone', 'cep', 'logradouro', 'complemento', 'numero', 'bairro'])
+        const dados = await request.validate(ProfessoreValidator)
 
-        return await Professore.create(dados)
+        return Professore.create(dados)
     }
 
     show({request}) {

@@ -1,6 +1,7 @@
 // import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
 import Chamada from "App/Models/Chamada";
+import ChamadaValidator from "App/Validators/ChamadaValidator";
 
 export default class ChamadasController {
     index ({request}){
@@ -19,9 +20,9 @@ export default class ChamadasController {
     }
 
     async store ({request}){
-        const dados = request.only(["aulaId", "alunosId", "presenca"])
+        const dados = await request.validator(ChamadaValidator)
 
-        return await Chamada.create(dados)
+        return Chamada.create(dados)
     }
 
     show({request}) {

@@ -22,7 +22,7 @@ export default class SemestresController {
     async store ({request}){
         const data = await request.validate(SemestreValidator)
 
-        return await Semestre.create(data)
+        return Semestre.create(data)
     }
 
     show({request}) {
