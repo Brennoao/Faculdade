@@ -5,13 +5,13 @@ import TurmaAlunoValidator from "App/Validators/TurmaAlunoValidator";
 
 export default class TurmaAlunosController {
     index ({request}){
-        const {tumasId, alunosId} = request.all()
+        const {tumaId, alunoId} = request.all()
         const turmaAluno = TurmaAluno.query().preload('turmas').preload('alunos')
 
-        if (tumasId) {
-            turmaAluno.where('tumasId', tumasId)
-        }else if (alunosId) {
-            turmaAluno.where('alunosId', alunosId)
+        if (tumaId) {
+            turmaAluno.where('tumaId', tumaId)
+        }else if (alunoId) {
+            turmaAluno.where('alunoId', alunoId)
         }
 
         return turmaAluno

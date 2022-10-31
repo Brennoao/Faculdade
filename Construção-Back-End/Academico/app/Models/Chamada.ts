@@ -11,7 +11,7 @@ export default class Chamada extends BaseModel {
   public aulaId: number
 
   @column()
-  public alunosId: number
+  public alunoId: number
 
   @column()
   public presenca: string

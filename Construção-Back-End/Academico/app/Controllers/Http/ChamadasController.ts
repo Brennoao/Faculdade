@@ -5,13 +5,13 @@ import ChamadaValidator from "App/Validators/ChamadaValidator";
 
 export default class ChamadasController {
     index ({request}){
-        const {aulaId, alunosId, presenca} = request.all()
-        const chamada = Chamada.query().preload('aulas')// .preload('alunos')
+        const {aulaId, alunoId, presenca} = request.all()
+        const chamada = Chamada.query().preload('aulas').preload('alunos')
 
         if (aulaId) {
             chamada.where('aulaId', aulaId)            
-        }else if (alunosId) {
-            chamada.where('alunosId', alunosId)
+        }else if (alunoId) {
+            chamada.where('alunosId', alunoId)
         }else if (presenca) {
             chamada.where('presenca', presenca)
         }

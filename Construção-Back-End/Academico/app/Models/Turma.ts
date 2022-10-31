@@ -15,7 +15,7 @@ export default class Turma extends BaseModel {
   public nome: string
 
   @column()
-  public professorId: number
+  public professoreId: number
 
   @column()
   public semestreId: number
