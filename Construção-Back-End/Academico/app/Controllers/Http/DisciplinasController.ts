@@ -6,7 +6,7 @@ import DisciplinaValidator from "App/Validators/DisciplinaValidator";
 export default class DisciplinasController {
     index ({request}){
         const {nome, cursoId} = request.all()
-        const disciplina = Disciplina.query().preload("cursos").preload('turmas').select(['nome', 'cursoId'])
+        const disciplina = Disciplina.query().preload("cursos").preload('turmas')
 
         if (nome) {
             disciplina.where('nome', nome)

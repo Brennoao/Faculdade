@@ -6,7 +6,7 @@ import TurmaAlunoValidator from "App/Validators/TurmaAlunoValidator";
 export default class TurmaAlunosController {
     index ({request}){
         const {tumasId, alunosId} = request.all()
-        const turmaAluno = TurmaAluno.query().preload('turmas').preload('alunos').select(["tumasId", "alunosId"])
+        const turmaAluno = TurmaAluno.query().preload('turmas').preload('alunos')
 
         if (tumasId) {
             turmaAluno.where('tumasId', tumasId)

@@ -6,7 +6,7 @@ export default class SalaValidator {
 
   public schema = schema.create({
     nome: schema.string([rules.maxLength(50)]),
-    capacidade: schema.string.optional(),
+    capacidade: schema.number.optional(),
     tipo: schema.string([rules.maxLength(1)])
   })
 

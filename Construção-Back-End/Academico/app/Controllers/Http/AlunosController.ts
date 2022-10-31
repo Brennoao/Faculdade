@@ -6,7 +6,7 @@ import AlunoValidator from "App/Validators/AlunoValidator";
 export default class AlunosController {
     index ({request}){
         const {nome, cpf, matricula, email, cep, logradouro, complemento, numero, bairro} = request.all()
-        const aluno = Aluno.query().preload('turmas').preload('chamadas').select(['id', 'nome', 'cpf', 'matricula', 'email', 'cep', 'logradouro', 'bairro'])
+        const aluno = Aluno.query().preload('turmas').preload('chamadas')
 
         if (nome) {
             aluno.where('nome', nome)

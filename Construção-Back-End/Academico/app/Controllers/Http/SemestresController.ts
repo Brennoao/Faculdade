@@ -6,7 +6,7 @@ import SemestreValidator from "App/Validators/SemestreValidator";
 export default class SemestresController {
     index ({request}){
         const {nome, dataInicio, dataFim} = request.all()
-        const semestre = Semestre.query().preload('turmas').select(["nome", "dataInicio", "dataFim"])
+        const semestre = Semestre.query().preload('turmas')
 
         if (nome) {
             semestre.where('nome', nome)
