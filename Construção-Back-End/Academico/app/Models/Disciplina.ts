@@ -20,7 +20,7 @@ export default class Disciplina extends BaseModel {
   public updatedAt: DateTime
 
   @belongsTo(() => Curso)
-  public Curso: BelongsTo <typeof Curso>
+  public cursos: BelongsTo <typeof Curso>
 
   @hasMany(() => Turma)
   public turmas: HasMany <typeof Turma>

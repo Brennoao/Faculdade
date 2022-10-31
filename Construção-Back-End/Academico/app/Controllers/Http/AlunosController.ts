@@ -6,7 +6,7 @@ import AlunoValidator from "App/Validators/AlunoValidator";
 export default class AlunosController {
     index ({request}){
         const {nome, cpf, matricula, email, cep, logradouro, complemento, numero, bairro} = request.all()
-        const aluno = Aluno.query().select(['id', 'nome', 'cpf', 'matricula', 'email', 'cep', 'logradouro', 'bairro'])
+        const aluno = Aluno.query().preload('turmas').preload('chamadas').select(['id', 'nome', 'cpf', 'matricula', 'email', 'cep', 'logradouro', 'bairro'])
 
         if (nome) {
             aluno.where('nome', nome)
@@ -37,10 +37,10 @@ export default class AlunosController {
         return Aluno.create(data)
     }
 
-    show({request}) {
+    async show({request}) {
         const id = request.param('id')
 
-        return Aluno.find(id)
+        return await Aluno.findOrFail(id)
     }
 
     async destroy({request}) {

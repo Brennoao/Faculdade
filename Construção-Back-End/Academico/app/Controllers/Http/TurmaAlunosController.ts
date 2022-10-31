@@ -6,7 +6,7 @@ import TurmaAlunoValidator from "App/Validators/TurmaAlunoValidator";
 export default class TurmaAlunosController {
     index ({request}){
         const {tumasId, alunosId} = request.all()
-        const turmaAluno = TurmaAluno.query().select(["tumasId", "alunosId"])
+        const turmaAluno = TurmaAluno.query().preload('turmas').preload('alunos').select(["tumasId", "alunosId"])
 
         if (tumasId) {
             turmaAluno.where('tumasId', tumasId)
@@ -38,11 +38,11 @@ export default class TurmaAlunosController {
 
     async update({request}) {
         const id = request.param('id')
-        const data = request.only(["tumasId", "alunosId"])
+        const turmaAluno = await TurmaAluno.findOrFail(id)
+        const dados = request.only(['turmaId', 'alunoId'])
 
-        const update = await TurmaAluno.findOrFail(id)
-        update.merge(data).save()
+        turmaAluno.merge(dados)
 
-        return update
+        return await turmaAluno.save()
     }
 }

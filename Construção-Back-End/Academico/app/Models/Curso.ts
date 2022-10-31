@@ -22,6 +22,6 @@ export default class Curso extends BaseModel {
   public updatedAt: DateTime
 
   @hasMany(() => Disciplina)
-  Cursos: HasMany <typeof Disciplina> 
+  public disciplinas: HasMany <typeof Disciplina> 
 
 }

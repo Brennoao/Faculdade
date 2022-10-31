@@ -6,7 +6,7 @@ import ChamadaValidator from "App/Validators/ChamadaValidator";
 export default class ChamadasController {
     index ({request}){
         const {aulaId, alunosId, presenca} = request.all()
-        const chamada = Chamada.query().select(["aulaId", "alunosId", "presenca"])
+        const chamada = Chamada.query().preload('aulas').preload('alunos').select(["aulaId", "alunosId", "presenca"])
 
         if (aulaId) {
             chamada.where('aulaId', aulaId)            

@@ -6,7 +6,7 @@ import SalaValidator from "App/Validators/SalaValidator";
 export default class SalasController {
     index ({request}){
         const {nome, capacidade, tipo} = request.all()
-        const sala = Sala.query().select(["nome", "capacidade", "tipo"])
+        const sala = Sala.query().preload('turmas').select(["nome", "capacidade", "tipo"])
 
         if (nome) {
             sala.where('nome', nome)

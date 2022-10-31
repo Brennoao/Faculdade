@@ -7,7 +7,7 @@ export default class AulasController {
 
     index({request}){
         const {data, conteudo, turmaId} = request.all()
-        const aulas = Aula.query().select(['id', 'data', 'conteudo', 'turmaId'])
+        const aulas = Aula.query().preload('turmas').preload('chamadas').select(['id', 'data', 'conteudo', 'turmaId'])
 
         if (data) {
             aulas.where('data', data)

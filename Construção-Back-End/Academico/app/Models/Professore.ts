@@ -46,5 +46,5 @@ export default class Professore extends BaseModel {
   public updatedAt: DateTime
 
   @hasMany(() => Turma)
-  Professores: HasMany <typeof Turma>
+  public turmas: HasMany <typeof Turma>
 }

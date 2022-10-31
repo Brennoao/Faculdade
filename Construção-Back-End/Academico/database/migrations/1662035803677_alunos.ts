@@ -14,7 +14,7 @@ export default class extends BaseSchema {
       table.integer('cep')
       table.string('logradouro')
       table.string('complemento')
-      table.string('numero')
+      table.integer('numero')
       table.string('bairro')
 
       /**

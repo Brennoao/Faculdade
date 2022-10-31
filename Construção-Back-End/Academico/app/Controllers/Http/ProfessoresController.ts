@@ -7,7 +7,7 @@ export default class ProfessoresController {
 
     index({request}){
         const {nome, cpf, matricula, salario, email, telefone, cep, logradouro, complemento, numero, bairro} = request.all()
-        const professore = Professore.query().select(['nome', 'cpf', 'matricula', 'salario', 'email', 'telefone', 'cep', 'logradouro', 'complemento', 'numero', 'bairro']).preload("Professores")
+        const professore = Professore.query().preload("turmas").select(['nome', 'cpf', 'matricula', 'salario', 'email', 'telefone', 'cep', 'logradouro', 'complemento', 'numero', 'bairro'])
 
         if (nome) {
             professore.where('nome', nome)

@@ -6,7 +6,7 @@ import TurmaValidator from "App/Validators/TurmaValidator";
 export default class TurmasController {
     index({request}){
         const {nome, professorId, semestreId, disciplinaId, salaId, turno} = request.all()
-        const turmas = Turma.query().select(["nome", "professorId", "semestreId", "disciplinaId", "salaId", "turno"]).preload("Alunos")
+        const turmas = Turma.query().preload('salas').preload('semestres').preload('professores').preload('disciplinas').preload('aulas').preload('alunos').select(["nome", "professorId", "semestreId", "disciplinaId", "salaId", "turno"])
 
         if (nome) {
             turmas.where('nome', nome)
