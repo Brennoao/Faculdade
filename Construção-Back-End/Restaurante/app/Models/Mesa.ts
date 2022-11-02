@@ -6,10 +6,7 @@ export default class Mesa extends BaseModel {
   public id: number
 
   @column()
-  public nummero: number
-
-  @column()
-  public quantidade: number
+  public numero: number
 
   @column()
   public restauranteIdrestaurante: number

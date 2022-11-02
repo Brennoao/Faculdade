@@ -1,38 +1,43 @@
 // import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
 import Restaurante from "App/Models/Restaurante"
+import RestauranteValidator from "App/Validators/RestauranteValidator"
 
 export default class RestaurantesController {
-    index () {
-        return Restaurante.query()
+    index(){
+        const restaurante = Restaurante.query().select(['id', 'cnpj'])
+
+        return restaurante
     }
 
-    async store ({request}) {
-        const data = request.only(["cnpj"])
+    async store({request}) {
+        const data = await request.validate(RestauranteValidator)
 
-        return await Restaurante.create(data)
+        return Restaurante.create(data)
     }
 
-    show ({request}) {
+    async show({request}) {
         const id = request.param('id')
 
-        return Restaurante.findOrFail(id)
+        return await Restaurante.findOrFail(id)
     }
 
     async destroy({request}) {
         const id = request.param('id')
         const restaurante = await Restaurante.findOrFail(id)
-
-        return restaurante.delete()
+        restaurante.delete()
+        return restaurante
     }
 
-    async update ({request}) {
+    async update({request}) {
         const id = request.param('id')
-        const data = request.only(["cnpj"])
+        const data = await request.only(['id', 'cnpj'])
 
         const update = await Restaurante.findOrFail(id)
-        update.merge(data).save()
+        update.merge(data)
 
-        return update
+        return update.save()
     }
+
+
 }

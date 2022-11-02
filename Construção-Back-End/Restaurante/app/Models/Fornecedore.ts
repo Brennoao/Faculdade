@@ -22,7 +22,7 @@ export default class Fornecedore extends BaseModel {
 
   @column()
   public celular: number
-  
+
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 
