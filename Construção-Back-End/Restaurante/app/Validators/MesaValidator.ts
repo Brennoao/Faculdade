@@ -5,8 +5,8 @@ export default class MesaValidator {
   constructor(protected ctx: HttpContextContract) {}
 
   public schema = schema.create({
-    numero: schema.number([rules.unique({table: 'mesas', column: 'numero'}), rules.unsigned()]),
-    restauranteIdrestaurante: schema.number([rules.unsigned()])
+    numero: schema.number([rules.unique({table: 'mesa', column: 'numero'}), rules.unsigned()]),
+    restauranteId: schema.number([rules.unsigned()])
   })
 
   public messages: CustomMessages = {}

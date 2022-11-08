@@ -7,10 +7,10 @@ export default class ProdutoValidator {
   public schema = schema.create({
     nome: schema.string(),
     quantidade: schema.number([rules.unsigned()]),
-    calorias: schema.number([rules.unsigned()]),
-    fornecedorIdfornecedor: schema.number([rules.unsigned()]),
+    caloria: schema.number([rules.unsigned()]),
+    fornecedorId: schema.number([rules.unsigned()]),
     valor: schema.number([rules.unsigned()]),
-    tipoIdtipo: schema.number([rules.unsigned()])
+    tipoId: schema.number([rules.unsigned()])
   })
 
   public messages: CustomMessages = {}

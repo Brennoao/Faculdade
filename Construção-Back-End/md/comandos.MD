@@ -64,3 +64,13 @@ node ace db:seed
 
 <!-- LISTAR TODAS AS ROTAS -->
 node ace list:routes
+
+<!-- INSTALANDO AUTENTICAÇÃO -->
+npm i @adonisjs/auth
+
+<!-- CONFIGURAÇÃO AUTENTUCAÇÃO -->
+node ace configure @adonisjs/auth
+lucid > api token > y > database > y
+
+<!-- pacote auth -->
+npm i phc-argon2

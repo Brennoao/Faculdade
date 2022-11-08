@@ -1,11 +1,26 @@
 // import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
-import Produtos from "App/Models/Produtos";
+import Produtos from "App/Models/Produto";
 import ProdutoValidator from "App/Validators/ProdutoValidator";
 
 export default class ProdutosController {
-    index() {
-        const produtos = Produtos.query().select(['id', 'nome', 'quantidade', 'calorias', 'fornecedorIdfornecedor', 'valor', 'tipoIdtipo'])
+    index({request}) {
+        const {nome, quantidade, caloria, fornecedorId, valor, tipoIdtipo} = request.all()
+        const produtos = Produtos.query().preload("pedido").preload("tipo").select(['id', 'nome', 'quantidade', 'caloria', 'fornecedorId', 'valor', 'tipoId'])
+
+        if (nome) {
+            produtos.where('nome', nome)
+        } else if (quantidade) {
+            produtos.where('quantidade', quantidade)
+        } else if (caloria) {
+            produtos.where('caloria', caloria)
+        } else if (fornecedorId) {
+            produtos.where('fornecedorId', fornecedorId)
+        } else if (valor) {
+            produtos.where('valor', valor)
+        } else if (tipoIdtipo) {
+            produtos.where('tipoIdtipo', tipoIdtipo)
+        }
 
         return produtos
     }
@@ -31,7 +46,7 @@ export default class ProdutosController {
 
     async update({request}) {
         const id = request.param('id')
-        const data = request.only(['nome', 'quantidade', 'calorias', 'fornecedorIdfornecedor', 'valor', 'tipoIdtipo'])
+        const data = request.only(['nome', 'quantidade', 'caloria', 'fornecedorId', 'valor', 'tipoId'])
 
         const update = await Produtos.findOrFail(id)
         update.merge(data).save()

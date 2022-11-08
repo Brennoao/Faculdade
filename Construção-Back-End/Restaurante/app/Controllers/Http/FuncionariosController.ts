@@ -1,11 +1,26 @@
-// import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-
 import Funcionario from "App/Models/Funcionario";
 import FuncionarioValidator from "App/Validators/FuncionarioValidator";
 
 export default class FuncionariosController {
-    index() {
-        const funcionarios = Funcionario.query().select(['id', 'nome', 'cpf', 'registroGeral', 'email', 'cargo', 'senha', 'restauranteIdrestaurante'])
+    index({request}) {
+        const {nome, cpf, registroGeral, email, cargo, senha, restauranteIdrestaurante} = request.all()
+        const funcionarios = Funcionario.query().preload("restaurante").preload("pedido").select(['id', 'nome', 'cpf', 'registroGeral', 'email', 'cargo', 'senha', 'restauranteId'])
+
+        if (nome) {
+            funcionarios.where('nome', nome)
+        } else if (cpf) {
+            funcionarios.where('cpf', cpf)
+        } else if (registroGeral) {
+            funcionarios.where('registroGeral', registroGeral)
+        } else if (email) {
+            funcionarios.where('email', email)
+        } else if (cargo) {
+            funcionarios.where('cargo', cargo)
+        } else if (senha) {
+            funcionarios.where('senha', senha)
+        } else if (restauranteIdrestaurante) {
+            funcionarios.where('restauranteIdrestaurante', restauranteIdrestaurante)
+        }
         
         return funcionarios
     }
@@ -25,7 +40,7 @@ export default class FuncionariosController {
 
     async update({request}) {
         const id = request.param('id')
-        const data = request.only([ 'nome', 'cpf', 'registroGeral', 'email', 'cargo', 'senha', 'restauranteIdrestaurante'])
+        const data = request.only([ 'nome', 'cpf', 'registroGeral', 'email', 'cargo', 'senha', 'restauranteId'])
 
         const update = await Funcionario.findOrFail(id)
         update.merge(data).save()

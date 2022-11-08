@@ -8,10 +8,10 @@ export default class extends BaseSchema {
       table.increments('id')
       table.string('nome').notNullable()
       table.integer('quantidade').notNullable().unsigned()
-      table.integer('calorias').notNullable().unsigned()
-      table.integer('fornecedor_idfornecedor').references('id').inTable('fornecedores').notNullable().unsigned()
+      table.integer('caloria').notNullable().unsigned()
+      table.integer('fornecedor_id').references('id').inTable('fornecedores').notNullable().unsigned()
       table.integer('valor').notNullable().unsigned()
-      table.integer('tipo_idtipo').references('id').inTable('tipos').notNullable().unsigned()
+      table.integer('tipo_id').references('id').inTable('tipos').notNullable().unsigned()
 
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL

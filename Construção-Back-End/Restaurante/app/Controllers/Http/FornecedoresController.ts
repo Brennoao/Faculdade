@@ -6,7 +6,7 @@ import FornecedoreValidator from "App/Validators/FornecedoreValidator"
 export default class FornecedoresController {
     index ({request}) {
         const {razaoSocial, cnpj, cep, endereco, telefone, celular} = request.all()
-        const fornecedores = Fornecedore.query().select(['id', 'razaoSocial', 'cnpj', 'cep', 'endereco', 'telefone', 'celular'])
+        const fornecedores = Fornecedore.query().preload("produto").select(['id', 'razaoSocial', 'cnpj', 'cep', 'endereco', 'telefone', 'celular'])
 
         if (razaoSocial) {
             fornecedores.where('razaoSocial', razaoSocial)
@@ -25,12 +25,10 @@ export default class FornecedoresController {
         return fornecedores
     }
 
-    async store({request, response}) {
+    async store({request}) {
         const data = await request.validate(FornecedoreValidator)
-        //return Fornecedore.create(data)
-        for(let i = 0; i < Fornecedore.length; i++){
-            return response("banco de dados")
-        }
+
+        return Fornecedore.create(data)
     }
 
     async show({request}) {

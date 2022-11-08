@@ -24,40 +24,51 @@ Route.get('/', async () => {
   return { hello: 'world' }
 })
 
-// 1
+Route.group(() => {
 
-Route.resource('/Cursos', 'CursosController').apiOnly()
+    // 1
 
-// 2
+  Route.resource('/Cursos', 'CursosController').apiOnly()
 
-Route.resource('/Professores', 'ProfessoresController').apiOnly()
+  // 2
 
-
-// 3
-
-Route.resource('/Aulas', 'AulasController').apiOnly()
-
-// 4
-
-Route.resource('/Semestres', 'SemestresController').apiOnly()
+  Route.resource('/Professores', 'ProfessoresController').apiOnly()
 
 
-// 5
+  // 3
 
-Route.resource('/Salas', 'SalasController').apiOnly()
+  Route.resource('/Aulas', 'AulasController').apiOnly()
 
-// 6
+  // 4
 
-Route.resource('/Chamadas', 'ChamadasController').apiOnly()
+  Route.resource('/Semestres', 'SemestresController').apiOnly()
 
-// 7
 
-Route.resource('/Turma', 'TurmasController').apiOnly()
+  // 5
 
-// 8
+  Route.resource('/Salas', 'SalasController').apiOnly()
 
-Route.resource('/Disciplinas', 'DisciplinasController').apiOnly()
+  // 6
 
-// 9
+  Route.resource('/Chamadas', 'ChamadasController').apiOnly()
 
-Route.resource('/Alunos', 'AlunosController').apiOnly()
+  // 7
+
+  Route.resource('/Turma', 'TurmasController').apiOnly()
+
+  // 8
+
+  Route.resource('/Disciplinas', 'DisciplinasController').apiOnly()
+
+  // 9
+
+  Route.resource('/Alunos', 'AlunosController').apiOnly()
+  
+}).middleware('auth')
+
+//10
+
+Route.post('/Users', 'UsersController.store')
+
+//11
+Route.post('/login', 'UsersController.login')

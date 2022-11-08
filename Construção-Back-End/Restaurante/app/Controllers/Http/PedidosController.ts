@@ -4,8 +4,19 @@ import Pedido from "App/Models/Pedido";
 import PedidoValidator from "App/Validators/PedidoValidator";
 
 export default class PedidosController {
-    index() {
-        const pedidos = Pedido.query().select(['id', 'mesaIdmesa', 'funcionariosIdfuncionarios', 'data', 'formaPagamento'])
+    index({request}) {
+        const {mesaId, funcionarioId, data, formaPagamento} = request.all()
+        const pedidos = Pedido.query().preload("funcionario").preload("mesa").preload("produto").select(['id', 'mesaId', 'funcionarioId', 'data', 'formaPagamento'])
+
+        if (mesaId) {
+            pedidos.where('mesaId', mesaId)
+        } else if (funcionarioId) {
+            pedidos.where('funcionarioId', funcionarioId)
+        } else if (data) {
+            pedidos.where('data', data)
+        } else if (formaPagamento) {
+            pedidos.where('formaPagamento', formaPagamento)
+        }
 
         return pedidos
     }
@@ -31,7 +42,7 @@ export default class PedidosController {
 
     async update({request}) {
         const id = request.param('id')
-        const data = request.only(['mesaIdmesa', 'funcionariosIdfuncionarios', 'data', 'formaPagamento'])
+        const data = request.only(['mesaId', 'funcionariosId', 'data', 'formaPagamento'])
 
         const update = await Pedido.findOrFail(id)
         update.merge(data).save()

@@ -4,8 +4,13 @@ import Tipo from "App/Models/Tipo";
 import TipoValidator from "App/Validators/TipoValidator";
 
 export default class TiposController {
-    index() {
-        const tipos = Tipo.query().select(['id', 'nome'])
+    index({request}) {
+        const {nome} = request.all()
+        const tipos = Tipo.query().preload("produto").select(['id', 'nome'])
+
+        if (nome) {
+            tipos.where('nome', nome)
+        }
 
         return tipos
     }

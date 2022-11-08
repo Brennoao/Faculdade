@@ -12,7 +12,7 @@ export default class extends BaseSchema {
       table.string('email').notNullable().unique()
       table.string('cargo').notNullable()
       table.string('senha').notNullable()
-      table.integer('restaurante_idrestaurante').references('id').inTable('restaurantes').notNullable().unsigned()
+      table.integer('restaurante_id').references('id').inTable('restaurantes').notNullable().unsigned()
 
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL

@@ -4,8 +4,15 @@ import Mesa from "App/Models/Mesa";
 import MesaValidator from "App/Validators/MesaValidator";
 
 export default class MesasController {
-    index() {
-        const mesas = Mesa.query().select(['numero', 'restauranteIdrestaurante'])
+    index({request}) {
+        const {numero, restauranteId} = request.all()
+        const mesas = Mesa.query().preload("restaurante").preload("pedido").select(['numero', 'restauranteId'])
+
+        if (numero) {
+            mesas.where('numero', numero)
+        } else if (restauranteId) {
+            mesas.where('mesas', mesas)
+        }
 
         return mesas
     }
@@ -31,7 +38,7 @@ export default class MesasController {
 
     async update({request}) {
         const id = request.param('id')
-        const data = request.only(['numero', 'restauranteIdrestaurante'])
+        const data = request.only(['numero', 'restauranteId'])
 
         const update = await Mesa.findOrFail(id)
         update.merge(data).save()

@@ -6,12 +6,12 @@ export default class FuncionarioValidator {
 
   public schema = schema.create({
     nome: schema.string(),
-    cpf: schema.number([rules.unique({table: 'funcionarios', column: 'cpf'}), rules.unsigned()]),
+    cpf: schema.number([rules.unique({table: 'funcionario', column: 'cpf'}), rules.unsigned(), rules.range(0, 9)]),
     registroGeral: schema.number(),
-    email: schema.string([rules.unique({table: 'funcionarios', column: 'email'}), rules.email()]),
+    email: schema.string([rules.unique({table: 'funcionario', column: 'email'}), rules.email()]),
     cargo: schema.string(),
     senha: schema.string(),
-    restauranteIdrestaurante: schema.number.optional([rules.unsigned()])
+    restauranteId: schema.number.optional([rules.unsigned()])
   })
 
   public messages: CustomMessages = {}

@@ -5,8 +5,8 @@ export default class PedidosHasProdutoValidator {
   constructor(protected ctx: HttpContextContract) {}
 
   public schema = schema.create({
-    pedidoIdpedido: schema.number([rules.unsigned()]),
-    produtoIdproduto: schema.number([rules.unsigned()]),
+    pedidoId: schema.number([rules.unsigned()]),
+    produtoId: schema.number([rules.unsigned()]),
     quantidade: schema.number([rules.unsigned()]),
     valor: schema.number([rules.unsigned()])
   })

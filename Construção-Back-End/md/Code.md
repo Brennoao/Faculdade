@@ -12,3 +12,15 @@ git commit -m ""
 
 <!-- ATUALIZAR OS SERVIDORES DO GITHUNB -->
 git push
+
+<!-- atualizar pivot -->
+git branch id
+
+<!-- FORMATACAO PIVOT -->
+git commit -m "[finishes #id]" 
+
+<!-- ATUALIZAR OS SERVIDORES DO GITHUNB EM UMA NOVA BRANCH -->
+git push origin 183657159-add-index
+
+<!-- TROCAR DE BRANCH -->
+git chechout 

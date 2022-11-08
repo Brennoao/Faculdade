@@ -4,8 +4,13 @@ import Restaurante from "App/Models/Restaurante"
 import RestauranteValidator from "App/Validators/RestauranteValidator"
 
 export default class RestaurantesController {
-    index(){
-        const restaurante = Restaurante.query().select(['id', 'cnpj'])
+    index({request}){
+        const {cnpj} = request.all()
+        const restaurante = Restaurante.query().preload("funcionario").preload("mesa").select(['id', 'cnpj'])
+
+        if (cnpj) {
+            restaurante.where('cnpj', cnpj)
+        }
 
         return restaurante
     }
