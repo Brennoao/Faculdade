@@ -23,4 +23,7 @@ git commit -m "[finishes #id]"
 git push origin 183657159-add-index
 
 <!-- TROCAR DE BRANCH -->
-git chechout 
+git checkout
+
+<!-- DELETAR BRANCH -->
+git branch -d <branch>
