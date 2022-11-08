@@ -4,7 +4,7 @@ import PedidosHasProdutoValidator from "App/Validators/PedidosHasProdutoValidato
 export default class PedidosHasProdutosController {
     index({request}) {
         const {pedidoId, produtoId, quantidade, valor} = request.all()
-        const pedidosHasProdutos = PedidosHasProduto.query().select(['id', 'pedidoId', 'produtoId', 'quantidade', 'valor'])
+        const pedidosHasProdutos = PedidosHasProduto.query().select(['id', 'pedidoId', 'produtosId', 'quantidade', 'valor'])
 
         if (pedidoId) {
             pedidosHasProdutos.where('pedidoId', pedidoId)

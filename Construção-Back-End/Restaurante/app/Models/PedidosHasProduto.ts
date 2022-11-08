@@ -11,7 +11,7 @@ export default class PedidosHasProduto extends BaseModel {
   public pedidoId: number
   
   @column()
-  public produtoId: number
+  public produtosId: number
 
   @column()
   public quantidade: number

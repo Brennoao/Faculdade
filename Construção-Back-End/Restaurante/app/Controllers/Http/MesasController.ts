@@ -6,7 +6,7 @@ import MesaValidator from "App/Validators/MesaValidator";
 export default class MesasController {
     index({request}) {
         const {numero, restauranteId} = request.all()
-        const mesas = Mesa.query().preload("restaurante").preload("pedido").select(['numero', 'restauranteId'])
+        const mesas = Mesa.query().preload("restaurante").preload("pedido").select(['id','numero', 'restauranteId'])
 
         if (numero) {
             mesas.where('numero', numero)

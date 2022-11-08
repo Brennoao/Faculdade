@@ -9,7 +9,7 @@ export default class extends BaseSchema {
       table.string('nome').notNullable()
       table.integer('quantidade').notNullable().unsigned()
       table.integer('caloria').notNullable().unsigned()
-      table.integer('fornecedor_id').references('id').inTable('fornecedores').notNullable().unsigned()
+      table.integer('fornecedore_id').references('id').inTable('fornecedores').notNullable().unsigned()
       table.integer('valor').notNullable().unsigned()
       table.integer('tipo_id').references('id').inTable('tipos').notNullable().unsigned()
 

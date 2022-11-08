@@ -18,7 +18,7 @@ export default class Produtos extends BaseModel {
   public caloria: number
 
   @column()
-  public fornecedorId: number
+  public fornecedoreId: number
 
   @column()
   public valor: number
@@ -33,7 +33,7 @@ export default class Produtos extends BaseModel {
   public updatedAt: DateTime
 
   @belongsTo(() => Fornecedore)
-  public fornecedore: BelongsTo <typeof Fornecedore>
+  public fornecedor: BelongsTo <typeof Fornecedore>
 
   @belongsTo(() => Tipo)
   public tipo: BelongsTo <typeof Tipo>
