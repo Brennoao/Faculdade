@@ -4,18 +4,26 @@ Route.get('/', async () => {
   return { hello: 'world' }
 })
 
-Route.resource('/Restaurante', 'RestaurantesController').apiOnly()
+Route.group(() => {
 
-Route.resource('/Fornecedores', 'FornecedoresController').apiOnly() //////////
+  Route.resource('/Restaurante', 'RestaurantesController').apiOnly()
 
-Route.resource('/Tipos', 'TiposController').apiOnly()
+  Route.resource('/Fornecedores', 'FornecedoresController').apiOnly()
+  
+  Route.resource('/Tipos', 'TiposController').apiOnly()
+  
+  Route.resource('/Mesas', 'MesasController').apiOnly()
+  
+  Route.resource('/Funcionarios', 'FuncionariosController').apiOnly()
+  
+  Route.resource('/Pedidos', 'PedidosController').apiOnly()
+  
+  Route.resource('/Produtos', 'ProdutosController').apiOnly()
+  
+  Route.resource('/PedidosHasProduto', 'PedidosHasProdutosController').apiOnly()
+  
+}).middleware('auth')
 
-Route.resource('/Mesas', 'MesasController').apiOnly()
+Route.post('/Users', 'UsersController.store')
 
-Route.resource('/Funcionarios', 'FuncionariosController').apiOnly()
-
-Route.resource('/Pedidos', 'PedidosController').apiOnly() ///////////
-
-Route.resource('/Produtos', 'ProdutosController').apiOnly() ////////
-
-Route.resource('/PedidosHasProduto', 'PedidosHasProdutosController').apiOnly()
+Route.post('/login', 'UsersController.login')

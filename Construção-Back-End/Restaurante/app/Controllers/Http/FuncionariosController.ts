@@ -3,7 +3,7 @@ import FuncionarioValidator from "App/Validators/FuncionarioValidator";
 
 export default class FuncionariosController {
     index({request}) {
-        const {nome, cpf, registroGeral, email, cargo, senha, restauranteIdrestaurante} = request.all()
+        const {nome, cpf, registroGeral, email, cargo, senha, restauranteId} = request.all()
         const funcionarios = Funcionario.query().preload("restaurante").preload("pedido").select(['id', 'nome', 'cpf', 'registroGeral', 'email', 'cargo', 'senha', 'restauranteId'])
 
         if (nome) {
@@ -18,8 +18,8 @@ export default class FuncionariosController {
             funcionarios.where('cargo', cargo)
         } else if (senha) {
             funcionarios.where('senha', senha)
-        } else if (restauranteIdrestaurante) {
-            funcionarios.where('restauranteIdrestaurante', restauranteIdrestaurante)
+        } else if (restauranteId) {
+            funcionarios.where('restauranteId', restauranteId)
         }
         
         return funcionarios

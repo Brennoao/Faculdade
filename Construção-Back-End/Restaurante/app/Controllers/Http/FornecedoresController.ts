@@ -6,7 +6,7 @@ import FornecedoreValidator from "App/Validators/FornecedoreValidator"
 export default class FornecedoresController {
     index ({request}) {
         const {razaoSocial, cnpj, cep, endereco, telefone, celular} = request.all()
-        const fornecedores = Fornecedore.query().preload("produto").select(['id', 'razaoSocial', 'cnpj', 'cep', 'endereco', 'telefone', 'celular'])
+        const fornecedores = Fornecedore.query().preload("produto").preload("restaurante").select(['id', 'razaoSocial', 'cnpj', 'cep', 'endereco', 'telefone', 'celular', 'restauranteId'])
 
         if (razaoSocial) {
             fornecedores.where('razaoSocial', razaoSocial)

@@ -5,7 +5,9 @@ export default class RestauranteValidator {
   constructor(protected ctx: HttpContextContract) {}
 
   public schema = schema.create({
-    cnpj: schema.number([rules.unique({table: 'restaurante', column: 'cnpj'}), rules.unsigned()])
+    cnpj: schema.number([rules.unique({table: 'restaurantes', column: 'cnpj'}), rules.unsigned()]),
+    inscricaoEstdual: schema.number([rules.unsigned(), rules.unique({table: 'restaurantes', column: 'inscricao_estadual'})]),
+    razaoSocial: schema.string([rules.unsigned(), rules.unique({table: 'restaurantes', column: 'razaoEstadual'})])
   })
 
   public messages: CustomMessages = {}

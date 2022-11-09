@@ -10,7 +10,8 @@ export default class FornecedoreValidator {
     cep: schema.number([rules.unsigned()]),
     endereco: schema.string.optional(),
     telefone: schema.number([rules.unique({table: 'fornecedore', column: 'telefone'}), rules.unsigned()]),
-    celular: schema.number([rules.unique({table: 'fornecedore', column: 'celular'}), rules.unsigned()])
+    celular: schema.number([rules.unique({table: 'fornecedore', column: 'celular'}), rules.unsigned()]),
+    restauranteId: schema.number([rules.unsigned()])
   })
 
   public messages: CustomMessages = {}

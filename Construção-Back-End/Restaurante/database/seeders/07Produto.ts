@@ -8,7 +8,7 @@ export default class extends BaseSeeder {
       {nome: "Coca-Cola", quantidade: 1, caloria: 500, fornecedoreId: 1, valor: 10, tipoId: 6},
       {nome: "Sprite", quantidade: 1, caloria: 500, fornecedoreId: 3, valor: 10, tipoId: 6},
       {nome: "Fanta-Uva", quantidade: 1, caloria: 500, fornecedoreId: 4, valor: 10, tipoId: 6},
-      {nome: "Suco-Laranja", quantidade: 1, caloria: 500, fornecedoreId: 5, valor: 10, tipoId: 5}
+      {nome: "Suco-Laranja", quantidade: 1, caloria: 500, fornecedoreId: 5, valor: 10, tipoId: 7}
     ])
     // Write your database queries inside the run method
   }

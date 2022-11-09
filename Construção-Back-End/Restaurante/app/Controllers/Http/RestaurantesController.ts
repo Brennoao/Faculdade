@@ -6,7 +6,7 @@ import RestauranteValidator from "App/Validators/RestauranteValidator"
 export default class RestaurantesController {
     index({request}){
         const {cnpj} = request.all()
-        const restaurante = Restaurante.query().preload("funcionario").preload("mesa").select(['id', 'cnpj'])
+        const restaurante = Restaurante.query().preload("funcionario").preload("fornecedore").preload("mesa").select(['id', 'cnpj'])
 
         if (cnpj) {
             restaurante.where('cnpj', cnpj)

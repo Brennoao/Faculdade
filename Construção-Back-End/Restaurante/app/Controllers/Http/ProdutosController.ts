@@ -5,7 +5,7 @@ import ProdutoValidator from "App/Validators/ProdutoValidator";
 
 export default class ProdutosController {
     index({request}) {
-        const {nome, quantidade, caloria, fornecedoreId, valor, tipoIdtipo} = request.all()
+        const {nome, quantidade, caloria, fornecedoreId, valor, tipoId} = request.all()
         const produtos = Produtos.query().preload("pedido").preload("tipo").select(['id', 'nome', 'quantidade', 'caloria', 'fornecedoreId', 'valor', 'tipoId'])
 
         if (nome) {
@@ -18,8 +18,8 @@ export default class ProdutosController {
             produtos.where('fornecedoreId', fornecedoreId)
         } else if (valor) {
             produtos.where('valor', valor)
-        } else if (tipoIdtipo) {
-            produtos.where('tipoIdtipo', tipoIdtipo)
+        } else if (tipoId) {
+            produtos.where('tipoId', tipoId)
         }
 
         return produtos

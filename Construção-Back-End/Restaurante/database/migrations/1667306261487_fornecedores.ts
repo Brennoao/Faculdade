@@ -12,6 +12,7 @@ export default class extends BaseSchema {
       table.string('endereco')
       table.integer('telefone').unsigned().unique().notNullable()
       table.integer('celular').unsigned().unique().notNullable()
+      table.integer('restaurante_id').references('id').inTable('restaurantes').notNullable().unsigned()
 
 
       /**

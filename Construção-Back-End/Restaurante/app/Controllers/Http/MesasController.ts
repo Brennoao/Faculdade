@@ -11,7 +11,7 @@ export default class MesasController {
         if (numero) {
             mesas.where('numero', numero)
         } else if (restauranteId) {
-            mesas.where('mesas', mesas)
+            mesas.where('restauranteId', restauranteId)
         }
 
         return mesas

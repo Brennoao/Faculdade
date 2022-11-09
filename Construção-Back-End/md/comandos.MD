@@ -1,4 +1,4 @@
-<!-- ENCERRAR CERVIDOR -->  <!-- UNIVERSAL NODEJS -->
+<!-- ENCERRAR SERVIDOR -->  <!-- UNIVERSAL NODEJS -->
 ctrl + c
 
 <!-- CRIAR ARQUIVO EM NODEJS -->
@@ -17,7 +17,7 @@ npm init adonis-ts-app@latest NOME DO ARQUIVO
 <!-- DATABASE -->
 npm i @adonisjs/lucid
 
-<!-- CONFIGURACAO -->
+<!-- CONFIGURAÇÃO -->
 node ace configure @adonisjs/lucid
 
 <!-- START SERVER ADONIS -->
@@ -29,7 +29,7 @@ node ace make:controller nome-do-arquivo
 <!-- CRIAR ARQUIVOS PARA O PRE-CADASTRO DO BANCO DE DADOS -->
 node ace make:seeder
 
-<!-- CRIAR O VALIDADTOR -->
+<!-- CRIAR O VALIDATOR -->
 node ace make:validator 
 
 <!-- ARQUIVO DE CRIAÇÃO DE MODEL DO ADONIS -->
@@ -68,8 +68,9 @@ node ace list:routes
 <!-- INSTALANDO AUTENTICAÇÃO -->
 npm i @adonisjs/auth
 
-<!-- CONFIGURAÇÃO AUTENTUCAÇÃO -->
+<!-- CONFIGURAÇÃO AUTENTICAÇÃO -->
 node ace configure @adonisjs/auth
+
 lucid > api token > y > database > y
 
 <!-- pacote auth -->
