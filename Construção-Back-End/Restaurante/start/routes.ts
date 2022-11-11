@@ -20,7 +20,7 @@ Route.group(() => {
   
   Route.resource('/Produtos', 'ProdutosController').apiOnly()
   
-  Route.resource('/PedidosHasProduto', 'PedidosHasProdutosController').apiOnly()
+  Route.resource('/PedidosHasProduto', 'PedidosProdutosController').apiOnly()
   
 }).middleware('auth')
 

@@ -1,9 +1,9 @@
 import User from "App/Models/User"
+import UserValidator from "App/Validators/UserValidator"
 
 export default class UsersController {
-    async store({request}) {
-        const data = request.only(['email', 'password'])
-
+    async store ({request}) {
+        const data = await request.validate(UserValidator)
         return await User.create(data)
     }
 

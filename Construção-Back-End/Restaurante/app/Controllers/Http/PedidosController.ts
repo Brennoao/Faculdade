@@ -1,12 +1,13 @@
 // import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
 import Pedido from "App/Models/Pedido";
+import Produtos from "App/Models/Produto";
 import PedidoValidator from "App/Validators/PedidoValidator";
 
 export default class PedidosController {
     index({request}) {
         const {mesaId, funcionarioId, data, formaPagamento} = request.all()
-        const pedidos = Pedido.query().preload("funcionario").preload("mesa").preload("produto").select(['id', 'mesaId', 'funcionarioId', 'data', 'formaPagamento'])
+        const pedidos = Pedido.query().preload("funcionario").preload("mesa").preload("produtos").select(['id', 'mesaId', 'funcionarioId', 'data', 'formaPagamento'])
 
         if (mesaId) {
             pedidos.where('mesaId', mesaId)
@@ -30,7 +31,19 @@ export default class PedidosController {
     async show({request}) {
         const id = request.param('id')
 
-        return await Pedido.findOrFail(id)
+        const pedido = await Pedido.query()
+                           .where("id", id)
+                           .preload("pedidoProdutos", (pedidoPreload => {pedidoPreload.preload("produto")}))
+                           .first()
+        
+        // @TODO: fazer loop calculando quantidade * valor de todos os produtos do pedido
+        const numero = await Produtos
+        const valorTotal = await numero.column(["quantidade"])
+
+        //  pedido = pedido?.toJSON()
+        //  pedido.valorTotal = valorTotal
+         
+        return numero
     }
 
     async destroy({request}) {
@@ -42,7 +55,7 @@ export default class PedidosController {
 
     async update({request}) {
         const id = request.param('id')
-        const data = request.only(['mesaId', 'funcionariosId', 'data', 'formaPagamento'])
+        const data = request.only(['mesaId', 'funcionarioId', 'data', 'formaPagamento'])
 
         const update = await Pedido.findOrFail(id)
         update.merge(data).save()

@@ -1,0 +1,11 @@
+# Custom Dictionary Words
+endereco
+Estdual
+fornecedore
+funcionario
+Funcionario
+Funcionarios
+inscricao
+luxon
+pedidosprodutos
+razao
