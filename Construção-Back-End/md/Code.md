@@ -13,17 +13,20 @@ git commit -m ""
 <!-- ATUALIZAR OS SERVIDORES DO GITHUNB -->
 git push
 
-<!-- atualizar pivot -->
-git branch id
+<!-- criar uma nova branch -->
+git branch <nome>
 
 <!-- FORMATACAO PIVOT -->
 git commit -m "[finishes #id]" 
 
 <!-- ATUALIZAR OS SERVIDORES DO GITHUNB EM UMA NOVA BRANCH -->
-git push origin 183657159-add-index
+git push origin <nome da branch>
 
 <!-- TROCAR DE BRANCH -->
-git checkout
+git checkout <nome branch>
 
 <!-- DELETAR BRANCH -->
-git branch -d <branch>
+git branch -D <nome branch>
+
+<!-- SUBIR UMA BRANCH CRIADA LOCALMENTE -->
+git branch origin <nome da branch>
