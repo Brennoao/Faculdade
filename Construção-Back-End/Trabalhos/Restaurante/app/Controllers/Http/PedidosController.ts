@@ -1,7 +1,6 @@
-// import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-
 import Pedido from "App/Models/Pedido";
-import Produtos from "App/Models/Produto";
+import PedidosProduto from "App/Models/PedidosProduto";
+// import Produtos from "App/Models/Produto";
 import PedidoValidator from "App/Validators/PedidoValidator";
 
 export default class PedidosController {
@@ -30,6 +29,7 @@ export default class PedidosController {
 
     async show({request}) {
         const id = request.param('id')
+        const pedidoId = id
 
         const pedido = await Pedido.query()
                            .where("id", id)
@@ -37,8 +37,8 @@ export default class PedidosController {
                            .first()
         
         // @TODO: fazer loop calculando quantidade * valor de todos os produtos do pedido
-        const numero = await Produtos
-        const valorTotal = await numero.column(["quantidade"])
+        const numero = await PedidosProduto.query().where("pedidoId", pedidoId)
+        // const valorTotal = await numero.column(["quantidade"])
 
         //  pedido = pedido?.toJSON()
         //  pedido.valorTotal = valorTotal

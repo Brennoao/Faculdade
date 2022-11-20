@@ -4,6 +4,7 @@ Estdual
 fornecedore
 funcionario
 Funcionario
+funcionarios
 Funcionarios
 inscricao
 luxon
