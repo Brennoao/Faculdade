@@ -1,11 +1,9 @@
 import Pedido from "App/Models/Pedido";
-import PedidosProduto from "App/Models/PedidosProduto";
-// import Produtos from "App/Models/Produto";
 import PedidoValidator from "App/Validators/PedidoValidator";
 
 export default class PedidosController {
-    index({request}) {
-        const {mesaId, funcionarioId, data, formaPagamento} = request.all()
+    index({ request }) {
+        const { mesaId, funcionarioId, data, formaPagamento } = request.all()
         const pedidos = Pedido.query().preload("funcionario").preload("mesa").preload("produtos").select(['id', 'mesaId', 'funcionarioId', 'data', 'formaPagamento'])
 
         if (mesaId) {
@@ -21,45 +19,42 @@ export default class PedidosController {
         return pedidos
     }
 
-    async store({request}) {
+    async store({ request }) {
         const data = await request.validate(PedidoValidator)
 
         return Pedido.create(data)
     }
 
-    async show({request}) {
+    async show({ request }) {
         const id = request.param('id')
-        const pedidoId = id
-
         const pedido = await Pedido.query()
-                           .where("id", id)
-                           .preload("pedidoProdutos", (pedidoPreload => {pedidoPreload.preload("produto")}))
-                           .first()
-        
-        // @TODO: fazer loop calculando quantidade * valor de todos os produtos do pedido
-        const numero = await PedidosProduto.query().where("pedidoId", pedidoId)
-        // const valorTotal = await numero.column(["quantidade"])
+            .where("id", id)
+            .preload("pedidoProdutos", (pedidoPreload => {
+                pedidoPreload.preload("produto")
+            }))
+            .first()
 
-        //  pedido = pedido?.toJSON()
-        //  pedido.valorTotal = valorTotal
-         
-        return numero
+       for(const key in pedido.pedidoProdutos) {
+            
+    }
+    return pedido
+       
     }
 
-    async destroy({request}) {
-        const id = request.param('id')
-        const pedidos = await Pedido.findOrFail(id)
+    async destroy({ request }) {
+    const id = request.param('id')
+    const pedidos = await Pedido.findOrFail(id)
 
-        return pedidos.delete()
-    }
+    return pedidos.delete()
+}
 
-    async update({request}) {
-        const id = request.param('id')
-        const data = request.only(['mesaId', 'funcionarioId', 'data', 'formaPagamento'])
+    async update({ request }) {
+    const id = request.param('id')
+    const data = request.only(['mesaId', 'funcionarioId', 'data', 'formaPagamento'])
 
-        const update = await Pedido.findOrFail(id)
-        update.merge(data).save()
+    const update = await Pedido.findOrFail(id)
+    update.merge(data).save()
 
-        return update
-    }
+    return update
+}
 }
