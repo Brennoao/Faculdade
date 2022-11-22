@@ -14,7 +14,7 @@ export default class RestauranteValidator {
     "cnpj.unique": "CNPJ já existente",
     "inscricao_estadual.unique": "inscricao Estadual já existente",
     "razaoEstadual.unique": "Razao Estadual já existente",
-    unsigned: "Somente números permitidos",
+    unsigned: "Somente número positivo",
     required: "item obrigatório"
   }
 }

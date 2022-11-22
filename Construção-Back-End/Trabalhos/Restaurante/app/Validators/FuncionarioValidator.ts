@@ -15,7 +15,7 @@ export default class FuncionarioValidator {
   })
 
   public messages: CustomMessages = {
-    "cpf.unique": "cpf já existente",
+    "cpf.unique": "CPF já existente",
     "email.unique": "email já existente",
     unsigned: "Somente números positivos",
     email: "Somente email permitidos neste campo",

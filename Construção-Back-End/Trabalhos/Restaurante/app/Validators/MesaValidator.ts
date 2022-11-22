@@ -10,8 +10,8 @@ export default class MesaValidator {
   })
 
   public messages: CustomMessages = {
-    unique: "Numero ja consta no Banco de dados",
-    unsigned: "tem que ser obrigatoriamente positivo",
+    unique: "Numero já consta no Banco de dados",
+    unsigned: "Somente número positivo",
     required: "item obrigatório"
   }
 }

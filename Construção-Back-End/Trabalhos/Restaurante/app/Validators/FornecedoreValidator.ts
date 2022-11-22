@@ -16,9 +16,9 @@ export default class FornecedoreValidator {
 
   public messages: CustomMessages = {
     "razaoSocial.unique": "Razao Social já existente",
-    "cnpj.unique": "CNPJ Social já existente",
-    "telefone.unique": "Telefone Social já existente",
-    "celular.unique": "Celular Social já existente",
+    "cnpj.unique": "CNPJ já existente",
+    "telefone.unique": "Telefone já existente",
+    "celular.unique": "Celular já existente",
     unsigned: "Somente números permitidos",
     required: "item obrigatório"
   }

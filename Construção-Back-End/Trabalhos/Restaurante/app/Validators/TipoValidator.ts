@@ -10,6 +10,6 @@ export default class TipoValidator {
 
   public messages: CustomMessages = {
     required: "item obrigatório",
-    unique: "Tipo ja existente"
+    unique: "Tipo já existente"
   }
 }
