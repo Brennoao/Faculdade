@@ -13,5 +13,7 @@ export default class ProdutoValidator {
     tipoId: schema.number([rules.unsigned()])
   })
 
-  public messages: CustomMessages = {}
+  public messages: CustomMessages = {
+    unsigned: "Somente números permitidos"
+  }
 }

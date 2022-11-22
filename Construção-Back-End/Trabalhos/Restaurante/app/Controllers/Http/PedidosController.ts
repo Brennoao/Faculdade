@@ -33,11 +33,15 @@ export default class PedidosController {
                 pedidoPreload.preload("produto")
             }))
             .first()
-
-       for(const key in pedido.pedidoProdutos) {
             
-    }
-    return pedido
+            return pedido
+            
+            // pedidoPreload.forEach(element => console.log(element));
+            
+            // for(const key in pedido.pedidoProdutos) {
+            //     key.pedidoProdutos.quantidade
+            // }
+
        
     }
 

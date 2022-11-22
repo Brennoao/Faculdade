@@ -9,5 +9,8 @@ export default class MesaValidator {
     restauranteId: schema.number([rules.unsigned()])
   })
 
-  public messages: CustomMessages = {}
+  public messages: CustomMessages = {
+    unique: "Numero ja consta no Banco de dados",
+    unsigned: "tem que ser obrigatoriamente positivo"
+  }
 }

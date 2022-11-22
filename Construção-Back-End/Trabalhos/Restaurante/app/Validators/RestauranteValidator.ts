@@ -10,5 +10,10 @@ export default class RestauranteValidator {
     razaoSocial: schema.string([rules.unsigned(), rules.unique({table: 'restaurantes', column: 'razaoEstadual'})])
   })
 
-  public messages: CustomMessages = {}
+  public messages: CustomMessages = {
+    "cnpj.unique": "CNPJ já existente",
+    "inscricao_estadual.unique": "inscricao Estadual já existente",
+    "razaoEstadual.unique": "Razao Estadual já existente",
+    unsigned: "Somente números permitidos"
+  }
 }

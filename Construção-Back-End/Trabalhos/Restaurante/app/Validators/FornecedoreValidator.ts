@@ -14,5 +14,11 @@ export default class FornecedoreValidator {
     restauranteId: schema.number([rules.unsigned()])
   })
 
-  public messages: CustomMessages = {}
+  public messages: CustomMessages = {
+    "razao_social.unique": "Razao Social já existente",
+    "cnpj.unique": "CNPJ Social já existente",
+    "telefone.unique": "Telefone Social já existente",
+    "celular.unique": "Celular Social já existente",
+    unsigned: "Somente números permitidos"
+  }
 }

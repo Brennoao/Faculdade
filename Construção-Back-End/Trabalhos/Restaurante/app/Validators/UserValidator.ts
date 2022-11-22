@@ -10,6 +10,7 @@ export default class UserValidator {
   })
 
   public messages: CustomMessages = {
-    
+    "email.unique": "email já existente",
+    minLength: "Mínimo de letras permitida e de 10 caracteres"
   }
 }

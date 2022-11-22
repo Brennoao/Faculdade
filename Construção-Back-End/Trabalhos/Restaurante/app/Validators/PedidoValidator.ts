@@ -11,5 +11,7 @@ export default class PedidoValidator {
     formaPagamento: schema.string()
   })
 
-  public messages: CustomMessages = {}
+  public messages: CustomMessages = {
+    unsigned: "Somente números permitidos"
+  }
 }

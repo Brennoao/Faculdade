@@ -11,5 +11,7 @@ export default class PedidosProdutoValidator {
     valor: schema.number([rules.unsigned()])
   })
 
-  public messages: CustomMessages = {}
+  public messages: CustomMessages = {
+    unsigned: "Somente números permitidos"
+  }
 }
