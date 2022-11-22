@@ -18,6 +18,7 @@ export default class FuncionarioValidator {
     "cpf.unique": "cpf já existente",
     "email.unique": "email já existente",
     unsigned: "Somente números positivos",
-    email: "Somente email permitidos neste campo"
+    email: "Somente email permitidos neste campo",
+    required: "item obrigatório"
   }
 }

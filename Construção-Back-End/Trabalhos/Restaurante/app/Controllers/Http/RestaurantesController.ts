@@ -5,11 +5,15 @@ import RestauranteValidator from "App/Validators/RestauranteValidator"
 
 export default class RestaurantesController {
     index({request}){
-        const {cnpj} = request.all()
-        const restaurante = Restaurante.query().preload("funcionario").preload("fornecedore").preload("mesa").select(['id', 'cnpj'])
+        const {cnpj, razaoSocial, inscricaoEstadual} = request.all()
+        const restaurante = Restaurante.query().preload("funcionario").preload("fornecedore").preload("mesa").select(['id', 'cnpj', 'razaoSocial', 'inscricaoEstadual'])
 
         if (cnpj) {
             restaurante.where('cnpj', cnpj)
+        }else if (razaoSocial) {
+            restaurante.where('razaoSocial', razaoSocial)
+        }else if (inscricaoEstadual) {
+            restaurante.where('inscricaoEstadual', inscricaoEstadual)
         }
 
         return restaurante

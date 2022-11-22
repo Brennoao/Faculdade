@@ -12,6 +12,7 @@ export default class PedidoValidator {
   })
 
   public messages: CustomMessages = {
-    unsigned: "Somente números permitidos"
+    unsigned: "Somente números permitidos",
+    required: "item obrigatório"
   }
 }
