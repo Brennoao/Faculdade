@@ -83,14 +83,14 @@ console.log('A fila possui inicialmente as pessoas: ' + fila.toString()) // Jhon
 // vamos acrescentar outra pessoa na fila
 
 fila.enqueue('Camila')
-// console.log('A fila agora possui as pessoas: ' + fila.toString()) // Jhon, jack, Camila  
-// console.log('O tamanho da fila e: ' + fila.size()) // Exibe 3
-// console.log('Removendo a pessoa da frente da fila: ' + fila.dequeue()) // Jhon
-// console.log('A fila agora possui os elementos: ' + fila.toString()) // jack, Camila
-// console.log('A pessoa da frente da fila agora e: ' + fila.peek()) // jack
-// console.log('Retirando o próximo da fila: ' + fila.dequeue()) // Jack
-// console.log('A fila agora possui apenas: ' + fila.toString()) // Camila
-// console.log('A pessoa da frente da frente agora e: ' + fila.peek()) // Camila
+console.log('A fila agora possui as pessoas: ' + fila.toString()) // Jhon, jack, Camila  
+console.log('O tamanho da fila e: ' + fila.size()) // Exibe 3
+console.log('Removendo a pessoa da frente da fila: ' + fila.dequeue()) // Jhon
+console.log('A fila agora possui os elementos: ' + fila.toString()) // jack, Camila
+console.log('A pessoa da frente da fila agora e: ' + fila.peek()) // jack
+console.log('Retirando o próximo da fila: ' + fila.dequeue()) // Jack
+console.log('A fila agora possui apenas: ' + fila.toString()) // Camila
+console.log('A pessoa da frente da frente agora e: ' + fila.peek()) // Camila
 
 function hotPotato(elementList, num) {
     // Usaremos a classe Queue implementada anteriormente

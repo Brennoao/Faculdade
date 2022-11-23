@@ -1,0 +1,10 @@
+# Custom Dictionary Words
+Brenno
+Cound
+Déborah
+deque
+Jhon
+peekback
+peekfront
+qtde
+removeback

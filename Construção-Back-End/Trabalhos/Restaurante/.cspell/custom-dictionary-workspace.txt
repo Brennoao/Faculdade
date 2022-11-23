@@ -1,4 +1,5 @@
 # Custom Dictionary Words
+DATETIME
 endereco
 Estdual
 fornecedore
@@ -10,3 +11,4 @@ inscricao
 luxon
 pedidosprodutos
 razao
+timestamptz

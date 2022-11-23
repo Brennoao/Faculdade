@@ -1,16 +1,16 @@
 class Deque {
-    // Implementando o metodo construtor
+    // Implementando o método construtor
     constructor() {
         // Count para controlar o tamanho do deque
         this.count = 0
-        // LowestCount para controlar o (indice) do primeiro do primeiro elemento (Frente do deque)
+        // LowestCount para controlar o (índice) do primeiro do primeiro elemento (Frente do deque)
         this.lowestCount = 0
         // Objeto items para armazenar elementos no deque
         this.items = {}
     }
 
-    addFront(element) { // Adicionar um novo elemeto na frente do deque
-        // Primeiro cenario verifica se o deque está vazio
+    addFront(element) { // Adicionar um novo elemento na frente do deque
+        // Primeiro cenário verifica se o deque está vazio
         if (this.isEmpty()) {
             // Neste caso chamamos o método addBack no final da deque
             this.addBack(element)
@@ -39,7 +39,7 @@ class Deque {
             return undefined
         }
 
-        // Armazenamendo o valor da frente da fila
+        // Armazenamento o valor da frente da fila
         const result = this.items[this.lowestCount]
 
         // Removendo o elemento da frente
@@ -50,7 +50,7 @@ class Deque {
         return result
     }
 
-    removeback() { // Removo o ultimo elemento do deuqe
+    removeback() { // Removo o ultimo elemento do deque
         if (this.isEmpty()) {
             return undefined
         }
@@ -61,7 +61,7 @@ class Deque {
         return result
     }
 
-    peekfront() { // Devolve o peimeiro elemento do deque
+    peekfront() { // Devolve o primeiro elemento do deque
         if (this.isEmpty()) {
             return undefined
         }
@@ -69,7 +69,7 @@ class Deque {
         return this.items[this.lowestCount]
     }
 
-    peekback() { // Devolve o ultimmo elemento do deque
+    peekback() { // Devolve o último elemento do deque
         return this.items[this.items.length - 1]
     }
 
@@ -83,7 +83,7 @@ class Deque {
         return this.size() === 0
     }
 
-    toString() { // Apresenta o conteudo do deque
+    toString() { // Apresenta o conteúdo do deque
         if (this.isEmpty()) {
             return ''
         }

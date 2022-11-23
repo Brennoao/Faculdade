@@ -13,9 +13,6 @@ export default class extends BaseSchema {
       table.integer('valor').notNullable().unsigned()
       table.integer('tipo_id').references('id').inTable('tipos').notNullable().unsigned()
 
-      /**
-       * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
-       */
       table.timestamp('created_at', { useTz: true })
       table.timestamp('updated_at', { useTz: true })
     })

@@ -10,9 +10,6 @@ export default class extends BaseSchema {
       table.integer('inscricao_estadual', 9).notNullable().unsigned().unique()
       table.string('razao_social').notNullable().unique()
 
-      /**
-       * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
-       */
       table.timestamp('created_at', { useTz: true })
       table.timestamp('updated_at', { useTz: true })
     })

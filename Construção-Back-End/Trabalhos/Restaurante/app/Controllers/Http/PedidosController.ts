@@ -28,37 +28,34 @@ export default class PedidosController {
     async show({ request }) {
         const id = request.param('id')
         const pedido = await Pedido.query()
-            .where("id", id)
-            .preload("pedidoProdutos", (pedidoPreload => {
-                pedidoPreload.preload("produto")
-            }))
-            .first()
-            
-            return pedido
-            
-            // pedidoPreload.forEach(element => console.log(element));
-            
-            // for(const key in pedido.pedidoProdutos) {
-            //     key.pedidoProdutos.quantidade
-            // }
+        .where("id", id)
+        .preload("pedidoProdutos", (pedidoPreload => {
+            pedidoPreload.preload("produto")
+        })).first()
 
-       
+        let valorTotal = 0
+
+        pedido?.pedidoProdutos.forEach((obj)=>{
+            valorTotal += obj.quantidade * obj.valor
+        })
+
+        return {...pedido?.toJSON(), valorTotal}   
     }
 
     async destroy({ request }) {
-    const id = request.param('id')
-    const pedidos = await Pedido.findOrFail(id)
+        const id = request.param('id')
+        const pedidos = await Pedido.findOrFail(id)
 
-    return pedidos.delete()
-}
+        return pedidos.delete()
+    }
 
     async update({ request }) {
-    const id = request.param('id')
-    const data = request.only(['mesaId', 'funcionarioId', 'data', 'formaPagamento'])
+        const id = request.param('id')
+        const data = request.only(['mesaId', 'funcionarioId', 'data', 'formaPagamento'])
 
-    const update = await Pedido.findOrFail(id)
-    update.merge(data).save()
+        const update = await Pedido.findOrFail(id)
+        update.merge(data).save()
 
-    return update
-}
+        return update
+    }
 }

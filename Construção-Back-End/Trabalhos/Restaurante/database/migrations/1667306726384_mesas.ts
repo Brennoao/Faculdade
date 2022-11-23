@@ -9,9 +9,6 @@ export default class extends BaseSchema {
       table.integer('numero').notNullable().unsigned().unique()
       table.integer('restaurante_id').references('id').inTable('restaurantes').notNullable().unsigned()
 
-      /**
-       * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
-       */
       table.timestamp('created_at', { useTz: true })
       table.timestamp('updated_at', { useTz: true })
     })

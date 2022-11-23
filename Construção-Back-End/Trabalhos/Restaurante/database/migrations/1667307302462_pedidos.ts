@@ -11,9 +11,6 @@ export default class extends BaseSchema {
       table.date('data')
       table.string('forma_pagamento').notNullable()
 
-      /**
-       * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
-       */
       table.timestamp('created_at', { useTz: true })
       table.timestamp('updated_at', { useTz: true })
     })
