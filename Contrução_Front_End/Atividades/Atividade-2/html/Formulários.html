@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        form{
+            display: flex;
+            flex-direction: column;
+            width: 500px;
+        }
+
+        button {
+            width: 164px;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li><a href="../index.html">Página Inicial</a></li>
+        <li><a href="./Formulários.html">Formulários</a></li>
+    </ul>
+
+    <h1>Cadastro de Cliente</h1>
+    <form action="">
+        <label for="Nome">Nome</label>
+        <input type="text" id="Nome" placeholder="Digite um nome">
+
+        <br>
+
+        <label for="Telefone">Telefone</label>
+        <input type="text" id="Telefone">
+
+        <br>
+
+        <label for="E-mail">E-mail</label>
+        <input type="email" id="E-mail">
+
+        <br>
+
+        <label for="Senha">Senha</label>
+        <input type="password" id="Senha">
+
+        <br>
+
+        <label for="Sexo">Sexo</label>
+        <div>
+            <label for="M">Masculino</label>
+            <input type="radio" name="M" id="M">
+            
+            <label for="F">Feminino</label>
+            <input type="radio" name="M" id="F">
+        </div>
+
+        <br>
+
+        <label for="Selecione">UF</label>
+        <select name="Selecione" id="Selecione">
+            <option value="Select">Selecione</option>
+        </select>
+
+        <br>
+
+        <label for="Cidade">Cidade</label>
+        <select name="Cidade" id="Cidade">
+            <option value="Selecione">Selecione</option>
+        </select>
+
+        <br>
+
+        <fieldset>
+            <legend>Hobbies</legend>
+            <div>
+                <input type="checkbox" name="Musica" id="Musica">
+                <label for="Musica">Musica</label>
+            </div>
+
+            <div>
+                <input type="checkbox" name="Futebol" id="Futebol">
+                <label for="Futebol">Futebol</label>
+            </div>
+
+            <div>
+                <input type="checkbox" name="Teatro" id="Teatro">
+                <label for="Teatro">Teatro</label>
+            </div>
+            
+            <div>
+                <input type="checkbox" name="Jogos" id="Jogos">
+                <label for="Jogos">Jogos</label>
+            </div>
+            
+            <div>
+                <input type="checkbox" name="Cozinhar" id="Cozinhar">
+                <label for="Cozinhar">Cozinhar</label>
+            </div>
+        </fieldset>
+
+        <br>
+
+        <label for="">Observação</label>
+        <textarea></textarea>
+    </form>
+
+    <br>
+    
+    <button>Enviar</button>
+    <button>Limpar</button>
+    <button>Voltar</button>
+</body>
+</html>

@@ -1,0 +1,45 @@
+:root {
+    --Blue: blue;
+    --Red: red;
+    --Pink: palevioletred;
+    --Green: green;
+    --Black: Black;
+    --White: white;
+}
+
+h1 {
+    color: var(--Black);
+    border: 9px solid var(--Red);
+    text-align: center;
+    font-size: 50px;
+    padding: 15px;
+}
+
+h2 {
+    color: var(--White);
+    text-align: center;
+    background-color: var(--Green);
+}
+
+ul {
+    margin: 0 100px;
+    display: flex;
+    justify-content: space-between;
+}
+
+li {
+    list-style-type: none;
+    border-left: 5px dotted  var(--Blue);
+    border-bottom: 5px dotted  var(--Blue);
+    padding: 6px 20px;
+}
+
+a {
+    color: var(--Pink);
+    text-decoration: none;
+}
+
+p {
+    color: var(--Blue);
+    text-indent: 1.5em;
+}

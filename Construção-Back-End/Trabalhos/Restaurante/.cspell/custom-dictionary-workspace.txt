@@ -1,0 +1,14 @@
+# Custom Dictionary Words
+DATETIME
+endereco
+Estdual
+fornecedore
+funcionario
+Funcionario
+funcionarios
+Funcionarios
+inscricao
+luxon
+pedidosprodutos
+razao
+timestamptz
