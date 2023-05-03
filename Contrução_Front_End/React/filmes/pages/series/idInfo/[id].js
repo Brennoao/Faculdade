@@ -47,7 +47,7 @@ const seriesInfos = ({ infos, Atores }) => {
                     <tr>
                         <th>ñ</th>
                         <th>Foto</th>
-                        <th>ñ episodio</th>
+                        <th>ñ episodios</th>
                         <th>Numero Temp</th>
                     </tr>
                 </thead>

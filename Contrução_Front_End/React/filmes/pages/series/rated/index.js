@@ -32,7 +32,7 @@ export default index
 
 export async function getServerSideProps(context) {
 
-    const resultado = await apiFilmes.get('/tv/top_rated?language=pt-BR')
+    const resultado = await apiFilmes.get('/tv/top_rated/?language=pt-BR')
     const seriesRecent = resultado.data.results
 
     return {

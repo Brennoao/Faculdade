@@ -7,15 +7,10 @@ function PreExibirFoto(props) {
         'https://image.tmdb.org/t/p/w500/' + props.foto :
         'https://storage.googleapis.com/macrovector-acl-eu/previews/40042/preview_40042.jpg'
 
-    if (props.link) {
-        return (
-            <Card.Img className='h-100' variant="top" src={imagem} />
-        )
-    } else {
-        return (
-            <Card.Img className='h-100' variant="top" src={imagem} />
-        )
-    }
+    return (
+        <Card.Img className='h-100' variant="top" src={imagem} />
+    )
+
 }
 
 

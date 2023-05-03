@@ -16,7 +16,7 @@ const idAtor = ({ InfosAtor, Img, Atuou, AtuouTv }) => {
     return (
         <Pagina titulo={InfosAtor.name}>
             <div className='d-flex gap-0 column-gap-3 border-primary border rounded-4 border-4 p-4 mb-5'>
-                <Col title={InfosAtor.name} md={4}>
+                <Col title={InfosAtor.name}>
                     <Card className='card border-light mr-3'>
                         <Card.Img variante='top' src={linkImg + InfosAtor.profile_path} />
                     </Card>

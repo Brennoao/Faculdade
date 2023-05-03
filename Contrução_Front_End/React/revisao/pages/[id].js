@@ -3,10 +3,20 @@ import Pagina from '../components/Pagina'
 import apiDeputados from '../services/apiDeputados'
 import { Card, Col, Row, Table } from 'react-bootstrap'
 
-const idDeputado = ({ Deputado }) => {
+const idDeputado = ({ Deputado, DespesasAno, Profissao }) => {
+
     console.log(Deputado)
+    console.log(DespesasAno)
+    console.log(Profissao)
+
+    function formatacao(valor) {
+    
+        return valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+
+    }
+
     return (
-        <Pagina>
+        <Pagina titulo={Deputado.ultimoStatus.nome}>
             <Row>
                 <Col md={3}>
                     <Card>
@@ -22,39 +32,35 @@ const idDeputado = ({ Deputado }) => {
                     <Table striped>
                         <thead>
                             <tr>
-                            <th>Data</th>
-                            <th>Descrição</th>
-                            <th>Valor</th>
+                                <th>Data</th>
+                                <th>Descrição</th>
+                                <th>Valor</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                            <td>1</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            </tr>
-
-                            <tr>
-                            <td>2</td>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                            </tr>
-
-                            <tr>
-                            <td>3</td>
-                            <td colSpan={2}>Larry the Bird</td>
-                            <td>@twitter</td>
-                            </tr>
+                            {DespesasAno.map(item => (
+                                <tr>
+                                    <td>{item.dataDocumento}</td>
+                                    <td>{item.tipoDespesa}</td> 
+                                    <td>{formatacao (item.valorDocumento)}</td>
+                                </tr>
+                            ))}
                         </tbody>
                     </Table>
+                </Col>
+                <Col md={3}>
+                    <p>Profissões</p>
+                    <ol>
+                        {Profissao.map(item => (
+                            <li>{item.titulo}</li>
+                        ))}
+                    </ol>
                 </Col>
             </Row>
         </Pagina>
     )
 }
-
+// {formatacao(filme)}
 export default idDeputado
 
 export async function getServerSideProps(context) {
@@ -65,8 +71,14 @@ export async function getServerSideProps(context) {
     const resultado = await apiDeputados.get('/deputados/' + id)
     const Deputado = resultado.data.dados
 
+    const Despesas = await apiDeputados.get('/deputados/' + id + '/despesas?ordem=ASC&ordenarPor=ano')
+    const DespesasAno = Despesas.data.dados
+
+    const Profissoes = await apiDeputados.get('/deputados/' + id + '/profissoes')
+    const Profissao = Profissoes.data.dados
+
     return {
-        props: { Deputado }, // will be passed to the page component as props
+        props: { Deputado, DespesasAno, Profissao }, // will be passed to the page component as props
     }
 }
 {/* <img src={Deputado.ultimoStatus.urlFoto}></img> */ }

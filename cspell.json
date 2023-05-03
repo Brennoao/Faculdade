@@ -10,6 +10,8 @@
         "latesd",
         "nowplaying",
         "Orcamento",
+        "Profissao",
+        "Profissoes",
         "vcenter"
     ],
     "ignoreWords": [],
