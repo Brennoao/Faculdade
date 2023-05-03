@@ -1,24 +1,24 @@
-### CRIAR PROJETO
+## CRIAR PROJETO
 npx create-next-app@latest nextjs-blog --use-npm --example https://github.com/vercel/next-learn/tree/master/basics/learn-starter
 
 npm i -g npm@9.6.2
 
-### RUN SCRIPT
+## RUN SCRIPT
 NPM RUN {NOME-SCRIPT}
 
-### RAFCE
+## RAFCE
 CRIA A EROM FUNCTION
 
-### INSTALL LIBRARY
+## INSTALL LIBRARY
 NPM i
 
-# Looping-Array
+## Looping-Array
 
 {Carros.map(item => (
     
 ))}
 
-# Alteração de variável
+## Alteração de variável
 <!-- Entre parenteses é o nome padrão da variável -->
 const [nome, setNome] = useState('') 
 
@@ -28,7 +28,7 @@ useEffect(() => {
     })
   }, [])
 
-### getServerSideProps
+## getServerSideProps
 
 export async function getServerSideProps(context) {
   

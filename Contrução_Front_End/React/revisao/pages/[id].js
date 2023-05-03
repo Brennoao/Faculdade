@@ -31,10 +31,10 @@ const idDeputado = ({ Deputado, DespesasAno, Profissao }) => {
                     <Link href='/' className='btn btn-danger'>Voltar</Link>
                 </Col>
                 <Col md={6}>
-                    <Table striped size="sm" >
+                    <Table striped className='border border-3 rounded-4'>
                         <thead>
                             <tr>
-                                <th>Data</th>
+                                <th style={{width: '8rem'}}>Data</th>
                                 <th>Descrição</th>
                                 <th>Valor</th>
                             </tr>
@@ -51,7 +51,7 @@ const idDeputado = ({ Deputado, DespesasAno, Profissao }) => {
                     </Table>
                 </Col>
                 <Col md={3}>
-                    <p>Profissões</p>
+                    <h3>Profissões</h3>
                     <ol>
                         {Profissao.map(item => (
                             <li>{item.titulo}</li>

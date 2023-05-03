@@ -8,7 +8,7 @@ export default function Home({ Ator }) {
     <>
       <Pagina titulo='Deputados'>
 
-        <Row md={5}>
+        <Row md={6}>
           {Ator.map(item => (
             <>
               <Col className='mb-4'>
