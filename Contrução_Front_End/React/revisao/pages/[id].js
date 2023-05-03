@@ -30,7 +30,7 @@ const idDeputado = ({ Deputado, DespesasAno, Profissao }) => {
                     </Card>
                     <Link href='/' className='btn btn-danger'>Voltar</Link>
                 </Col>
-                <Col md={6}>
+                <Col md={7}>
                     <Table striped className='border border-3 rounded-4'>
                         <thead>
                             <tr>
@@ -50,7 +50,7 @@ const idDeputado = ({ Deputado, DespesasAno, Profissao }) => {
                         </tbody>
                     </Table>
                 </Col>
-                <Col md={3}>
+                <Col md={2}>
                     <h3>Profissões</h3>
                     <ol>
                         {Profissao.map(item => (
