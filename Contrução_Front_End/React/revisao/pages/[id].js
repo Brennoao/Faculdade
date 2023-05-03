@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 import Pagina from '../components/Pagina'
 import apiDeputados from '../services/apiDeputados'
 import { Card, Col, Row, Table } from 'react-bootstrap'
@@ -19,7 +20,7 @@ const idDeputado = ({ Deputado, DespesasAno, Profissao }) => {
         <Pagina titulo={Deputado.ultimoStatus.nome}>
             <Row>
                 <Col md={3}>
-                    <Card>
+                    <Card className='mb-2'>
                         <Card.Img variant="top" src={Deputado.ultimoStatus.urlFoto} />
                         <Card.Body>
                             <Card.Title>{Deputado.ultimoStatus.nome}</Card.Title>
@@ -27,9 +28,10 @@ const idDeputado = ({ Deputado, DespesasAno, Profissao }) => {
                             <Card.Text>UF: {Deputado.ultimoStatus.siglaUf}</Card.Text>
                         </Card.Body>
                     </Card>
+                    <Link href='/' className='btn btn-danger'>Voltar</Link>
                 </Col>
                 <Col md={6}>
-                    <Table striped>
+                    <Table striped size="sm" >
                         <thead>
                             <tr>
                                 <th>Data</th>

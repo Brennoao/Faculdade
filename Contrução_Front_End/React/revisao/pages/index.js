@@ -6,7 +6,7 @@ import Pagina from '../components/Pagina';
 export default function Home({ Ator }) {
   return (
     <>
-      <Pagina>
+      <Pagina titulo='Deputados'>
 
         <Row md={5}>
           {Ator.map(item => (
