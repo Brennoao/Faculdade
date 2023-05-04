@@ -4,21 +4,21 @@ import apiDeputados from '../services/apiDeputados';
 import Pagina from '../components/Pagina';
 
 export default function Home({ Ator }) {
+
+  console.log(Ator)
   return (
     <>
       <Pagina titulo='Deputados'>
 
         <Row md={6}>
           {Ator.map(item => (
-            <>
-              <Col className='mb-4'>
+              <Col key={item.id} className='mb-4'>
                 <Card>
                   <Link href={'/' + item.id}>
                     <Card.Img variant="top" src={item.urlFoto} />
                   </Link>
                 </Card>
               </Col>
-            </>
           ))}
         </Row>
       </Pagina>

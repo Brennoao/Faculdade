@@ -13,7 +13,7 @@ const idDeputado = ({ Deputado, DespesasAno, Profissao }) => {
     function formatDate(dateString) {
         const date = new Date(dateString);
         return date.toLocaleDateString('pt-BR');
-      }
+    }
 
     function formatacao(valor) {
 
@@ -22,7 +22,7 @@ const idDeputado = ({ Deputado, DespesasAno, Profissao }) => {
     }
 
     return (
-         <Pagina titulo={Deputado.ultimoStatus.nome}>
+        <Pagina titulo={Deputado.ultimoStatus.nome}>
             <Row>
                 <Col md={3}>
                     <Card className='mb-2'>
@@ -35,7 +35,7 @@ const idDeputado = ({ Deputado, DespesasAno, Profissao }) => {
                     </Card>
                     <Link href='/' className='btn btn-danger'>Voltar</Link>
                 </Col>
-                <Col md={7}>
+                <Col md={6}>
                     <Table striped className='border border-3 rounded-4'>
                         <thead>
                             <tr>
@@ -46,7 +46,7 @@ const idDeputado = ({ Deputado, DespesasAno, Profissao }) => {
                         </thead>
                         <tbody>
                             {DespesasAno.map(item => (
-                                <tr>
+                                <tr key={item.numDocumento}>
                                     <td>{formatDate(item.dataDocumento)}</td>
                                     <td>{item.tipoDespesa}</td>
                                     <td>{formatacao(item.valorDocumento)}</td>
@@ -55,37 +55,39 @@ const idDeputado = ({ Deputado, DespesasAno, Profissao }) => {
                         </tbody>
                     </Table>
                 </Col>
-                <Col md={2}>
-                    <h3>Profissões</h3>
-                    <ol>
-                        {Profissao.map(item => (
-                            <li>{item.titulo}</li>
-                        ))}
-                    </ol>
+                <Col md={3}>
+                        <h3>Profissões</h3>
+                        <ol>
+                            {Profissao.map(item => (
+                                <li key={item.codTipoProfissao}>{item.titulo}</li>
+                            ))}
+                        </ol>
                 </Col>
             </Row>
         </Pagina>
     )
 }
-// {formatacao(filme)}
 export default idDeputado
 
 export async function getServerSideProps(context) {
+
+    // ID DO DEPUTADOS(A)
     const id = context.params.id
 
-    // ID DO ATOR(A)
-
+    // REFERENCIA DEPUTADO ÚNICO
     const resultado = await apiDeputados.get('/deputados/' + id)
     const Deputado = resultado.data.dados
 
+    // REFERENCIA DESPESAS
     const Despesas = await apiDeputados.get('/deputados/' + id + '/despesas?ordem=desc&ordenarPor=dataDocumento')
     const DespesasAno = Despesas.data.dados
 
+    // REFERENCIA PROFISSOES
     const Profissoes = await apiDeputados.get('/deputados/' + id + '/profissoes')
     const Profissao = Profissoes.data.dados
 
+    // RETORNA VARIÁVEIS DECLARADAS
     return {
         props: { Deputado, DespesasAno, Profissao }, // will be passed to the page component as props
     }
 }
-{/* <img src={Deputado.ultimoStatus.urlFoto}></img> */ }
