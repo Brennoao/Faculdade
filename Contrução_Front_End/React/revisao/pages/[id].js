@@ -10,14 +10,19 @@ const idDeputado = ({ Deputado, DespesasAno, Profissao }) => {
     console.log(DespesasAno)
     console.log(Profissao)
 
+    function formatDate(dateString) {
+        const date = new Date(dateString);
+        return date.toLocaleDateString('pt-BR');
+      }
+
     function formatacao(valor) {
-    
+
         return valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 
     }
 
     return (
-        <Pagina titulo={Deputado.ultimoStatus.nome}>
+         <Pagina titulo={Deputado.ultimoStatus.nome}>
             <Row>
                 <Col md={3}>
                     <Card className='mb-2'>
@@ -34,7 +39,7 @@ const idDeputado = ({ Deputado, DespesasAno, Profissao }) => {
                     <Table striped className='border border-3 rounded-4'>
                         <thead>
                             <tr>
-                                <th style={{width: '8rem'}}>Data</th>
+                                <th style={{ width: '8rem' }}>Data</th>
                                 <th>Descrição</th>
                                 <th>Valor</th>
                             </tr>
@@ -42,9 +47,9 @@ const idDeputado = ({ Deputado, DespesasAno, Profissao }) => {
                         <tbody>
                             {DespesasAno.map(item => (
                                 <tr>
-                                    <td>{item.dataDocumento}</td>
-                                    <td>{item.tipoDespesa}</td> 
-                                    <td>{formatacao (item.valorDocumento)}</td>
+                                    <td>{formatDate(item.dataDocumento)}</td>
+                                    <td>{item.tipoDespesa}</td>
+                                    <td>{formatacao(item.valorDocumento)}</td>
                                 </tr>
                             ))}
                         </tbody>
@@ -73,7 +78,7 @@ export async function getServerSideProps(context) {
     const resultado = await apiDeputados.get('/deputados/' + id)
     const Deputado = resultado.data.dados
 
-    const Despesas = await apiDeputados.get('/deputados/' + id + '/despesas?ordem=ASC&ordenarPor=ano')
+    const Despesas = await apiDeputados.get('/deputados/' + id + '/despesas?ordem=desc&ordenarPor=dataDocumento')
     const DespesasAno = Despesas.data.dados
 
     const Profissoes = await apiDeputados.get('/deputados/' + id + '/profissoes')
