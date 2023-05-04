@@ -18,6 +18,8 @@
         "Trab",
         "vcenter"
     ],
-    "ignoreWords": [],
+    "ignoreWords": [
+        "situacao"
+    ],
     "import": []
 }

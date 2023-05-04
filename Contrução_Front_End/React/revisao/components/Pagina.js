@@ -9,12 +9,13 @@ const Pagina = (props) => {
                     <Navbar.Brand href="/">Home</Navbar.Brand>
 
                     <Nav className="me-auto">
+                        <Nav.Link href="/partidos">Partidos</Nav.Link>
                         {/* <Nav.Link href="/movies/popular">Home</Nav.Link>
                         <NavDropdown title="Filmes" id="basic-nav-dropdown">
                             <NavDropdown.Item href="/movies/emCartaz">Em Cartaz</NavDropdown.Item>
                             <NavDropdown.Item href="/movies/popular">Filmes</NavDropdown.Item>
                         </NavDropdown> */}
-                            {/* <NavDropdown.Divider /> */}
+                        {/* <NavDropdown.Divider /> */}
                     </Nav>
                 </Container>
             </Navbar>
