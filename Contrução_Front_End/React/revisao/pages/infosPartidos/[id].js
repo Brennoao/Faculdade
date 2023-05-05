@@ -2,6 +2,7 @@ import React from 'react'
 import apiDeputados from '../../services/apiDeputados'
 import Pagina from '../../components/Pagina'
 import { Card, Col, Row } from 'react-bootstrap'
+import Link from 'next/link'
 
 const idPartido = ({ Partido, PMembros }) => {
 
@@ -9,7 +10,9 @@ const idPartido = ({ Partido, PMembros }) => {
     console.log(PMembros)
     return (
         <Pagina titulo={Partido.nome}>
-            <Row>
+            <Row md={6}>
+
+                {/* INFORMAÇÕES DO PARTIDO */}
                 <Col md={3}>
                     <Card className='mb-2'>
                         <Card.Img variant="top" src={Partido.urlLogo} />
@@ -20,13 +23,17 @@ const idPartido = ({ Partido, PMembros }) => {
                     </Card>
                 </Col>
 
+                {/* MEMBROS DOS PARTIDOS */}
                 {PMembros.map(item => (
-                    <Col md={2}>
-                        <Card className='mb-2'>
-                            <Card.Img variant="top" src={item.urlFoto} />
+                    <Col key={item.id} className='mb-4'>
+                        <Card>
+                            <Link href={'/' + item.id}>
+                                <Card.Img variant="top" src={item.urlFoto} />
+                            </Link>
                         </Card>
                     </Col>
                 ))}
+
             </Row>
         </Pagina>
     )
@@ -43,6 +50,7 @@ export async function getServerSideProps(context) {
     const resultado = await apiDeputados.get('/partidos/' + id)
     const Partido = resultado.data.dados
 
+    // MEMBROS DO PARTIDO
     const Membros = await apiDeputados.get('/partidos/' + id + '/membros')
     const PMembros = Membros.data.dados
 
