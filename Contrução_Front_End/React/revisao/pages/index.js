@@ -4,17 +4,17 @@ import apiDeputados from '../services/apiDeputados';
 import Pagina from '../components/Pagina';
 import { useState } from 'react';
 
-export default function Home({ Ator }) {
+export default function Home({ Deputados }) {
 
-  console.log(Ator)
+  console.log(Deputados)
 
   const [currentPage, setCurrentPage] = useState(1);
   const resultsPerPage = 48;
-  const totalPages = Math.ceil(Ator.length / resultsPerPage);
+  const totalPages = Math.ceil(Deputados.length / resultsPerPage);
 
   const paginate = page => setCurrentPage(Math.min(Math.max(page, 1), totalPages));
 
-  const currentResults = Ator.slice(
+  const currentResults = Deputados.slice(
     (currentPage - 1) * resultsPerPage,
     currentPage * resultsPerPage
   );
@@ -51,9 +51,9 @@ export default function Home({ Ator }) {
 
 export async function getServerSideProps(context) {
   const Fotos = await apiDeputados.get('/deputados?ordem=ASC&ordenarPor=nome')
-  const Ator = Fotos.data.dados
+  const Deputados = Fotos.data.dados
 
   return {
-    props: { Ator }, // will be passed to the page component as props
+    props: { Deputados }, // will be passed to the page component as props
   }
 }

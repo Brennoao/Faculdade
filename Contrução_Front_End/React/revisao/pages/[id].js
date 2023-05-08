@@ -64,10 +64,11 @@ const idDeputado = ({ Deputado, DespesasAno, Profissao }) => {
                         hasMore={currentPage <= totalPages}
                         loader={<h4>Carregando...</h4>}
                     >
-                        <Table striped className='border border-3 rounded-4'>
+                        <Table striped bordered hover>
                             <thead>
                                 <tr>
                                     <th style={{ width: '8rem' }}>Data</th>
+                                    <th>Fornecedor</th>
                                     <th>Descrição</th>
                                     <th>Valor</th>
                                 </tr>
@@ -76,6 +77,7 @@ const idDeputado = ({ Deputado, DespesasAno, Profissao }) => {
                                 {DespesasAnoPaginated.map(item => (
                                     <tr key={item.numDocumento}>
                                         <td>{formatDate(item.dataDocumento)}</td>
+                                        <td>{item.nomeFornecedor}</td>
                                         <td>{item.tipoDespesa}</td>
                                         <td>{formatacao(item.valorDocumento)}</td>
                                     </tr>
@@ -110,7 +112,7 @@ export async function getServerSideProps(context) {
     const Deputado = resultado.data.dados
 
     // REFERENCIA DESPESAS
-    const Despesas = await apiDeputados.get('/deputados/' + id + '/despesas?itens=900&ordem=ASC&ordenarPor=ano')
+    const Despesas = await apiDeputados.get('/deputados/' + id + '/despesas?itens=9000&ordem=ASC&ordenarPor=ano')
     const DespesasAno = Despesas.data.dados
 
     // REFERENCIA PROFISSOES
