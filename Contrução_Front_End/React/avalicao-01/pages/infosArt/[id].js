@@ -19,7 +19,7 @@ const infosArt = ({ Info }) => {
                             <Link href={"/foto/" + Info.image_id} class="btn btn-dark">Ampliar <IoScanCircleSharp /></Link>
                         </Card.Body>
                     </Card>
-                    <Link href={"/" + Info.id} class="btn btn-dark mt-2">Voltar <IoArrowBackCircleSharp /></Link>
+                    <Link href={"/"} class="btn btn-dark mt-2">Voltar <IoArrowBackCircleSharp /></Link>
                 </Col>
 
                 <Col md={8}>
