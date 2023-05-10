@@ -14,16 +14,16 @@ const infosArt = ({ Info }) => {
                 <Col md={4}>
                     <Card className='p-3 border border-dark border-5'>
                         <Card.Header className='text-center text-light bg-dark mb-2'><h4>Foto</h4></Card.Header>
-                        <Card.Img variant="top" src={"https://www.artic.edu/iiif/2/" + Info.image_id + "/full/843,/0/default.jpg"}/>
+                        <Card.Img variant="top" src={"https://www.artic.edu/iiif/2/" + Info.image_id + "/full/843,/0/default.jpg"} />
                         <Card.Body >
                             <Link href={"/foto/" + Info.image_id} class="btn btn-dark">Ampliar <IoScanCircleSharp /></Link>
                         </Card.Body>
                     </Card>
-                            <Link href={"/" + Info.id} class="btn btn-dark mt-2">Voltar <IoArrowBackCircleSharp /></Link>
+                    <Link href={"/" + Info.id} class="btn btn-dark mt-2">Voltar <IoArrowBackCircleSharp /></Link>
                 </Col>
 
                 <Col md={8}>
-                <Card className='p-3 border border-dark border-5'>
+                    <Card className='p-3 border border-dark border-5'>
                         <Card.Header className='text-center text-light bg-dark mb-2'>{Info.title}</Card.Header>
                         <Card.Body >
                             <Card.Text><strong className='text-danger'>Artista:</strong> {Info.artist_title}</Card.Text>
@@ -34,7 +34,7 @@ const infosArt = ({ Info }) => {
                     </Card>
                 </Col>
             </Row>
-            
+
         </Pagina>
     )
 }

@@ -20,7 +20,7 @@ export default function Home({ ArtWork }) {
                 <th>Departamento</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className='table-group-divider'>
               {ArtWork.data.map(item => (
                 <tr key={item.id}>
                   <td><Link href={'/infosArt/' + item.id}><IoSearchSharp /></Link></td>
