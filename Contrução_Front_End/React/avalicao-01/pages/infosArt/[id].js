@@ -12,19 +12,19 @@ const infosArt = ({ Info }) => {
         <Pagina titulo={Info.title}>
             <Row>
                 <Col md={4}>
-                    <Card className='p-3 border border-dark border-5'>
-                        <Card.Header className='text-center text-light bg-dark mb-2'><h4>Foto</h4></Card.Header>
-                        <Card.Img variant="top" src={"https://www.artic.edu/iiif/2/" + Info.image_id + "/full/843,/0/default.jpg"} />
+                    <Card border="dark" className='border border-dark'>
+                        <Card.Header className='text-center text-light bg-dark'>Foto</Card.Header>
                         <Card.Body >
-                            <Link href={"/foto/" + Info.image_id} class="btn btn-dark">Ampliar <IoScanCircleSharp /></Link>
+                            <Card.Img variant="top" src={"https://www.artic.edu/iiif/2/" + Info.image_id + "/full/843,/0/default.jpg"} />
+                            <Link href={"/foto/" + Info.image_id} class="btn btn-dark mt-4">Ampliar <IoScanCircleSharp /></Link>
                         </Card.Body>
                     </Card>
                     <Link href={"/"} class="btn btn-dark mt-2">Voltar <IoArrowBackCircleSharp /></Link>
                 </Col>
 
                 <Col md={8}>
-                    <Card className='p-3 border border-dark border-5'>
-                        <Card.Header className='text-center text-light bg-dark mb-2'>{Info.title}</Card.Header>
+                    <Card border="dark" className='border-dark'>
+                        <Card.Header className='text-center text-light bg-dark'>{Info.title}</Card.Header>
                         <Card.Body >
                             <Card.Text><strong className='text-danger'>Artista:</strong> {Info.artist_title}</Card.Text>
                             <Card.Text><strong className='text-danger'>Departamento:</strong> {Info.department_title}</Card.Text>
