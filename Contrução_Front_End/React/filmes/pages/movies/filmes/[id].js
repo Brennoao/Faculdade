@@ -4,6 +4,8 @@ import Pagina from '../../../components/Pagina'
 import apiFilmes from '../../../services/apiFilmes'
 import Link from 'next/link';
 
+import Fotos from '../../../components/Fotos'
+
 const Detalhes = ({ filme, Atores }) => {
     console.log(filme)
     console.log(Atores)
@@ -45,27 +47,10 @@ const Detalhes = ({ filme, Atores }) => {
                 </Col>
 
             </div>
-            <h2>Atores</h2>
+            {/* <h2>Atores</h2> */}
             
-            
-                        
-            <Row md={5} className='d-flex gap-0 column-gap-3 row-gap-5 justify-content-between border-primary border rounded-4 border-4 p-4'>
-                {/* <h2>Atores</h2> */}
-                {Atores.cast.map(item => (
-                    <div key={item.id}>
-                    {item.profile_path ? (
-                        <Card key={item.id} className='border-primary border rounded-4 border-4 p-4'>
-                                <Card.Img variant="top" src={'https://image.tmdb.org/t/p/w500/' + item.profile_path} /> 
-                            <Card.Body>
-                                <Card.Title className='border-bottom border-4 border-primary pb-2'>{item.name}</Card.Title>
-                                <Card.Title>{item.character}</Card.Title>
-                            </Card.Body>
-                            <Link variant="primary" href={"/ator/" + item.credit_id} className='btn btn-primary'>Entrar</Link>
-                        </Card>
-                    ) : ("")}
-                    </div>
-                ))}
-            </Row>
+            <Fotos titulo='Atores' lista={Atores.cast} link='/ator/' id='credit_id' foto='profile_path'/>
+ 
         </Pagina>
         </>
     )

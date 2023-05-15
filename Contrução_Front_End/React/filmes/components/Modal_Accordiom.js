@@ -5,10 +5,7 @@ function Modal_Accordiom(props) {
     return (
         <Modal
             {...props}
-            size="lg"
-            aria-labelledby="contained-modal-title-vcenter"
-            centered
-        >
+            size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
                     Modal heading
@@ -39,10 +36,7 @@ export default function MyApp({ Component, pageProps }) {
             </Button>
 
             <Modal_Accordiom
-                show={modalShow}
-                onHide={() => setModalShow(false)}
-            />
-
+                show={modalShow} onHide={() => setModalShow(false)} />
             <Component {...pageProps} />
         </>
     );

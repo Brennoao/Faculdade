@@ -35,11 +35,11 @@ const idAtor = ({ InfosAtor, Img, Atuou, AtuouTv }) => {
                 </Col>
             </div>
             
-            <Fotos titulo='Fotos' lista={Img.profiles} foto='file_path'/>
+            <Fotos titulo='Fotos' lista={Img.profiles} foto='file_path' id='id'/>
 
-            <Fotos titulo='Filmes em que atuou' lista={Atuou} foto='poster_path' link='/movies/filmes/'/>
+            <Fotos titulo='Filmes em que atuou' lista={Atuou} foto='poster_path' link='/movies/filmes/' id='id'/>
 
-            <Fotos titulo='Series em que atuou' lista={AtuouTv} foto='poster_path' link='/series/idInfo/'/>
+            <Fotos titulo='Series em que atuou' lista={AtuouTv} foto='poster_path' link='/series/idInfo/' id='id'/>
             
         </Pagina>
     )
