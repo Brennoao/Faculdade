@@ -31,7 +31,7 @@ const index = ({filmes}) => {
     <Pagina titulo="Filmes">
       <Row md={4}>
         {filmes.map(item => (
-          <Col title={item.title} key={item.id}>
+          <Col key={item.id}>
             <Card className='mb-4 shadow-sm bg-dark text-light border-primary border border-3 rounded rounded-4'>
               <Card.Img variant="top" src={'https://image.tmdb.org/t/p/w500/' + item.backdrop_path} />
               <Card.Body>
@@ -43,7 +43,7 @@ const index = ({filmes}) => {
                   ))}
                 </ListGroup> */}
 
-                <Link href={"/movies/filmes/" + item.id} class="btn btn-primary mt-2">Entrar</Link>
+                <Link href={"/movies/filmes/" + item.id} className="btn btn-primary mt-2">Entrar</Link>
               </Card.Body>
             </Card>
           </Col>

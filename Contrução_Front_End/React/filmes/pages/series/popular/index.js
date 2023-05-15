@@ -10,12 +10,12 @@ const index = ({ seriesPopular }) => {
         <Pagina titulo="Series">
             <Row md={4}>
                 {seriesPopular.map(item => (
-                    <Col title={item.title} key={item.id}>
+                    <Col key={item.id}>
                         <Card className='mb-4 shadow-sm bg-dark text-light border-primary border border-3 rounded rounded-4'>
                             <Card.Img variant="top" src={'https://image.tmdb.org/t/p/w500/' + item.backdrop_path} />
                             <Card.Body>
                                 <Card.Title>{item.name}</Card.Title>
-                                <Link href={"/series/idInfo/" + item.id} class="btn btn-primary mt-2">Entrar</Link>
+                                <Link href={"/series/idInfo/" + item.id} className="btn btn-primary mt-2">Entrar</Link>
                             </Card.Body>
                         </Card>
                     </Col>

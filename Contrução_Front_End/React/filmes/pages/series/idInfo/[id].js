@@ -32,7 +32,7 @@ const seriesInfos = ({ infos, Atores }) => {
                     <p><strong>Episódios</strong> {infos.number_of_episodes}</p>
                     <h2 className='mt-4'>Gêneros</h2>
                     <ol>
-                        {infos.genres.map(item => (<li>{item.name}</li>))}
+                        {infos.genres.map(item => (<li key={item.id}>{item.name}</li>))}
                     </ol>
                     {infos.overview ? (<div className='w-auto'>
                         <h2>Sinopse</h2>
@@ -106,7 +106,7 @@ const seriesInfos = ({ infos, Atores }) => {
                 {Atores.cast.map(item => (
                     <>
                         {item.profile_path ? (
-                            <Card title={`${item.name} - ${item.character}`} key={item.id} className='border-primary border rounded-4 border-4 p-4'>
+                            <Card key={item.id} className='border-primary border rounded-4 border-4 p-4'>
                                 <Card.Img variant="top" src={'https://image.tmdb.org/t/p/w500/' + item.profile_path} />
                                 <Card.Body>
                                     <Card.Title className='border-bottom border-4 border-primary pb-2'>{item.name}</Card.Title>

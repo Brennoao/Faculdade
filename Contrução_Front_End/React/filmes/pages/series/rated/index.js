@@ -17,7 +17,7 @@ const index = ({ seriesRecent }) => {
                             <Card.Img variant="top" src={'https://image.tmdb.org/t/p/w500/' + item.backdrop_path} />
                             <Card.Body>
                                 <Card.Title>{item.name}</Card.Title>
-                                <Link href={"/series/idInfo/" + item.id} class="btn btn-primary mt-2">Entrar</Link>
+                                <Link href={"/series/idInfo/" + item.id} className="btn btn-primary mt-2">Entrar</Link>
                             </Card.Body>
                         </Card>
                     </Col>

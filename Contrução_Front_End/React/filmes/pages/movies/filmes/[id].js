@@ -23,20 +23,20 @@ const Detalhes = ({ filme, Atores }) => {
        
         <Pagina titulo={filme.title}>
             <div className='d-flex gap-0 column-gap-3 border-primary border rounded-4 border-4 p-4 mb-5'>
-                <Col title={filme.title} md={4}>
+                <Col md={4}>
                     <Card className='card border-light mr-3'>
                         <Card.Img variante='top' src={'https://image.tmdb.org/t/p/w500/' + filme.poster_path} />
                     </Card>
                 </Col>
                 <Col md={9}>
                     <h2>Detalhes</h2>
-                    <p><strong>Lançamento:</strong>{filme.release_date}</p>
+                    <p><strong>Lançamento:</strong> {filme.release_date}</p>
                     <p><strong>Duração:</strong> {filme.runtime} min</p>
                     {filme.homepage ? ( <p><strong>Site:</strong> <Link href={filme.homepage}>{filme.homepage}</Link></p> ) : ("")}
                     <p><strong>Orçamento:</strong> {formatacao(filme)}</p>
                     <h2 className='mt-4'>Gêneros</h2>
                     <ol>
-                        {filme.genres.map(item => (<li>{item.name}</li>))}
+                        {filme.genres.map(item => (<li key={item.id}>{item.name}</li>))}
                     </ol>
                     <div className='w-auto'>
                         <h2>Sinopse</h2>
@@ -52,9 +52,9 @@ const Detalhes = ({ filme, Atores }) => {
             <Row md={5} className='d-flex gap-0 column-gap-3 row-gap-5 justify-content-between border-primary border rounded-4 border-4 p-4'>
                 {/* <h2>Atores</h2> */}
                 {Atores.cast.map(item => (
-                    <>
+                    <div key={item.id}>
                     {item.profile_path ? (
-                        <Card title={`${item.name} - ${item.character}`} key={item.id} className='border-primary border rounded-4 border-4 p-4'>
+                        <Card key={item.id} className='border-primary border rounded-4 border-4 p-4'>
                                 <Card.Img variant="top" src={'https://image.tmdb.org/t/p/w500/' + item.profile_path} /> 
                             <Card.Body>
                                 <Card.Title className='border-bottom border-4 border-primary pb-2'>{item.name}</Card.Title>
@@ -63,7 +63,7 @@ const Detalhes = ({ filme, Atores }) => {
                             <Link variant="primary" href={"/ator/" + item.credit_id} className='btn btn-primary'>Entrar</Link>
                         </Card>
                     ) : ("")}
-                    </>
+                    </div>
                 ))}
             </Row>
         </Pagina>
@@ -86,9 +86,3 @@ export async function getServerSideProps(context) {
         props: { filme, Atores }, // will be passed to the page component as props
     }
 }
-{/* <Card.Subtitle className="mb-2 text-white">Lingua Original: {item.original_language}</Card.Subtitle> */ }
-{/* <Card.Text>Outras Infos:</Card.Text> */ }
-{/* <ListGroup className='mb-0'>
-    <ListGroup.Item>Lançamento: {item.release_date}</ListGroup.Item>
-    <ListGroup.Item>Votos: {item.vote_average}</ListGroup.Item>
-</ListGroup> */}

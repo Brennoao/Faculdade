@@ -79,7 +79,3 @@ export async function getServerSideProps(context) {
         props: { InfosAtor, Img, Atuou, AtuouTv }, // will be passed to the page component as props
     }
 }
-
-{/* {InfosAtor.map(item => (
-                <p></p>
-            ))} */}
