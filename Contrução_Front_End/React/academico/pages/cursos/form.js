@@ -1,4 +1,5 @@
 import Pagina from '@/components/Pagina'
+import { useRouter } from 'next/router'
 import React from 'react'
 import { Button } from 'react-bootstrap'
 import { Form } from 'react-bootstrap'
@@ -6,10 +7,16 @@ import { useForm } from 'react-hook-form'
 
 const form = () => {
 
-    const { register, handleSubmit }  = useForm()
+    const { register, handleSubmit } = useForm()
+    const { push } = useRouter()
 
     function salvar(dados) {
-        console.log(dados)
+        const cursos = JSON.parse(window.localStorage.getItem('cursos')) || []
+        cursos.push(dados)
+
+        window.localStorage.setItem('cursos', JSON.stringify(cursos))
+        push('/cursos')
+        // console.log(dados)
     }
 
     return (
@@ -17,22 +24,20 @@ const form = () => {
             <Form>
                 <Form.Group className="mb-3" controlId="nome">
                     <Form.Label>Nome:</Form.Label>
-                    <Form.Control type="text" placeholder="Nome" {...register('nome')}/>
+                    <Form.Control type="text" placeholder="Nome" {...register('nome')} />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="duracao">
                     <Form.Label>Duração:</Form.Label>
-                    <Form.Control type="text" placeholder="duração" {...register('duracao')}/>
+                    <Form.Control type="text" placeholder="duração" {...register('duracao')} />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="modalidade">
                     <Form.Label>modalidade:</Form.Label>
-                    <Form.Control type="text" placeholder="modalidade" {...register('modalidade')}/>
+                    <Form.Control type="text" placeholder="modalidade" {...register('modalidade')} />
                 </Form.Group>
 
-                <Button variant="warning" onClick={handleSubmit(salvar)} >
-                    Salvar
-                </Button>
+                <Button variant="warning" onClick={handleSubmit(salvar)} >Salvar</Button>
             </Form>
         </Pagina>
     )

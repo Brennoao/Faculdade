@@ -1,9 +1,24 @@
 import Pagina from '@/components/Pagina'
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Table } from 'react-bootstrap'
+import { BsTrashFill } from 'react-icons/Bs';
 
 const index = () => {
+
+    const [data, setData] = useState([]);
+
+    // useEffect(() => {
+    //   const storedData = JSON.parse(localStorage.getItem('cursos'));
+    //   setData(storedData);
+    // }, []);
+
+    useEffect(() => {
+        setData(JSON.parse(localStorage.getItem('cursos')));
+    }, []);
+
+    console.log(data);
+
     return (
         <Pagina titulo='Cursos'>
             <Link href={'/cursos/form'} className='btn btn-warning mb-3'>Novo</Link>
@@ -11,29 +26,21 @@ const index = () => {
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Username</th>
+                        <th>Curso</th>
+                        <th>duracao</th>
+                        <th>Modalidade</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td colSpan={2}>Larry the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
+                    {data.map((item, i) => (
+                        <tr>
+                            {/* <td>{i}</td> */}
+                            <td><BsTrashFill className='text-danger' /></td>
+                            <td>{item.nome}</td>
+                            <td>{item.duracao}</td>
+                            <td>{item.modalidade}</td>
+                        </tr>
+                    ))}
                 </tbody>
             </Table>
         </Pagina>
