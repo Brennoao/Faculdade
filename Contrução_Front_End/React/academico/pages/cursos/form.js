@@ -9,7 +9,7 @@ const form = () => {
 
     const { register, handleSubmit } = useForm()
     const { push } = useRouter()
-
+    
     function salvar(dados) {
         const cursos = JSON.parse(window.localStorage.getItem('cursos')) || []
         cursos.push(dados)
