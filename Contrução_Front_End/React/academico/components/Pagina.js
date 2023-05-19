@@ -4,7 +4,7 @@ import { Container, Navbar, Nav, SplitButton, Dropdown, NavDropdown } from 'reac
 const Pagina = (props) => {
     return (
         <>
-            <Navbar bg="primary" variant="dark">
+            <Navbar bg="danger" variant="dark">
                 <Container>
                     <Navbar.Brand href="/">Home</Navbar.Brand>
 
@@ -26,7 +26,7 @@ const Pagina = (props) => {
                 </Container>
             </Navbar>
 
-            <div className='bg-warning py-3 text-dark text-center mb-4'>
+            <div className='bg-primary py-1 text-light text-center mb-4'>
                 <Container>
                     <h1>{props.titulo}</h1>
                 </Container>
@@ -36,7 +36,7 @@ const Pagina = (props) => {
                 {props.children}
             </Container>
 
-            <div style={{ width: '100%' }} className='bg-warning w-100 bottom-0 p-3 text-dark text-center'>
+            <div style={{ width: '100%' }} className='bg-danger w-100 bottom-0 p-3 text-light text-center'>
                 <p>Todos os direitos reservados</p>
             </div>
 

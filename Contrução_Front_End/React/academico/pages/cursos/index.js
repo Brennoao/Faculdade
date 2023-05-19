@@ -5,20 +5,15 @@ import React, { useEffect, useState } from 'react'
 import { Button } from 'react-bootstrap';
 import { Table } from 'react-bootstrap'
 import { BsTrashFill } from 'react-icons/Bs';
-import { v4 as uuidv4 } from 'uuid';
+import { v4 } from 'uuid';
 
 const index = () => {
-    const [data, setData] = useState([]);
-    const router = useRouter();
+                                                                                // TENTATIVA FALHA
 
     // useEffect(() => {
     //   const storedData = JSON.parse(localStorage.getItem('cursos'));
     //   setData(storedData);
     // }, []);
-
-    useEffect(() => {
-        setData(JSON.parse(localStorage.getItem('cursos')));
-    }, []);
 
     // function deleteItem(itemId) {
     //     const updatedData = data.filter((item) => item.id !== itemId);
@@ -26,18 +21,30 @@ const index = () => {
     //     setData(updatedData);
     // }
 
-    function deleteItem(dados) {
-        localStorage.removeItem('cursos');
-        router.reload();
-    }
+                                                                                // CÓDIGO CORRETO
 
-    console.log(data);
-    console.log(deleteItem)
+    const [data, setData] = useState([]);
+    const router = useRouter();
+
+    useEffect(() => {
+        setData(JSON.parse(localStorage.getItem('cursos')))
+    }, []); // ATUALIZA A FUNÇÃO DATA
+
+    function deleteItem(id) {
+        
+        const cursos = JSON.parse(localStorage.getItem('cursos')) || []; // OBTÉM OS DADOS DO LOCALSTORAGE
+        
+        const novosCursos = cursos.filter(curso => curso.id !== id); // FILTRA O ARRAY, REMOVE O ID FORNECIDO 
+        
+        localStorage.setItem('cursos', JSON.stringify(novosCursos)); // ATUALIZA O LOCALSTORAGE COM OS NOVOS DADOS
+
+        router.reload() // RECARREGA A PÁGINA
+    }
 
     return (
         <Pagina titulo='Cursos'>
-            <Link href={'/cursos/form'} className='btn btn-warning mb-3'>Novo</Link>
-            <Table striped bordered hover variant="warning">
+            <Link href={'/cursos/form'} className='btn btn-danger mb-3'>Novo</Link>
+            <Table striped bordered hover variant="danger">
                 <thead>
                     <tr>
                         <th>#</th>
@@ -49,12 +56,11 @@ const index = () => {
                 <tbody>
                     {data === null ? '' :
                         data.map((item, i) => (
-                            <tr key={i}>
-                                {/* <td><BsTrashFill className='text-danger' onClick={deleteItem} /></td> */}
-                                <td><Button onClick={deleteItem}><BsTrashFill /></Button></td>
-                                <td>{item.nome}</td>
-                                <td>{item.duracao}</td>
-                                <td>{item.modalidade}</td>
+                            <tr key={item.id}>
+                                <td style={{ width: '2rem' }}><Button className='btn-danger' onClick={() => deleteItem(item.id)}><BsTrashFill /></Button></td>
+                                <td style={{ width: '33.33%' }}>{item.nome}</td>
+                                <td style={{ width: '33.33%' }}>{item.duracao}</td>
+                                <td style={{ width: '33.33%' }}>{item.modalidade}</td>
                             </tr>
                         ))
                     }

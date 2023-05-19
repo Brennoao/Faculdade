@@ -4,19 +4,38 @@ import React from 'react'
 import { Button } from 'react-bootstrap'
 import { Form } from 'react-bootstrap'
 import { useForm } from 'react-hook-form'
+import { v4 as uuidv4 } from 'uuid'
 
 const form = () => {
+                                                                                // TENTATIVA FALHA
+    // function salvar(dados) {
+    //     const cursos = JSON.parse(window.localStorage.getItem('cursos')) || []
+    //     var id = v4(dados)
+    //     id = {id : [dados]}
+    //     cursos.push(id)
+    //     console.log(id)
+
+    //     window.localStorage.setItem('cursos', JSON.stringify(cursos))
+    //     // push('/cursos')
+    //     console.log(dados)
+    // }
+
+                                                                                // CÓDIGO CORRETO
 
     const { register, handleSubmit } = useForm()
     const { push } = useRouter()
-    
+
     function salvar(dados) {
         const cursos = JSON.parse(window.localStorage.getItem('cursos')) || []
-        cursos.push(dados)
 
-        window.localStorage.setItem('cursos', JSON.stringify(cursos))
-        push('/cursos')
-        // console.log(dados)
+        const id = uuidv4() // GERA UM UUID UNICO PARA CADA ITEM
+
+        const cursoComId = { ...dados, id } // ADICIONA O ID COMO PROPRIEDADE DO ITEM
+
+        cursos.push(cursoComId) // IMPORTA PARA O LOCALSTORAGE
+        window.localStorage.setItem('cursos', JSON.stringify(cursos)) // TRANSFORMA O ITEM EM STRING
+
+        push('/cursos') // FUNÇÃO DO NEXT/ROUTER => TE LEVA PARA A PÁGINA DEFINIDA
     }
 
     return (
