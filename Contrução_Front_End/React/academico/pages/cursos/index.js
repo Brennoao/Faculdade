@@ -1,6 +1,6 @@
 import Pagina from '@/components/Pagina'
 import Link from 'next/link'
-import { useRouter } from 'next/router';
+import Router from 'next/router';
 import React, { useEffect, useState } from 'react'
 import { Button } from 'react-bootstrap';
 import { Table } from 'react-bootstrap'
@@ -20,24 +20,35 @@ const index = () => {
     //     setData(updatedData);
     // }
 
+    // function deleteItem(id) {
+        
+    //     let cursos = JSON.parse(localStorage.getItem('cursos')) || []; // OBTÉM OS DADOS DO LOCALSTORAGE
+        
+    //     cursos = cursos.filter(curso => curso.id !== id); // FILTRA O ARRAY, REMOVE O ID FORNECIDO 
+        
+    //     localStorage.setItem('cursos', JSON.stringify(cursos)); // ATUALIZA O LOCALSTORAGE COM OS NOVOS DADOS
+
+    //     Router.reload() // RECARREGA A PÁGINA
+    // }
+
+    // onClick={() => deleteItem(item.id)}
+
                                                                                 // CÓDIGO CORRETO
 
     const [data, setData] = useState([]);
-    const router = useRouter();
-
     useEffect(() => {
-        setData(JSON.parse(localStorage.getItem('cursos')))
+        setData(getAll())
     }, []); // ATUALIZA A FUNÇÃO DATA
 
-    function deleteItem(id) {
-        
-        let cursos = JSON.parse(localStorage.getItem('cursos')) || []; // OBTÉM OS DADOS DO LOCALSTORAGE
-        
-        cursos = cursos.filter(curso => curso.id !== id); // FILTRA O ARRAY, REMOVE O ID FORNECIDO 
-        
-        localStorage.setItem('cursos', JSON.stringify(cursos)); // ATUALIZA O LOCALSTORAGE COM OS NOVOS DADOS
+    function getAll () {
+        return JSON.parse(localStorage.getItem('cursos')) || []
+    }
 
-        router.reload() // RECARREGA A PÁGINA
+    function deleteItem(id) {
+        const cursos = getAll()
+        cursos.splice(id, 1)
+        window.localStorage.setItem('cursos', JSON.stringify(cursos))
+        setData(cursos)
     }
 
     return (
@@ -55,8 +66,8 @@ const index = () => {
                 <tbody>
                     {data === null ? '' :
                         data.map((item, i) => (
-                            <tr key={item.id}>
-                                <td style={{ width: '2rem' }}><Button className='btn-danger' onClick={() => deleteItem(item.id)}><BsTrashFill /></Button></td>
+                            <tr key={i}>
+                                <td style={{ width: '2rem' }}><Button variant='danger' onClick={() => deleteItem(i)}><BsTrashFill /></Button></td>
                                 <td style={{ width: '33.33%' }}>{item.nome}</td>
                                 <td style={{ width: '33.33%' }}>{item.duracao}</td>
                                 <td style={{ width: '33.33%' }}>{item.modalidade}</td>
