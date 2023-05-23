@@ -5,7 +5,6 @@ import React, { useEffect, useState } from 'react'
 import { Button } from 'react-bootstrap';
 import { Table } from 'react-bootstrap'
 import { BsTrashFill } from 'react-icons/Bs';
-import { v4 } from 'uuid';
 
 const index = () => {
                                                                                 // TENTATIVA FALHA
@@ -32,11 +31,11 @@ const index = () => {
 
     function deleteItem(id) {
         
-        const cursos = JSON.parse(localStorage.getItem('cursos')) || []; // OBTÉM OS DADOS DO LOCALSTORAGE
+        let cursos = JSON.parse(localStorage.getItem('cursos')) || []; // OBTÉM OS DADOS DO LOCALSTORAGE
         
-        const novosCursos = cursos.filter(curso => curso.id !== id); // FILTRA O ARRAY, REMOVE O ID FORNECIDO 
+        cursos = cursos.filter(curso => curso.id !== id); // FILTRA O ARRAY, REMOVE O ID FORNECIDO 
         
-        localStorage.setItem('cursos', JSON.stringify(novosCursos)); // ATUALIZA O LOCALSTORAGE COM OS NOVOS DADOS
+        localStorage.setItem('cursos', JSON.stringify(cursos)); // ATUALIZA O LOCALSTORAGE COM OS NOVOS DADOS
 
         router.reload() // RECARREGA A PÁGINA
     }
