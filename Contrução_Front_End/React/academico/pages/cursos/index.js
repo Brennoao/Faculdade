@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react'
 import { Button } from 'react-bootstrap';
 import { Table } from 'react-bootstrap'
 import { BsTrashFill } from 'react-icons/Bs';
+import { AiFillEdit } from 'react-icons/Ai';
 
 const index = () => {
                                                                                 // TENTATIVA FALHA
@@ -45,10 +46,12 @@ const index = () => {
     }
 
     function deleteItem(id) {
-        const cursos = getAll()
-        cursos.splice(id, 1)
-        window.localStorage.setItem('cursos', JSON.stringify(cursos))
-        setData(cursos)
+        if (confirm('Deseja realmente deletar este item')) {
+            const cursos = getAll()
+            cursos.splice(id, 1)
+            window.localStorage.setItem('cursos', JSON.stringify(cursos))
+            setData(cursos)
+        }
     }
 
     return (
@@ -57,7 +60,7 @@ const index = () => {
             <Table striped bordered hover variant="danger">
                 <thead>
                     <tr>
-                        <th>#</th>
+                        <th colSpan={2}>#</th>
                         <th>Curso</th>
                         <th>duracao</th>
                         <th>Modalidade</th>
@@ -67,6 +70,7 @@ const index = () => {
                     {data === null ? '' :
                         data.map((item, i) => (
                             <tr key={i}>
+                                <td style={{ width: '2rem' }}><Link href={'/cursos/' + i} className='btn btn-danger'><AiFillEdit /></Link></td>
                                 <td style={{ width: '2rem' }}><Button variant='danger' onClick={() => deleteItem(i)}><BsTrashFill /></Button></td>
                                 <td style={{ width: '33.33%' }}>{item.nome}</td>
                                 <td style={{ width: '33.33%' }}>{item.duracao}</td>

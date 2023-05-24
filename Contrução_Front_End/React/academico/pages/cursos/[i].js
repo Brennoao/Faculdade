@@ -1,7 +1,7 @@
 import Pagina from '@/components/Pagina'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Button, Form } from 'react-bootstrap'
 import { useForm } from 'react-hook-form'
 import { v4 as uuidv4 } from 'uuid'
@@ -25,8 +25,19 @@ const form = () => {
 
     // CÓDIGO CORRETO
 
-    const { register, handleSubmit } = useForm()
-    const { push } = useRouter()
+    const { register, handleSubmit, setValue } = useForm()
+    const { push, query } = useRouter()
+
+    useEffect(() => {
+        if (query.id) {
+            const Cursos = JSON.parse(localStorage.getItem('cursos')) || []
+            const Curso = Cursos[query.id]
+
+            setValue('nome', Curso.nome)
+            setValue('duracao', Curso.duracao)
+            setValue('modalidade', Curso.modalidade)
+        }
+    }, [query.id])
 
     function salvar(dados) {
         const cursos = JSON.parse(window.localStorage.getItem('cursos')) || []
@@ -58,7 +69,7 @@ const form = () => {
                     <Form.Label>modalidade:</Form.Label>
                     <Form.Control type="text" placeholder="modalidade" {...register('modalidade')} />
                 </Form.Group>
-                
+
                 <div className='text-center'>
                     <Button variant="warning" onClick={handleSubmit(salvar)} >Salvar <BsCheck2Square /></Button>
                     <Link href={'/cursos'} className='btn btn-success ms-2'>Voltar <IoMdArrowRoundBack /></Link>
