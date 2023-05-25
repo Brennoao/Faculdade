@@ -10,20 +10,6 @@ import { IoMdArrowRoundBack } from 'react-icons/Io';
 
 
 const form = () => {
-    // TENTATIVA FALHA
-    // function salvar(dados) {
-    //     const cursos = JSON.parse(window.localStorage.getItem('cursos')) || []
-    //     var id = v4(dados)
-    //     id = {id : [dados]}
-    //     cursos.push(id)
-    //     console.log(id)
-
-    //     window.localStorage.setItem('cursos', JSON.stringify(cursos))
-    //     // push('/cursos')
-    //     console.log(dados)
-    // }
-
-    // CÓDIGO CORRETO
 
     const { register, handleSubmit, setValue } = useForm()
     const { push, query } = useRouter()
@@ -43,9 +29,9 @@ const form = () => {
         const cursos = JSON.parse(window.localStorage.getItem('cursos')) || []
 
         cursos.splice(query.id, 1, dados)
-        window.localStorage.setItem('cursos', JSON.stringify(cursos)) // TRANSFORMA O ITEM EM STRING
+        window.localStorage.setItem('cursos', JSON.stringify(cursos))               // TRANSFORMA O ITEM EM STRING
 
-        push('/cursos') // FUNÇÃO DO NEXT/ROUTER => TE LEVA PARA A PÁGINA DEFINIDA
+        push('/cursos')                                                             // FUNÇÃO DO NEXT/ROUTER => TE LEVA PARA A PÁGINA DEFINIDA
     }
 
     return (

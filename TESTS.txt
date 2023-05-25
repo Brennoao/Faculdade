@@ -1,0 +1,53 @@
+// ARQUIVO INDEX
+
+useEffect(() => {
+    const storedData = JSON.parse(localStorage.getItem('cursos'));
+    setData(storedData);
+}, []);
+
+function deleteItem(itemId) {
+    const updatedData = data.filter((item) => item.id !== itemId);
+    localStorage.setItem('cursos', JSON.stringify(updatedData));
+    setData(updatedData);
+}
+
+function deleteItem(id) {
+
+    let cursos = JSON.parse(localStorage.getItem('cursos')) || []; // OBTÉM OS DADOS DO LOCALSTORAGE
+
+    cursos = cursos.filter(curso => curso.id !== id); // FILTRA O ARRAY, REMOVE O ID FORNECIDO 
+
+    localStorage.setItem('cursos', JSON.stringify(cursos)); // ATUALIZA O LOCALSTORAGE COM OS NOVOS DADOS
+
+    Router.reload() // RECARREGA A PÁGINA
+}
+
+onClick = {() => deleteItem(item.id)}
+
+// ARQUIVO FORM
+
+function salvar(dados) {
+    const cursos = JSON.parse(window.localStorage.getItem('cursos')) || []
+    var id = v4(dados)
+    id = { id: [dados] }
+    cursos.push(id)
+    console.log(id)
+
+    window.localStorage.setItem('cursos', JSON.stringify(cursos))
+    // push('/cursos')
+    console.log(dados)
+}
+
+// ARQUIVO [ID]
+
+function salvar(dados) {
+    const cursos = JSON.parse(window.localStorage.getItem('cursos')) || []
+    var id = v4(dados)
+    id = { id: [dados] }
+    cursos.push(id)
+    console.log(id)
+
+    window.localStorage.setItem('cursos', JSON.stringify(cursos))
+    push('/cursos')
+    console.log(dados)
+}

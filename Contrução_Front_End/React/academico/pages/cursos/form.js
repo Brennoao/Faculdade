@@ -10,35 +10,21 @@ import { IoMdArrowRoundBack } from 'react-icons/Io';
 
 
 const form = () => {
-    // TENTATIVA FALHA
-    // function salvar(dados) {
-    //     const cursos = JSON.parse(window.localStorage.getItem('cursos')) || []
-    //     var id = v4(dados)
-    //     id = {id : [dados]}
-    //     cursos.push(id)
-    //     console.log(id)
-
-    //     window.localStorage.setItem('cursos', JSON.stringify(cursos))
-    //     // push('/cursos')
-    //     console.log(dados)
-    // }
-
-    // CÓDIGO CORRETO
 
     const { register, handleSubmit } = useForm()
-    const { push } = useRouter()
+    const { push } = useRouter()                                                                // IMPORT DA FUNÇÃO PUSH PARA A UTILIZAÇÃO
 
     function salvar(dados) {
         const cursos = JSON.parse(window.localStorage.getItem('cursos')) || []
 
-        const id = uuidv4() // GERA UM UUID UNICO PARA CADA ITEM
+        const id = uuidv4()                                                                     // GERA UM UUID UNICO PARA CADA ITEM
 
-        const cursoComId = { ...dados, id } // ADICIONA O ID COMO PROPRIEDADE DO ITEM
+        const cursoComId = { ...dados, id }                                                     // ADICIONA O ID COMO PROPRIEDADE DO ITEM
 
-        cursos.push(cursoComId) // IMPORTA PARA O LOCALSTORAGE
-        window.localStorage.setItem('cursos', JSON.stringify(cursos)) // TRANSFORMA O ITEM EM STRING
+        cursos.push(cursoComId)                                                                 // IMPORTA PARA O LOCALSTORAGE
+        window.localStorage.setItem('cursos', JSON.stringify(cursos))                           // TRANSFORMA O ITEM EM STRING
 
-        push('/cursos') // FUNÇÃO DO NEXT/ROUTER => TE LEVA PARA A PÁGINA DEFINIDA
+        push('/cursos')                                                                         // FUNÇÃO DO NEXT/ROUTER => TE LEVA PARA A PÁGINA DEFINIDA
     }
 
     return (

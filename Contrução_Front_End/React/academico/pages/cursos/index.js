@@ -1,6 +1,5 @@
 import Pagina from '@/components/Pagina'
 import Link from 'next/link'
-import Router from 'next/router';
 import React, { useEffect, useState } from 'react'
 import { Button } from 'react-bootstrap';
 import { Table } from 'react-bootstrap'
@@ -8,50 +7,23 @@ import { BsTrashFill } from 'react-icons/Bs';
 import { AiFillEdit } from 'react-icons/Ai';
 
 const index = () => {
-                                                                                // TENTATIVA FALHA
-
-    // useEffect(() => {
-    //   const storedData = JSON.parse(localStorage.getItem('cursos'));
-    //   setData(storedData);
-    // }, []);
-
-    // function deleteItem(itemId) {
-    //     const updatedData = data.filter((item) => item.id !== itemId);
-    //     localStorage.setItem('cursos', JSON.stringify(updatedData));
-    //     setData(updatedData);
-    // }
-
-    // function deleteItem(id) {
-        
-    //     let cursos = JSON.parse(localStorage.getItem('cursos')) || []; // OBTÉM OS DADOS DO LOCALSTORAGE
-        
-    //     cursos = cursos.filter(curso => curso.id !== id); // FILTRA O ARRAY, REMOVE O ID FORNECIDO 
-        
-    //     localStorage.setItem('cursos', JSON.stringify(cursos)); // ATUALIZA O LOCALSTORAGE COM OS NOVOS DADOS
-
-    //     Router.reload() // RECARREGA A PÁGINA
-    // }
-
-    // onClick={() => deleteItem(item.id)}
-
-                                                                                // CÓDIGO CORRETO
 
     const [data, setData] = useState([]);
     useEffect(() => {
         setData(getAll())
-    }, []); // ATUALIZA A FUNÇÃO DATA
+    }, []);                                                                 // ATUALIZA A FUNÇÃO DATA
 
     function getAll () {
         return JSON.parse(localStorage.getItem('cursos')) || []
     }
 
     function deleteItem(id) {
-        if (confirm('Deseja realmente deletar este item')) {
-            const cursos = getAll()
-            cursos.splice(id, 1)
+        if (confirm('Deseja realmente deletar este item')) {                // CONFIRM = FUNÇÃO DO JAVASCRIPT = DUAS OPÇÕES OK=TRUE CANCELAR=FALSE
+            const cursos = getAll()                                         // PUXA A FUNÇÃO getAll
+            cursos.splice(id, 1)                                            // SPLICE = FUNÇÃO DO JAVASCRIPT = OFERECE 3 PARÂMETROS (DESSE, DELETAR, ALTERAR) 
             console.log(cursos)
             window.localStorage.setItem('cursos', JSON.stringify(cursos))
-            setData(cursos)
+            setData(cursos)                                                 // ATUALIZA O USESTATE ATUALIZANDO A FUNÇÃO DESEJADA
         }
     }
 
