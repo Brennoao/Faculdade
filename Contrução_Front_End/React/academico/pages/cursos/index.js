@@ -49,10 +49,13 @@ const index = () => {
         if (confirm('Deseja realmente deletar este item')) {
             const cursos = getAll()
             cursos.splice(id, 1)
+            console.log(cursos)
             window.localStorage.setItem('cursos', JSON.stringify(cursos))
             setData(cursos)
         }
     }
+
+    console.log(data)
 
     return (
         <Pagina titulo='Cursos'>

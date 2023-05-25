@@ -32,21 +32,17 @@ const form = () => {
         if (query.id) {
             const Cursos = JSON.parse(localStorage.getItem('cursos')) || []
             const Curso = Cursos[query.id]
-
-            setValue('nome', Curso.nome)
-            setValue('duracao', Curso.duracao)
-            setValue('modalidade', Curso.modalidade)
+            
+            for(let atributo in Curso) {
+                setValue(atributo, Curso[atributo])
+            }
         }
     }, [query.id])
 
     function salvar(dados) {
         const cursos = JSON.parse(window.localStorage.getItem('cursos')) || []
 
-        const id = uuidv4() // GERA UM UUID UNICO PARA CADA ITEM
-
-        const cursoComId = { ...dados, id } // ADICIONA O ID COMO PROPRIEDADE DO ITEM
-
-        cursos.push(cursoComId) // IMPORTA PARA O LOCALSTORAGE
+        cursos.splice(query.id, 1, dados)
         window.localStorage.setItem('cursos', JSON.stringify(cursos)) // TRANSFORMA O ITEM EM STRING
 
         push('/cursos') // FUNÇÃO DO NEXT/ROUTER => TE LEVA PARA A PÁGINA DEFINIDA
@@ -57,17 +53,17 @@ const form = () => {
             <Form>
                 <Form.Group className="mb-3" controlId="nome">
                     <Form.Label>Nome:</Form.Label>
-                    <Form.Control type="text" placeholder="Nome" {...register('nome')} />
+                    <Form.Control type="text" {...register('nome')} />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="duracao">
                     <Form.Label>Duração:</Form.Label>
-                    <Form.Control type="text" placeholder="duração" {...register('duracao')} />
+                    <Form.Control type="text" {...register('duracao')} />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="modalidade">
                     <Form.Label>modalidade:</Form.Label>
-                    <Form.Control type="text" placeholder="modalidade" {...register('modalidade')} />
+                    <Form.Control type="text" {...register('modalidade')} />
                 </Form.Group>
 
                 <div className='text-center'>
