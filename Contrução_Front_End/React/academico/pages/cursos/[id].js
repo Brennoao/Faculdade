@@ -4,7 +4,6 @@ import { useRouter } from 'next/router'
 import React, { useEffect } from 'react'
 import { Button, Form } from 'react-bootstrap'
 import { useForm } from 'react-hook-form'
-import { v4 as uuidv4 } from 'uuid'
 import { BsCheck2Square } from 'react-icons/Bs';
 import { IoMdArrowRoundBack } from 'react-icons/Io';
 

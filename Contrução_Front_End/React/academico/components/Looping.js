@@ -10,32 +10,38 @@ const Looping = (props) => {
     const [data, setData] = useState([]);
     useEffect(() => {
         setData(getAll())
-    }, []);                                                                 // ATUALIZA A FUNÇÃO DATA
+    }, []);                                                                     // ATUALIZA A FUNÇÃO DATA
 
-    function getAll () {
+    function getAll() {
         return JSON.parse(localStorage.getItem(props.Cursos)) || []
     }
 
     function deleteItem(id) {
-        if (confirm('Deseja realmente deletar este item')) {                // CONFIRM = FUNÇÃO DO JAVASCRIPT = DUAS OPÇÕES OK=TRUE CANCELAR=FALSE
-            const cursos = getAll()                                         // PUXA A FUNÇÃO getAll
-            cursos.splice(id, 1)                                            // SPLICE = FUNÇÃO DO JAVASCRIPT = OFERECE 3 PARÂMETROS (DESSE, DELETAR, ALTERAR) 
+        if (confirm('Deseja realmente deletar este item')) {                    // CONFIRM = FUNÇÃO DO JAVASCRIPT = DUAS OPÇÕES OK=TRUE CANCELAR=FALSE
+            const cursos = getAll()                                             // PUXA A FUNÇÃO getAll
+            cursos.splice(id, 1)                                                // SPLICE = FUNÇÃO DO JAVASCRIPT = OFERECE 3 PARÂMETROS (DESSE, DELETAR, ALTERAR) 
             console.log(cursos)
             window.localStorage.setItem(props.Cursos, JSON.stringify(cursos))
-            setData(cursos)                                                 // ATUALIZA O USESTATE ATUALIZANDO A FUNÇÃO DESEJADA
+            setData(cursos)                                                     // ATUALIZA O USESTATE ATUALIZANDO A FUNÇÃO DESEJADA
         }
     }
 
     return (
         <>
             <Link href={'/cursos/form'} className='btn btn-danger mb-3'>Novo</Link>
-            <Table striped bordered hover variant="danger">
-                <thead>
+            <Table bordered hover variant="danger">
+                <thead className='text-center'>
                     <tr>
-                        {props.colSpan ? <th colSpan={props.colSpan}>#</th> : <th>#</th>}
-                        <th>{props.Nome}</th>
-                        <th>{props.Duracao}</th>
-                        <th>{props.Modalidade}</th>
+                        {props.colSpan ?
+                            <th colSpan={props.colSpan}>#</th> :
+                            <>
+                                <th>{'Editar'.toUpperCase()}</th>
+                                <th>{'Deletar'.toUpperCase()}</th>
+                            </>
+                        }
+                        <th>{props.Nome.toUpperCase()}</th>
+                        <th>{props.Duracao.toUpperCase()}</th>
+                        <th>{props.Modalidade.toUpperCase()}</th>
                     </tr>
                 </thead>
                 <tbody>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Navbar, Nav, SplitButton, Dropdown, NavDropdown } from 'react-bootstrap';
+import { Container, Navbar, Nav, NavDropdown } from 'react-bootstrap';
 
 const Pagina = (props) => {
     return (

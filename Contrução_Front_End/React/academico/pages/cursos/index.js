@@ -6,7 +6,7 @@ const index = () => {
 
     return (
         <Pagina titulo='Cursos'>
-            <Looping Cursos='cursos' colSpan='2' Nome='nome' Duracao='duracao' Modalidade='modalidade'/>
+            <Looping Cursos='cursos'  Nome='nome' Duracao='duracao' Modalidade='modalidade'/>
         </Pagina>
     )
 }
