@@ -29,6 +29,13 @@ NPM i
     
 ))}
 ```
+## Looping-Object
+```
+for(let atributo in Curso) {
+
+}
+```
+
 
 ## Variable Change
 <!-- Entre parenteses é o nome padrão da variável -->
