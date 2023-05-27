@@ -2,7 +2,7 @@ import Pagina from '@/components/Pagina'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
-import { Button, Form } from 'react-bootstrap'
+import { Button, Form, FloatingLabel } from 'react-bootstrap'
 import { useForm } from 'react-hook-form'
 import { v4 as uuidv4 } from 'uuid'
 import { BsCheck2Square } from 'react-icons/Bs';
@@ -30,20 +30,17 @@ const form = () => {
     return (
         <Pagina titulo='Formulário'>
             <Form>
-                <Form.Group className="mb-3" controlId="nome">
-                    <Form.Label>Nome:</Form.Label>
-                    <Form.Control type="text" placeholder="Nome" {...register('nome')} />
-                </Form.Group>
+                <FloatingLabel controlId="nome" label="nome:" className="mb-3">
+                    <Form.Control type="text" placeholder="name@example.com" {...register('nome')}/>
+                </FloatingLabel>
 
-                <Form.Group className="mb-3" controlId="duracao">
-                    <Form.Label>Duração:</Form.Label>
-                    <Form.Control type="text" placeholder="duração" {...register('duracao')} />
-                </Form.Group>
+                <FloatingLabel controlId="duracao:" label="duracao:" className="mb-3">
+                    <Form.Control type="text" placeholder="name@example.com" {...register('duracao')}/>
+                </FloatingLabel>
 
-                <Form.Group className="mb-3" controlId="modalidade">
-                    <Form.Label>modalidade:</Form.Label>
-                    <Form.Control type="text" placeholder="modalidade" {...register('modalidade')} />
-                </Form.Group>
+                <FloatingLabel controlId="modalidade:" label="modalidade:" className="mb-3">
+                    <Form.Control type="text" placeholder="name@example.com" {...register('modalidade')}/>
+                </FloatingLabel>
                 
                 <div className='text-center'>
                     <Button variant="warning" onClick={handleSubmit(salvar)} >Salvar <BsCheck2Square /></Button>

@@ -17,8 +17,8 @@ const form = () => {
         if (query.id) {
             const Cursos = JSON.parse(localStorage.getItem('cursos')) || []
             const Curso = Cursos[query.id]
-            
-            for(let atributo in Curso) {
+
+            for (let atributo in Curso) {
                 setValue(atributo, Curso[atributo])
             }
         }

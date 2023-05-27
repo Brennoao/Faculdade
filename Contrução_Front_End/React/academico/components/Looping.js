@@ -4,6 +4,7 @@ import { Button } from 'react-bootstrap';
 import { Table } from 'react-bootstrap'
 import { BsTrashFill } from 'react-icons/Bs';
 import { AiFillEdit } from 'react-icons/Ai';
+import { capitalizeWords } from './CapitalizeWords';
 
 const Looping = (props) => {
 
@@ -25,36 +26,6 @@ const Looping = (props) => {
             setData(cursos)                                                     // ATUALIZA O USESTATE ATUALIZANDO A FUNÇÃO DESEJADA
         }
     }
-
-    function capitalizeWords(str) {
-        const wordsToIgnore = ['de', 'do', 'da', 'em'];
-        let words = str.split(' ');
-      
-        for (let i = 0; i < words.length; i++) {
-          const word = words[i];
-          if (i !== 0 && wordsToIgnore.includes(word.toLowerCase())) {
-            words[i] = word.toLowerCase();
-          } else {
-            words[i] = capitalizeFirstLetter(word);
-          }
-        }
-      
-        return words.join(' ');
-      }
-      
-      function capitalizeFirstLetter(word) {
-        let capitalizedWord = "";
-        let parts = word.split("-");
-        for (let i = 0; i < parts.length; i++) {
-          const part = parts[i];
-          capitalizedWord += part.charAt(0).toUpperCase() + part.slice(1);
-          if (i !== parts.length - 1) {
-            capitalizedWord += "-";
-          }
-        }
-        return capitalizedWord;
-      }
-
 
     return (
         <>
