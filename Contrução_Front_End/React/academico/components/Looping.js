@@ -29,7 +29,10 @@ const Looping = (props) => {
 
     return (
         <>
-            <Link href={'/cursos/form'} className='btn btn-danger mb-3'>Novo</Link>
+            <div className='d-flex justify-content-between mb-3'>
+                <Link href={'/cursos/form'} className='btn btn-danger'>Novo</Link>
+                {props.children}
+            </div>
             <Table bordered hover variant="danger">
                 <thead className='text-center'>
                     <tr>
