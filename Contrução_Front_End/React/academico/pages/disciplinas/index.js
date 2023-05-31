@@ -3,7 +3,8 @@ import Pagina from '@/components/Pagina'
 import axios from 'axios'
 import Link from 'next/link'
 import { Table } from 'react-bootstrap'
-import { BsFillTrash3Fill, BsPencilFill } from 'react-icons/bs'
+import { BsTrashFill } from 'react-icons/Bs';
+import { AiFillEdit } from 'react-icons/Ai';
 import { capitalizeWords } from '@/components/CapitalizeWords'
 import { Button } from 'react-bootstrap'
 
@@ -17,8 +18,8 @@ const index = () => {
 
     function getAll() {
         axios.get('/api/disciplinas').then(resultado => {
-            // setDisciplinas(resultado.data);
-            console.log(resultado.data)
+            setDisciplinas(resultado.data);
+            // console.log(resultado.data)
         })
     }
 
@@ -26,6 +27,8 @@ const index = () => {
         axios.delete('/disciplinas/' + id)
         getAll()
     }
+
+    console.log(disciplinas)
 
     return (
         <Pagina titulo="Disciplinas">
@@ -43,14 +46,16 @@ const index = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {disciplinas.map((item, i) => (
-                        <tr key={i}>
-                            <td style={{ width: '2rem' }}><Link href={'/disciplinas/' + i} className='btn btn-danger'><BsFillTrash3Fill /></Link></td>
-                            <td style={{ width: '2rem' }}><Button variant='danger' onClick={() => excluir(i)}><BsPencilFill /></Button></td>
-                            <td style={{ width: '33.33%' }}>{item.nome}</td>
-                            <td style={{ width: '33.33%' }}>{item.curso}</td>
-                        </tr>
-                    ))}
+                    {disciplinas === null ? '' :
+                        disciplinas.map(item => (
+                            <tr key={item.id}>
+                                <td style={{ width: '2rem' }}><Link href={'/disciplinas/' + item.id} className='btn btn-danger'><AiFillEdit /></Link></td>
+                                <td style={{ width: '2rem' }}><Button variant='danger' onClick={() => deleteItem(i)}><BsTrashFill /></Button></td>
+                                <td style={{ width: '33.33%' }}>{capitalizeWords(item.nome)}</td>
+                                <td style={{ width: '33.33%' }}>{capitalizeWords(item.curso)}</td>
+                            </tr>
+                        ))
+                    }
                 </tbody>
             </Table>
         </Pagina>

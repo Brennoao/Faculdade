@@ -2,7 +2,7 @@ import Pagina from '@/components/Pagina'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
-import { Button, Form, FloatingLabel } from 'react-bootstrap'
+import { Button, Form, FloatingLabel, ButtonGroup } from 'react-bootstrap'
 import { useForm } from 'react-hook-form'
 import { v4 as uuidv4 } from 'uuid'
 import { BsCheck2Square } from 'react-icons/Bs';
@@ -43,8 +43,10 @@ const form = () => {
                 </FloatingLabel>
                 
                 <div className='text-center'>
-                    <Button variant="warning" onClick={handleSubmit(salvar)} >Salvar <BsCheck2Square /></Button>
-                    <Link href={'/cursos'} className='btn btn-success ms-2'>Voltar <IoMdArrowRoundBack /></Link>
+                    <ButtonGroup className="mb-2">
+                        <Button variant="warning" onClick={handleSubmit(salvar)} >Salvar <BsCheck2Square /></Button>
+                        <Link href={'/cursos'} className='btn btn-success'>Voltar <IoMdArrowRoundBack /></Link>
+                    </ButtonGroup>
                 </div>
             </Form>
         </Pagina>

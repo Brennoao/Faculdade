@@ -18,7 +18,7 @@ export default function handler(req, res) {
         const dados = req.body
         dados.id = id
 
-        set(ref(db, 'disciplinas'), dados)
+        set(ref(db, `disciplinas/${id}`), dados)
         res.status(200).json(dados)
 
     } 
