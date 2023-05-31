@@ -18,8 +18,9 @@ try {
 
     // Initialize Firebase
     app = initializeApp(firebaseConfig);
+    console.log(firebaseConfig)
 }
 
 const db = getDatabase(app)
 
-export { db, set, ref }
+export { db }

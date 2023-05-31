@@ -30,7 +30,7 @@ const Looping = (props) => {
     return (
         <>
             <div className='d-flex justify-content-between mb-3'>
-                <Link href={'/cursos/form'} className='btn btn-danger'>Novo</Link>
+                <Link href={props.Link} className='btn btn-danger'>Novo</Link>
                 {props.children}
             </div>
             <Table bordered hover variant="danger">
@@ -52,7 +52,7 @@ const Looping = (props) => {
                     {data === null ? '' :
                         data.map((item, i) => (
                             <tr key={i}>
-                                <td style={{ width: '2rem' }}><Link href={'/cursos/' + i} className='btn btn-danger'><AiFillEdit /></Link></td>
+                                <td style={{ width: '2rem' }}><Link href={props.href + i} className='btn btn-danger'><AiFillEdit /></Link></td>
                                 <td style={{ width: '2rem' }}><Button variant='danger' onClick={() => deleteItem(i)}><BsTrashFill /></Button></td>
                                 <td style={{ width: '33.33%' }}>{capitalizeWords(item[props.Nome])}</td>
                                 <td style={{ width: '33.33%' }}>{capitalizeWords(item[props.Duracao])}</td>

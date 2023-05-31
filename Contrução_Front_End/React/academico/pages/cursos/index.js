@@ -7,7 +7,7 @@ const index = () => {
 
     return (
         <Pagina titulo='Cursos'>
-            <Looping Cursos='cursos' colSpan='2' Nome='nome' Duracao='duracao' Modalidade='modalidade'>
+            <Looping Cursos='cursos' colSpan='2' Nome='nome' Duracao='duracao' Modalidade='modalidade' Link='/cursos/form' href='/cursos/' >
                 <Counter Variavel='cursos' />
             </Looping>
         </Pagina>
