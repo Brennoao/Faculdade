@@ -41,7 +41,7 @@ const form = () => {
 
                 <Form.Group className="mb-3" controlId="curso">
                     <Form.Label>Duração:</Form.Label>
-                    <Form.Control type="text" {...register('curso')} />
+                    <Form.Control type="text" {...register('curso')} disabled/>
                 </Form.Group>
 
                 <div className='text-center'>

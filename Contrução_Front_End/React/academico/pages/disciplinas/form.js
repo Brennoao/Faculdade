@@ -1,7 +1,7 @@
 import Pagina from '@/components/Pagina'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button, Form, FloatingLabel, ButtonGroup } from 'react-bootstrap'
 import { useForm } from 'react-hook-form'
 import { BsCheck2Square } from 'react-icons/Bs';
@@ -14,9 +14,20 @@ const form = () => {
     const { push } = useRouter()                                                                // IMPORT DA FUNÇÃO PUSH PARA A UTILIZAÇÃO
     const { register, handleSubmit } = useForm()
 
+    const [cursos, setCursos] = useState([])
+
+    useEffect(() => { getAll() }, [])
+
     function salvar(dados) {
-        axios.post('/api/disciplinas', dados)                                                   // FUNÇÃO DO NEXT/ROUTER => TE LEVA PARA A PÁGINA DEFINIDA
+        axios.post('/api/disciplinas', dados)
         push('/disciplinas')
+    }
+
+    function getAll() {
+        axios.get('/api/cursos').then(resultado => {
+            setCursos(resultado.data);
+            // console.log(resultado.data)
+        })
     }
 
     return (
@@ -26,13 +37,14 @@ const form = () => {
                     <Form.Control type="text" placeholder="name@example.com" {...register('nome')} />
                 </FloatingLabel>
 
-                <FloatingLabel controlId="curso:" label="curso:" className="mb-3">
-                    <Form.Control type="text" placeholder="name@example.com" {...register('curso')} />
-                </FloatingLabel>
+                <Form.Select aria-label="Default select example" {...register('curso')}>
+                    <option>Selecione o Curso</option>
+                    {cursos.map((item, i) => (
+                        <option value={item.nome}>{item.nome}</option>
+                    ))}
+                </Form.Select>
 
                 <div className='text-center'>
-                    {/* <Button variant="warning" onClick={handleSubmit(salvar)} >Salvar <BsCheck2Square /></Button>
-                    <Link href={'/disciplinas'} className='btn btn-success ms-2'>Voltar <IoMdArrowRoundBack /></Link> */}
                     <ButtonGroup className="mb-2">
                         <Button variant="warning" onClick={handleSubmit(salvar)} >Salvar <BsCheck2Square /></Button>
                         <Link href={'/disciplinas'} className='btn btn-success'>Voltar <IoMdArrowRoundBack /></Link>
