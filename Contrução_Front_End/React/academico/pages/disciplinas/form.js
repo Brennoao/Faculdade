@@ -40,7 +40,7 @@ const form = () => {
                 <Form.Select aria-label="Default select example" {...register('curso')}>
                     <option>Selecione o Curso</option>
                     {cursos.map((item, i) => (
-                        <option value={item.nome}>{item.nome}</option>
+                        <option key={i} value={item.nome}>{item.nome}</option>
                     ))}
                 </Form.Select>
 
