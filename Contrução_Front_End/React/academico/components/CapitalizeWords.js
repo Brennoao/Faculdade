@@ -1,5 +1,5 @@
 function capitalizeWords(str) {
-    const wordsToIgnore = ['de', 'do', 'da', 'em'];
+    const wordsToIgnore = ['de', 'do', 'da', 'em', 'e'];
     let words = str.split(' ');
 
     for (let i = 0; i < words.length; i++) {

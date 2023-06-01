@@ -24,8 +24,10 @@ const index = () => {
     }
 
     function excluir(id) {
-        axios.delete('/disciplinas/' + id)
-        getAll()
+        if(confirm('Deseja realmente deletar??')) {
+            axios.delete('/api/disciplinas/' + id)
+            getAll()
+        }
     }
 
     console.log(disciplinas)
@@ -50,7 +52,7 @@ const index = () => {
                         disciplinas.map(item => (
                             <tr key={item.id}>
                                 <td style={{ width: '2rem' }}><Link href={'/disciplinas/' + item.id} className='btn btn-danger'><AiFillEdit /></Link></td>
-                                <td style={{ width: '2rem' }}><Button variant='danger' onClick={() => deleteItem(i)}><BsTrashFill /></Button></td>
+                                <td style={{ width: '2rem' }}><Button variant='danger' onClick={() => excluir(item.id)}><BsTrashFill /></Button></td>
                                 <td style={{ width: '33.33%' }}>{capitalizeWords(item.nome)}</td>
                                 <td style={{ width: '33.33%' }}>{capitalizeWords(item.curso)}</td>
                             </tr>
