@@ -20,7 +20,7 @@ const Pagina = (props) => {
                             <NavDropdown.Divider />
                             <NavDropdown.Item href="/salas">salas</NavDropdown.Item>
                             <NavDropdown.Divider />
-                            <NavDropdown.Item href="/semestre">semestre</NavDropdown.Item>
+                            <NavDropdown.Item href="/semestres">semestre</NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
                 </Container>

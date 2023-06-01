@@ -16,18 +16,8 @@ const form = () => {
     const { push } = useRouter()                                                                // IMPORT DA FUNÇÃO PUSH PARA A UTILIZAÇÃO
 
     function salvar(dados) {
-        // const cursos = JSON.parse(window.localStorage.getItem('cursos')) || []
-
-        // const id = uuidv4()                                                                     // GERA UM UUID UNICO PARA CADA ITEM
-
-        // const cursoComId = { ...dados, id }                                                     // ADICIONA O ID COMO PROPRIEDADE DO ITEM
-
-        // cursos.push(cursoComId)                                                                 // IMPORTA PARA O LOCALSTORAGE
-        // window.localStorage.setItem('cursos', JSON.stringify(cursos))                           // TRANSFORMA O ITEM EM STRING
-
-        // push('/cursos')                                                                         // FUNÇÃO DO NEXT/ROUTER => TE LEVA PARA A PÁGINA DEFINIDA
-        axios.post('/api/cursos', dados)                                                   // FUNÇÃO DO NEXT/ROUTER => TE LEVA PARA A PÁGINA DEFINIDA
-        push('/cursos')
+        axios.post('/api/salas', dados)                                                   // FUNÇÃO DO NEXT/ROUTER => TE LEVA PARA A PÁGINA DEFINIDA
+        push('/salas')
     }
 
     return (
@@ -37,12 +27,12 @@ const form = () => {
                     <Form.Control type="text" placeholder="name@example.com" {...register('nome')}/>
                 </FloatingLabel>
 
-                <FloatingLabel controlId="duracao:" label="duracao:" className="mb-3">
-                    <Form.Control type="text" placeholder="name@example.com" {...register('duracao')}/>
+                <FloatingLabel controlId="capacidade:" label="capacidade:" className="mb-3">
+                    <Form.Control type="text" placeholder="name@example.com" {...register('capacidade')}/>
                 </FloatingLabel>
 
-                <FloatingLabel controlId="modalidade:" label="modalidade:" className="mb-3">
-                    <Form.Control type="text" placeholder="name@example.com" {...register('modalidade')}/>
+                <FloatingLabel controlId="tipo:" label="tipo:" className="mb-3">
+                    <Form.Control type="text" placeholder="name@example.com" {...register('tipo')}/>
                 </FloatingLabel>
                 
                 <div className='text-center'>

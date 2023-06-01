@@ -11,31 +11,31 @@ import { Button } from 'react-bootstrap';
 
 const index = () => {
 
-    const [cursos, setCursos] = useState([])
+    const [salas, setSalas] = useState([])
 
     useEffect(() => {
         getAll()
     }, [])
 
     function getAll() {
-        axios.get('/api/cursos').then(resultado => {
-            setCursos(resultado.data);
+        axios.get('/api/salas').then(resultado => {
+            setSalas(resultado.data);
             // console.log(resultado.data)
         })
     }
 
     function excluir(id) {
         if (confirm('Deseja realmente deletar??')) {
-            axios.delete('/api/cursos/' + id)
+            axios.delete('/api/salas/' + id)
             getAll()
         }
     }
 
-    console.log(cursos)
+    console.log(salas)
 
     return (
-        <Pagina titulo='Cursos'>
-            <Link href="/cursos/form" className='mb-2 btn btn-primary'>
+        <Pagina titulo='salas'>
+            <Link href="/salas/form" className='mb-2 btn btn-primary'>
                 Novo
             </Link>
 
@@ -44,19 +44,19 @@ const index = () => {
                     <tr>
                         <th colSpan={2}>#</th>
                         <th>Nome</th>
-                        <th>Duração</th>
-                        <th>Modalidade</th>
+                        <th>capacidade</th>
+                        <th>tipo</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {cursos === null ? '' :
-                        cursos.map(item => (
+                    {salas === null ? '' :
+                        salas.map(item => (
                             <tr key={item.id}>
-                                <td style={{ width: '2rem' }}><Link href={'/cursos/' + item.id} className='btn btn-danger'><AiFillEdit /></Link></td>
+                                <td style={{ width: '2rem' }}><Link href={'/salas/' + item.id} className='btn btn-danger'><AiFillEdit /></Link></td>
                                 <td style={{ width: '2rem' }}><Button variant='danger' onClick={() => excluir(item.id)}><BsTrashFill /></Button></td>
                                 <td style={{ width: '33.33%' }}>{capitalizeWords(item.nome)}</td>
-                                <td style={{ width: '33.33%' }}>{capitalizeWords(item.duracao)}</td>
-                                <td style={{ width: '33.33%' }}>{capitalizeWords(item.modalidade)}</td>
+                                <td style={{ width: '33.33%' }}>{capitalizeWords(item.capacidade)}</td>
+                                <td style={{ width: '33.33%' }}>{capitalizeWords(item.tipo)}</td>
                             </tr>
                         ))
                     }
