@@ -7,6 +7,7 @@ import { useForm } from 'react-hook-form'
 import { BsCheck2Square } from 'react-icons/Bs';
 import { IoMdArrowRoundBack } from 'react-icons/Io';
 import axios from 'axios'
+import Test from '../../components/Test';
 
 
 const form = () => {
@@ -22,45 +23,25 @@ const form = () => {
     return (
         <Pagina titulo='Formulário'>
             <Form>
-                <FloatingLabel controlId="nome" label="nome:" className="mb-3">
-                    <Form.Control type="text" placeholder="name@example.com" {...register('nome')} />
-                </FloatingLabel>
-
-                <FloatingLabel controlId="cpf:" label="cpf:" className="mb-3">
-                    <Form.Control type="text" placeholder="name@example.com" {...register('cpf')} />
-                </FloatingLabel>
-
-                <FloatingLabel controlId="matricula:" label="matricula:" className="mb-3">
-                    <Form.Control type="text" placeholder="name@example.com" {...register('matricula')} />
-                </FloatingLabel>
-
-                <FloatingLabel controlId="email:" label="email:" className="mb-3">
-                    <Form.Control type="text" placeholder="name@example.com" {...register('email')} />
-                </FloatingLabel>
-
-                <FloatingLabel controlId="telefone:" label="telefone:" className="mb-3">
-                    <Form.Control type="text" placeholder="name@example.com" {...register('telefone')} />
-                </FloatingLabel>
-
-                <FloatingLabel controlId="cep:" label="cep:" className="mb-3">
-                    <Form.Control type="text" placeholder="name@example.com" {...register('cep')} />
-                </FloatingLabel>
-
-                <FloatingLabel controlId="logradouro:" label="logradouro:" className="mb-3">
-                    <Form.Control type="text" placeholder="name@example.com" {...register('logradouro')} />
-                </FloatingLabel>
-
-                <FloatingLabel controlId="complemento:" label="complemento:" className="mb-3">
-                    <Form.Control type="text" placeholder="name@example.com" {...register('complemento')} />
-                </FloatingLabel>
-
-                <FloatingLabel controlId="numero:" label="numero:" className="mb-3">
-                    <Form.Control type="text" placeholder="name@example.com" {...register('numero')} />
-                </FloatingLabel>
-
-                <FloatingLabel controlId="bairro:" label="bairro:" className="mb-3">
-                    <Form.Control type="text" placeholder="name@example.com" {...register('bairro')} />
-                </FloatingLabel>
+            <Test controlId="nome" label="Nome" placeholder="Digite o nome" register={register('nome')} />
+                
+                <Test controlId="cpf" label="CPF" placeholder="Digite o cpf" register={register('cpf')} />
+                
+                <Test controlId="matricula" label="Matricula" placeholder="Digite o matricula" register={register('matricula')} />
+                
+                <Test controlId="email" label="Email" placeholder="Digite o email" register={register('email')} />
+                
+                <Test controlId="telefone" label="Telefone" placeholder="Digite o telefone" register={register('telefone')} />
+                
+                <Test controlId="cep" label="cep" placeholder="Digite o cep" register={register('cep')} />
+                
+                <Test controlId="logradouro" label="Logradouro" placeholder="Digite o logradouro" register={register('logradouro')} />
+                
+                <Test controlId="complemento" label="Complemento" placeholder="Digite o complemento" register={register('complemento')} />
+                
+                <Test controlId="numero" label="Número" placeholder="Digite o numero" register={register('numero')} />
+                
+                <Test controlId="bairro" label="Bairro" placeholder="Digite o bairro" register={register('bairro')} />
 
                 <div className='text-center'>
                     <ButtonGroup className="mb-2">

@@ -7,6 +7,8 @@ import { useForm } from 'react-hook-form'
 import { BsCheck2Square } from 'react-icons/Bs';
 import { IoMdArrowRoundBack } from 'react-icons/Io';
 import axios from 'axios'
+import Test from '../../components/Test';
+
 
 
 const form = () => {
@@ -29,15 +31,13 @@ const form = () => {
             // console.log(resultado.data)
         })
     }
-
+    
     return (
         <Pagina titulo='Formulário'>
             <Form>
-                <FloatingLabel controlId="nome" label="nome:" className="mb-3">
-                    <Form.Control type="text" placeholder="name@example.com" {...register('nome')} />
-                </FloatingLabel>
+                <Test controlId="nome" label="Nome" placeholder="Digite o nome" register={register('nome')} />
 
-                <Form.Select aria-label="Default select example" {...register('curso')}>
+                <Form.Select aria-label="Default select example" {...register('curso')} className='mb-3'>
                     <option>Selecione o Curso</option>
                     {cursos.map((item, i) => (
                         <option key={i} value={item.nome}>{item.nome}</option>

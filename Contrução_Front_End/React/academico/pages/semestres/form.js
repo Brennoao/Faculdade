@@ -7,6 +7,7 @@ import { useForm } from 'react-hook-form'
 import { BsCheck2Square } from 'react-icons/Bs';
 import { IoMdArrowRoundBack } from 'react-icons/Io';
 import axios from 'axios'
+import Test from '../../components/Test';
 
 
 const form = () => {
@@ -22,17 +23,11 @@ const form = () => {
     return (
         <Pagina titulo='Formulário'>
             <Form>
-                <FloatingLabel controlId="nome" label="nome:" className="mb-3">
-                    <Form.Control type="text" placeholder="name@example.com" {...register('nome')}/>
-                </FloatingLabel>
-
-                <FloatingLabel controlId="dataInicio:" label="dataInicio:" className="mb-3">
-                    <Form.Control type="date" placeholder="name@example.com" {...register('dataInicio')}/>
-                </FloatingLabel>
-
-                <FloatingLabel controlId="dataFim:" label="dataFim:" className="mb-3">
-                    <Form.Control type="date" placeholder="name@example.com" {...register('dataFim')}/>
-                </FloatingLabel>
+                <Test controlId="nome" label="Nome" placeholder="Digite o nome" register={register('nome')} />
+                
+                <Test controlId="dataInicio" label="data de Inicio" Type='date' placeholder="Digite a data de inicio" register={register('dataInicio')} />
+                
+                <Test controlId="dataFim" label="data de fim" Type='date' placeholder="Digite a data de fim" register={register('dataFim')} />
                 
                 <div className='text-center'>
                     <ButtonGroup className="mb-2">
