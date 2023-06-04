@@ -6,6 +6,7 @@
     "words": [
         "academico",
         "Accordiom",
+        "adonisjs",
         "APIKEY",
         "appspot",
         "Artinstitute",
@@ -15,6 +16,7 @@
         "duracao",
         "firebaseapp",
         "formatacao",
+        "fornecedore",
         "labelledby",
         "latesd",
         "LOCALSTORAGE",
@@ -27,15 +29,19 @@
         "profissoes",
         "Profissoes",
         "PROJECTID",
+        "razao",
         "STORAGEBUCKET",
         "Trab",
         "UNICO",
         "USESTATE",
         "uuidv",
         "Variavel",
-        "vcenter"
+        "vcenter",
+        "youch"
     ],
     "ignoreWords": [
+        "funcionario",
+        "rxui",
         "situacao"
     ],
     "import": []
