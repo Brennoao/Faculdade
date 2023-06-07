@@ -5,7 +5,7 @@ Route.get('/', async () => {
 })
 
 Route.group(() => {
-
+  
   Route.resource('/Restaurante', 'RestaurantesController').apiOnly()
 
   Route.resource('/Fornecedores', 'FornecedoresController').apiOnly()

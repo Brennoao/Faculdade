@@ -1,34 +1,39 @@
 import React from 'react'
 import { Table } from 'react-bootstrap'
 import Align from '../components/Align'
+import Link from 'next/link'
 import apiRestaurante from '../services/apiRestaurante'
+import { CnpjFormat, Inscricaoestadual } from '../components/CnpjFormat'
+import Counter from '../components/Counter'
 
-const index = ({ pullInfosRestaurante, pullRestaurante }) => {
+const index = ({ pullInfosRestaurante }) => {
 
-    const Fornecedores = pullInfosRestaurante.fornecedore
-
-    // console.log(pullRestaurante)
     console.log(pullInfosRestaurante)
-    console.log(pullInfosRestaurante.razao_social)
     return (
         <>
             <Align>
-                <Table striped="columns">
+                <div className='d-flex justify-content-between mb-3'>
+                    <Link href='/form' className='btn btn-primary'>Novo</Link>
+                    <Counter Variavel={pullInfosRestaurante} Name='Contador'/>
+                </div>
+                <Table striped="columns" bordered>
                     <thead>
                         <tr>
-                            <th>{pullRestaurante.razao_social}</th>
-                            <th>Funcionários</th>
+                            <th>#</th>
+                            <th>CNPJ</th>
+                            <th>Inscrição Estadual</th>
                             <th>Fornecedores</th>
-                            <th>Mesas</th>
+                            <th>Funcionários</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {pullInfosRestaurante.map((item, i) => (
+                        {pullInfosRestaurante.map(item => (
                             <tr key={item.id}>
-                                <td>{i}</td>
-                                <td>{item.funcionario.length}</td>
+                                <td>{item.razao_social}</td>
+                                <td>{CnpjFormat(item.cnpj)}</td>
+                                <td>{Inscricaoestadual(item.inscricao_estadual)}</td>
                                 <td>{item.fornecedore.length}</td>
-                                <td>{item.mesa.length}</td>
+                                <td>{item.funcionario.length}</td>
                             </tr>
                         ))}
                     </tbody>
@@ -47,10 +52,7 @@ export async function getServerSideProps(context) {
     const restaurante = await apiRestaurante.get('/Restaurante')
     const pullInfosRestaurante = restaurante.data
 
-    const resultado = await apiRestaurante.get('/Restaurante/1')
-    const pullRestaurante = resultado.data
-
     return {
-        props: { pullInfosRestaurante, pullRestaurante }, // will be passed to the page component as props
+        props: { pullInfosRestaurante }, // will be passed to the page component as props
     }
 }

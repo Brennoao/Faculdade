@@ -7,6 +7,7 @@ import { AiFillEdit } from 'react-icons/Ai';
 import { Table } from 'react-bootstrap'
 import { capitalizeWords } from '@/components/CapitalizeWords';
 import { Button } from 'react-bootstrap';
+import Counter from '@/components/Counter';
 
 
 const index = () => {
@@ -38,6 +39,7 @@ const index = () => {
             <Link href="/cursos/form" className='mb-2 btn btn-primary'>
                 Novo
             </Link>
+            <Counter Variavel='/api/cursos' Name='Cursos'/>
 
             <Table striped bordered hover>
                 <thead>

@@ -10,7 +10,7 @@ const Counter = (props) => {
     useEffect(() => {
         const intervalId = setInterval(() => {
             getAll();
-        }, 500);
+        }, 2000);
 
         return () => {
             clearInterval(intervalId);
@@ -26,7 +26,7 @@ const Counter = (props) => {
     }
 
     return (
-        <Button variant="danger">
+        <Button variant="primary">
             {props.Name} <Badge bg="secondary">{contador}</Badge>
             <span className="visually-hidden">unread messages</span>
         </Button>

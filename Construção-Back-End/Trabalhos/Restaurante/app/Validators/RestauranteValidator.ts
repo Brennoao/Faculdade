@@ -6,7 +6,7 @@ export default class RestauranteValidator {
 
   public schema = schema.create({
     cnpj: schema.number([rules.unique({table: 'restaurantes', column: 'cnpj'}), rules.unsigned()]),
-    inscricaoEstdual: schema.number([rules.unsigned(), rules.unique({table: 'restaurantes', column: 'inscricao_estadual'})]),
+    inscricaoEstadual: schema.number([rules.unsigned(), rules.unique({table: 'restaurantes', column: 'inscricao_estadual'})]),
     razaoSocial: schema.string([rules.unique({table: 'restaurantes', column: 'razaoEstadual'})])
   })
 

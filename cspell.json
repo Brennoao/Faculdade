@@ -12,11 +12,14 @@
         "Artinstitute",
         "AUTHDOMAIN",
         "Chatbox",
+        "cnpj",
         "DATABASEURL",
         "duracao",
         "firebaseapp",
         "formatacao",
         "fornecedore",
+        "inscricao",
+        "Inscricão",
         "labelledby",
         "latesd",
         "LOCALSTORAGE",
@@ -40,6 +43,7 @@
         "youch"
     ],
     "ignoreWords": [
+        "Inscricaoestadual",
         "funcionario",
         "rxui",
         "situacao"
