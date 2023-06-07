@@ -15,9 +15,11 @@
         "cnpj",
         "DATABASEURL",
         "duracao",
+        "endereco",
         "firebaseapp",
         "formatacao",
         "fornecedore",
+        "Funcionarios",
         "inscricao",
         "Inscricão",
         "labelledby",
@@ -45,6 +47,7 @@
     "ignoreWords": [
         "Inscricaoestadual",
         "funcionario",
+        "globalMiddleware",
         "rxui",
         "situacao"
     ],

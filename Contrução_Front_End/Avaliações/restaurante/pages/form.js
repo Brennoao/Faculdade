@@ -9,22 +9,23 @@ import { BsCheck2Square } from 'react-icons/Bs'
 import { IoMdArrowRoundBack } from 'react-icons/Io'
 
 const form = () => {
-    const { handleSubmit } = useForm()
+    const { register, handleSubmit } = useForm()
 
     function Save(dados) {
-        console.log(axios.post('http://127.0.0.1:3333/Restaurante', dados))
-        axios.post('http://127.0.0.1:3333/Restaurante', dados)
+        console.log(dados)
+        axios.post('/api/restaurante', dados)                                                   // FUNÇÃO DO NEXT/ROUTER => TE LEVA PARA A PÁGINA DEFINIDA
+        // push('/alunos')
     }
 
     return (
         <>
             <Align>
                 <Form>
-                    <MyForm controlId='cnpj' label='CNPJ:' Type='number' placeholder='Número CNPJ' register='cnpj' />
+                    <MyForm controlId='cnpj' label='CNPJ:' Type='number' placeholder='Número CNPJ' register={register('cnpj')} />
 
-                    <MyForm controlId='inscricao_estadual' Type='number' label='Inscricão Estadual:' placeholder='Número inscrição Estadual' register='inscricao_estadual' />
+                    <MyForm controlId='inscricaoEstadual' Type='number' label='Inscricão Estadual:' placeholder='Número inscrição Estadual' register={register('inscricaoEstadual')} />
 
-                    <MyForm controlId='razao_social' label='Razão Social:' placeholder='Nome Razão Social' register='razao_social' />
+                    <MyForm controlId='razaoSocial' label='Razão Social:' placeholder='Nome Razão Social' register={register('razaoSocial')} />
 
                     <div className='text-center'>
                         <ButtonGroup className="mb-2">

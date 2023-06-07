@@ -20,7 +20,7 @@ export default class RestaurantesController {
     }
 
     async store({request}) {
-        const data = await request.validate(RestauranteValidator)
+        const data = await request.all()//validate(RestauranteValidator)
 
         return Restaurante.create(data)
     }

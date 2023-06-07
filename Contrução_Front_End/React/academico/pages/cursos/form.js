@@ -30,7 +30,9 @@ const form = () => {
     const ValidatorDuracao = {
         required: 'O duração é obrigatório',
         minLength: { value: 5, message: 'A quantidade minima é de 3 caracteres' },
-        maxLength: { value: 10, message: 'A quantidade minima é de 10 caracteres' }
+        maxLength: { value: 2, message: 'A quantidade minima é de 10 caracteres' },
+        min: { value: 5, message: 'O valor mínimo é de 5' },
+        max: { value: 12, message: 'O valor máximo é de 12' }
     }
 
     const ValidatorModalidade = {
