@@ -5,7 +5,7 @@ export default async function handler(req, res) {
 
     if (req.method == 'GET') {
         try {
-            const response = await apiRestaurante.get(`/alunos/${id}`);
+            const response = await apiRestaurante.get(`/Restaurante/${id}`);
             res.status(200).json(response.data);
         } catch (error) {
             console.error(error);
@@ -15,7 +15,7 @@ export default async function handler(req, res) {
         const dados = req.body;
 
         try {
-            await apiRestaurante.put(`/alunos/${id}`, dados);
+            await apiRestaurante.put(`/Restaurante/${id}`, dados);
             res.status(200).json(dados);
         } catch (error) {
             console.error(error);
@@ -23,7 +23,7 @@ export default async function handler(req, res) {
         }
     } else if (req.method == 'DELETE') {
         try {
-            await apiRestaurante.delete(`/alunos/${id}`);
+            await apiRestaurante.delete(`/Restaurante/${id}`);
             res.status(200).json(id);
         } catch (error) {
             console.error(error);

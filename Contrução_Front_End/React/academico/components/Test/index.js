@@ -1,12 +1,12 @@
 import React from 'react';
 import { FloatingLabel, Form } from 'react-bootstrap';
 
-const index = ({ controlId, label, placeholder, register, Type }) => {
+const index = ({ controlId, label, placeholder, register, Type, isInvalid }) => {
   return (
     <>
       {Type === '' ?
           <FloatingLabel controlId={controlId} label={label} className="mb-3">
-            <Form.Control type="text" placeholder={placeholder} {...register} />
+            <Form.Control type="text" isInvalid={isInvalid} placeholder={placeholder} {...register} />
           </FloatingLabel>
         : (
           <FloatingLabel controlId={controlId} label={label} className="mb-3">

@@ -9,6 +9,7 @@ import { ButtonGroup, Button } from 'react-bootstrap';
 import { IoMdArrowRoundBack } from 'react-icons/Io';
 import { BsCheck2Square } from 'react-icons/Bs';
 import { Form } from 'react-bootstrap';
+import cursoValidator from '@/validators/cursoValidator';
 
 
 const form = () => {
@@ -21,38 +22,18 @@ const form = () => {
         push('/cursos');
     }
 
-    const ValidatorNome = {
-        required: 'O nome é obrigatório',
-        minLength: { value: 3, message: 'A quantidade minima é de 3 caracteres' },
-        maxLength: { value: 10, message: 'A quantidade minima é de 10 caracteres' }
-    }
-
-    const ValidatorDuracao = {
-        required: 'O duração é obrigatório',
-        minLength: { value: 5, message: 'A quantidade minima é de 3 caracteres' },
-        maxLength: { value: 2, message: 'A quantidade minima é de 10 caracteres' },
-        min: { value: 5, message: 'O valor mínimo é de 5' },
-        max: { value: 12, message: 'O valor máximo é de 12' }
-    }
-
-    const ValidatorModalidade = {
-        required: 'O modalidade é obrigatório',
-        minLength: { value: 5, message: 'A quantidade minima é de 3 caracteres' },
-        maxLength: { value: 10, message: 'A quantidade minima é de 10 caracteres' }
-    }
-
     return (
         <Pagina titulo="Formulário">
 
             <Form>
                 {errors.nome && <small className='text-danger'>{errors.nome.message}</small>}
-                <Test controlId="nome" label="Nome" placeholder="Digite o nome" register={register('nome', ValidatorNome)} />
+                <Test controlId="nome" isInvalid={errors.nome} label="Nome" placeholder="Digite o nome" register={register('nome', cursoValidator.Nome)} />
 
                 {errors.duracao && <small className='text-danger'>{errors.duracao.message}</small>}
-                <Test controlId="duracao" label="Duração" placeholder="Digite a duração" register={register('duracao', ValidatorDuracao)} />
+                <Test controlId="duracao" isInvalid={errors.nome} label="Duração" placeholder="Digite a duração" register={register('duracao', cursoValidator.Duracao)} />
 
                 {errors.modalidade && <small className='text-danger'>{errors.modalidade.message}</small>}
-                <Test controlId="modalidade" label="Modalidade" placeholder="Digite a modalidade" register={register('modalidade', ValidatorModalidade)} />
+                <Test controlId="modalidade" isInvalid={errors.nome} label="Modalidade" placeholder="Digite a modalidade" register={register('modalidade', cursoValidator.Modalidade)} />
 
                 <div className="text-center">
                     <ButtonGroup className="mb-2">
