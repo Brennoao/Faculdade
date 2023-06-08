@@ -8,13 +8,14 @@ import { BsCheck2Square } from 'react-icons/Bs';
 import { IoMdArrowRoundBack } from 'react-icons/Io';
 import axios from 'axios'
 import Test from '../../components/Test';
+import disciplinaValidator from '@/validators/disciplinaValidator'
 
 
 
 const form = () => {
 
+    const { register, handleSubmit, formState: { errors } } = useForm();
     const { push } = useRouter()                                                                // IMPORT DA FUNÇÃO PUSH PARA A UTILIZAÇÃO
-    const { register, handleSubmit } = useForm()
 
     const [cursos, setCursos] = useState([])
 
@@ -31,11 +32,15 @@ const form = () => {
             // console.log(resultado.data)
         })
     }
-    
+
     return (
         <Pagina titulo='Formulário'>
             <Form>
-                <Test controlId="nome" label="Nome" placeholder="Digite o nome" register={register('nome')} />
+                <FloatingLabel controlId={"nome"} label="Nome" className="mb-3">
+                    <Form.Control type="text" isInvalid={errors.nome} placeholder="Digite o nome" {...register('nome', disciplinaValidator)} />
+                    {errors.nome && <small className='text-danger'>{errors.nome.message}</small>}
+                </FloatingLabel>
+
 
                 <Form.Select aria-label="Default select example" {...register('curso')} className='mb-3'>
                     <option>Selecione o Curso</option>

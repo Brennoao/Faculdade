@@ -1,9 +1,10 @@
 import Pagina from '@/components/Pagina'
+import cursoValidator from '@/validators/cursoValidator'
 import axios from 'axios'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useEffect } from 'react'
-import { Button, Form } from 'react-bootstrap'
+import { Button, Form, FloatingLabel } from 'react-bootstrap'
 import { useForm } from 'react-hook-form'
 import { BsCheck2Square } from 'react-icons/Bs';
 import { IoMdArrowRoundBack } from 'react-icons/Io';
@@ -11,7 +12,7 @@ import { IoMdArrowRoundBack } from 'react-icons/Io';
 
 const form = () => {
 
-    const { register, handleSubmit, setValue } = useForm()
+    const { register, handleSubmit, setValue, formState: { errors } } = useForm()
     const { push, query } = useRouter()
 
     useEffect(() => {
@@ -27,8 +28,8 @@ const form = () => {
         if (query.id) {
             axios.get('/api/cursos/' + query.id).then(resultado => {
                 const curso = resultado.data
-                
-                for(let atributo in curso){
+
+                for (let atributo in curso) {
                     setValue(atributo, curso[atributo])
                 }
             })
@@ -43,26 +44,27 @@ const form = () => {
 
         // push('/cursos')                                                       // FUNÇÃO DO NEXT/ROUTER => TE LEVA PARA A PÁGINA DEFINIDA
         axios.put('/api/cursos/' + dados.id, dados)
-        push('/cursos') 
+        push('/cursos')
     }
 
     return (
         <Pagina titulo='Formulário'>
             <Form>
-                <Form.Group className="mb-3" controlId="nome">
-                    <Form.Label>Nome:</Form.Label>
-                    <Form.Control type="text" {...register('nome')} />
-                </Form.Group>
+                <FloatingLabel controlId={"nome"} label="Nome" className="mb-3">
+                    <Form.Control type="text" isInvalid={errors.nome} placeholder="Digite o nome" {...register('nome', cursoValidator.Nome)} />
+                    {errors.nome && <small className='text-danger'>{errors.nome.message}</small>}
+                </FloatingLabel>
 
-                <Form.Group className="mb-3" controlId="duracao">
-                    <Form.Label>Duração:</Form.Label>
-                    <Form.Control type="text" {...register('duracao')} />
-                </Form.Group>
+                <FloatingLabel controlId={"duracao"} label="Duração" className="mb-3">
+                    <Form.Control type="text" isInvalid={errors.duracao} placeholder="Digite a duração" {...register('duracao', cursoValidator.Duracao)} />
+                    {errors.duracao && <small className='text-danger'>{errors.duracao.message}</small>}
+                </FloatingLabel>
 
-                <Form.Group className="mb-3" controlId="modalidade">
-                    <Form.Label>modalidade:</Form.Label>
-                    <Form.Control type="text" {...register('modalidade')} />
-                </Form.Group>
+                <FloatingLabel controlId={"modalidade"} label="Modalidade" className="mb-3">
+                    <Form.Control type="text" isInvalid={errors.modalidade} placeholder="Digite a duração" {...register('modalidade', cursoValidator.Modalidade)} />
+                    {errors.modalidade && <small className='text-danger'>{errors.modalidade.message}</small>}
+                </FloatingLabel>
+
 
                 <div className='text-center'>
                     <Button variant="warning" onClick={handleSubmit(salvar)} >Salvar <BsCheck2Square /></Button>

@@ -5,10 +5,9 @@ import Link from 'next/link';
 import Pagina from '@/components/Pagina';
 import { useForm } from 'react-hook-form';
 import Test from '../../components/Test';
-import { ButtonGroup, Button } from 'react-bootstrap';
+import { ButtonGroup, Button, Form, FloatingLabel } from 'react-bootstrap';
 import { IoMdArrowRoundBack } from 'react-icons/Io';
 import { BsCheck2Square } from 'react-icons/Bs';
-import { Form } from 'react-bootstrap';
 import cursoValidator from '@/validators/cursoValidator';
 
 
@@ -26,14 +25,20 @@ const form = () => {
         <Pagina titulo="Formulário">
 
             <Form>
-                {errors.nome && <small className='text-danger'>{errors.nome.message}</small>}
-                <Test controlId="nome" isInvalid={errors.nome} label="Nome" placeholder="Digite o nome" register={register('nome', cursoValidator.Nome)} />
+                <FloatingLabel controlId={"nome"} label="Nome" className="mb-3">
+                    <Form.Control type="text" isInvalid={errors.nome} placeholder="Digite o nome" {...register('nome', cursoValidator.Nome)} />
+                    {errors.nome && <small className='text-danger'>{errors.nome.message}</small>}
+                </FloatingLabel>
 
-                {errors.duracao && <small className='text-danger'>{errors.duracao.message}</small>}
-                <Test controlId="duracao" isInvalid={errors.nome} label="Duração" placeholder="Digite a duração" register={register('duracao', cursoValidator.Duracao)} />
+                <FloatingLabel controlId={"duracao"} label="Duração" className="mb-3">
+                    <Form.Control type="text" isInvalid={errors.duracao} placeholder="Digite a duração" {...register('duracao', cursoValidator.Duracao)} />
+                    {errors.duracao && <small className='text-danger'>{errors.duracao.message}</small>}
+                </FloatingLabel>
 
-                {errors.modalidade && <small className='text-danger'>{errors.modalidade.message}</small>}
-                <Test controlId="modalidade" isInvalid={errors.nome} label="Modalidade" placeholder="Digite a modalidade" register={register('modalidade', cursoValidator.Modalidade)} />
+                <FloatingLabel controlId={"modalidade"} label="Modalidade" className="mb-3">
+                    <Form.Control type="text" isInvalid={errors.modalidade} placeholder="Digite a duração" {...register('modalidade', cursoValidator.Modalidade)} />
+                    {errors.modalidade && <small className='text-danger'>{errors.modalidade.message}</small>}
+                </FloatingLabel>
 
                 <div className="text-center">
                     <ButtonGroup className="mb-2">
@@ -42,7 +47,7 @@ const form = () => {
                     </ButtonGroup>
                 </div>
             </Form>
-        </Pagina>
+        </Pagina >
 
     )
 }

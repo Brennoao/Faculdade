@@ -36,10 +36,10 @@ const index = () => {
 
     return (
         <Pagina titulo='Cursos'>
-            <Link href="/cursos/form" className='mb-2 btn btn-primary'>
-                Novo
-            </Link>
-            <Counter Variavel='/api/cursos' Name='Cursos'/>
+            <div className='d-flex justify-content-between mb-3'>
+                <Link href="/cursos/form" className='btn btn-primary'>Novo</Link>
+                <Counter Variavel='/api/cursos' Name='Cursos' />
+            </div>
 
             <Table striped bordered hover>
                 <thead>

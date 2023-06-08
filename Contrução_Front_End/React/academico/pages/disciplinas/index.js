@@ -7,6 +7,7 @@ import { BsTrashFill } from 'react-icons/Bs';
 import { AiFillEdit } from 'react-icons/Ai';
 import { capitalizeWords } from '@/components/CapitalizeWords'
 import { Button } from 'react-bootstrap'
+import Counter from '@/components/Counter'
 
 const index = () => {
 
@@ -24,7 +25,7 @@ const index = () => {
     }
 
     function excluir(id) {
-        if(confirm('Deseja realmente deletar??')) {
+        if (confirm('Deseja realmente deletar??')) {
             axios.delete('/api/disciplinas/' + id)
             getAll()
         }
@@ -34,10 +35,10 @@ const index = () => {
 
     return (
         <Pagina titulo="Disciplinas">
-
-            <Link href="/disciplinas/form" className='mb-2 btn btn-primary'>
-                Novo
-            </Link>
+            <div className='d-flex justify-content-between mb-3'>
+                <Link href="/disciplinas/form" className='btn btn-primary'>Novo</Link>
+                <Counter Variavel='/api/disciplinas' Name='Disciplinas' />
+            </div>
 
             <Table striped bordered hover>
                 <thead>
