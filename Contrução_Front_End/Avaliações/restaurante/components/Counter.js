@@ -10,7 +10,7 @@ const Counter = (props) => {
     useEffect(() => {
         const intervalId = setInterval(() => {
             getAll();
-        }, 2000);
+        }, 4000);
 
         return () => {
             clearInterval(intervalId);

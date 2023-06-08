@@ -4,12 +4,10 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import Pagina from '@/components/Pagina';
 import { useForm } from 'react-hook-form';
-import Test from '../../components/Test';
 import { ButtonGroup, Button, Form, FloatingLabel } from 'react-bootstrap';
 import { IoMdArrowRoundBack } from 'react-icons/Io';
 import { BsCheck2Square } from 'react-icons/Bs';
 import cursoValidator from '@/validators/cursoValidator';
-
 
 const form = () => {
 
@@ -19,6 +17,16 @@ const form = () => {
     function salvar(dados) {
         axios.post('/api/cursos', dados);
         push('/cursos');
+    }
+
+    function soNumero() {
+        x = document.getElementById('number').value;
+
+        if (isNaN(x) || x < 1 || x > 10) {
+            text = 'isto não é valido';
+        } else {
+            text = 'OK';
+        }
     }
 
     return (

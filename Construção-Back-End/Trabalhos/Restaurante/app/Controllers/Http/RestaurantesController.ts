@@ -1,7 +1,7 @@
 // import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
 import Restaurante from "App/Models/Restaurante"
-import RestauranteValidator from "App/Validators/RestauranteValidator"
+// import RestauranteValidator from "App/Validators/RestauranteValidator"
 
 export default class RestaurantesController {
     index({request}){
@@ -40,7 +40,7 @@ export default class RestaurantesController {
 
     async update({request}) {
         const id = request.param('id')
-        const data = await request.only(['id', 'cnpj'])
+        const data = await request.all()
 
         const update = await Restaurante.findOrFail(id)
         update.merge(data)

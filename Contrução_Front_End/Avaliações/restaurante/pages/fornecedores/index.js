@@ -1,10 +1,10 @@
 import React from 'react'
 import { Button, Table } from 'react-bootstrap'
-import Align from '../components/Align'
+import Align from '../../components/Align'
 import Link from 'next/link'
-import apiRestaurante from '../services/apiRestaurante'
-import { CnpjFormat, Inscricaoestadual } from '../components/CnpjFormat'
-import Counter from '../components/Counter'
+import apiRestaurante from '../../services/apiRestaurante'
+import { CnpjFormat, Inscricaoestadual } from '../../components/CnpjFormat'
+import Counter from '../../components/Counter'
 import { AiFillEdit } from 'react-icons/Ai'
 import { BsTrashFill } from 'react-icons/Bs'
 import axios from 'axios'
@@ -26,7 +26,7 @@ const index = ({ pullInfosRestaurante }) => {
         <>
             <Align>
                 <div className='d-flex justify-content-between mb-3'>
-                    <Link href='/form' className='btn btn-primary'>Novo</Link>
+                    <Link href='/fornecedores/form' className='btn btn-primary'>Novo</Link>
                     <Counter Variavel={pullInfosRestaurante} Name='Contador'/>
                 </div>
                 <Table striped bordered>
@@ -35,21 +35,25 @@ const index = ({ pullInfosRestaurante }) => {
                             <th colSpan={2}>#</th>
                             <th>Razao Social</th>
                             <th>CNPJ</th>
-                            <th>Inscrição Estadual</th>
-                            <th>Fornecedores</th>
-                            <th>Funcionários</th>
+                            <th>Celular</th>
+                            <th>Cep</th>
+                            <th>Endereco</th>
+                            <th>Produtos</th>
+                            <th>Restaurantes</th>
                         </tr>
                     </thead>
                     <tbody>
                         {pullInfosRestaurante.map(item => (
                             <tr key={item.id}>
-                                <td style={{ width: '2rem' }}><Link href={'/' + item.id} className='btn btn-danger'><AiFillEdit /></Link></td>
+                                <td style={{ width: '2rem' }}><Link href={'/fornecedores' + item.id} className='btn btn-danger'><AiFillEdit /></Link></td>
                                 <td style={{ width: '2rem' }}><Button variant='danger' onClick={() => deletar(item.id)}><BsTrashFill /></Button></td>
                                 <td>{item.razao_social}</td>
                                 <td>{CnpjFormat(item.cnpj)}</td>
-                                <td>{Inscricaoestadual(item.inscricao_estadual)}</td>
-                                <td>{item.fornecedore.length}</td>
-                                <td>{item.funcionario.length}</td>
+                                <td>{item.celular}</td>
+                                <td>{item.cep}</td>
+                                <td>{item.endereco}</td>
+                                <td>{item.produto.length}</td>
+                                <td>{item.restaurante.razao_social}</td>
                             </tr>
                         ))}
                     </tbody>
@@ -65,7 +69,7 @@ export default index
 
 export async function getServerSideProps(context) {
 
-    const restaurante = await apiRestaurante.get('/Restaurante')
+    const restaurante = await apiRestaurante.get('/Fornecedores')
     const pullInfosRestaurante = restaurante.data
 
     return {

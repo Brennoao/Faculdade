@@ -1,31 +1,42 @@
 import axios from 'axios'
 import Link from 'next/link'
 import React from 'react'
-import { Button, ButtonGroup, Form } from 'react-bootstrap'
+import { Button, ButtonGroup, Form, FloatingLabel } from 'react-bootstrap'
 import { useForm } from 'react-hook-form'
 import Align from '../components/Align'
-import MyForm from '../components/MyForm'
+import { useRouter } from 'next/router';
 import { BsCheck2Square } from 'react-icons/Bs'
 import { IoMdArrowRoundBack } from 'react-icons/Io'
+import restauranteValidator from '../validators/restauranteValidator'
 
 const form = () => {
-    const { register, handleSubmit } = useForm()
+    const { register, handleSubmit, formState: { errors } } = useForm()
+    const { push } = useRouter();
 
     function Save(dados) {
-        console.log(dados)
         axios.post('/api/restaurante', dados)                                                   // FUNÇÃO DO NEXT/ROUTER => TE LEVA PARA A PÁGINA DEFINIDA
-        // push('/alunos')
+        console.log(dados)
+        push('/')
     }
 
     return (
         <>
             <Align>
                 <Form>
-                    <MyForm controlId='cnpj' label='CNPJ:' Type='number' placeholder='Número CNPJ' register={register('cnpj')} />
+                    <FloatingLabel controlId={"cnpj"} label="CNPJ" className="mb-3">
+                        <Form.Control type="number" isInvalid={errors.cnpj} placeholder="Digite o cnpj" {...register('cnpj', restauranteValidator.Cnpj)} />
+                        {errors.cnpj && <small className='text-danger'>{errors.cnpj.message}</small>}
+                    </FloatingLabel>
 
-                    <MyForm controlId='inscricaoEstadual' Type='number' label='Inscricão Estadual:' placeholder='Número inscrição Estadual' register={register('inscricaoEstadual')} />
+                    <FloatingLabel controlId={"inscricaoEstadual"} label="InscricaoEstadual" className="mb-3">
+                        <Form.Control type="number" isInvalid={errors.inscricaoEstadual} placeholder="Digite o inscricaoEstadual" {...register('inscricao_estadual', restauranteValidator.InscricaoEstadual)} />
+                        {errors.inscricaoEstadual && <small className='text-danger'>{errors.inscricaoEstadual.message}</small>}
+                    </FloatingLabel>
 
-                    <MyForm controlId='razaoSocial' label='Razão Social:' placeholder='Nome Razão Social' register={register('razaoSocial')} />
+                    <FloatingLabel controlId={"razaoSocial"} label="RazaoSocial" className="mb-3">
+                        <Form.Control type="text" isInvalid={errors.razaoSocial} placeholder="Digite o razaoSocial" {...register('razao_social', restauranteValidator.RazaoSocial)} />
+                        {errors.razaoSocial && <small className='text-danger'>{errors.razaoSocial.message}</small>}
+                    </FloatingLabel>
 
                     <div className='text-center'>
                         <ButtonGroup className="mb-2">
