@@ -7,12 +7,12 @@ import { useForm } from 'react-hook-form'
 import { BsCheck2Square } from 'react-icons/Bs';
 import { IoMdArrowRoundBack } from 'react-icons/Io';
 import axios from 'axios'
-import Test from '../../components/Test';
+import salasValidator from '@/validators/salasValidator'
 
 
 const form = () => {
 
-    const { register, handleSubmit } = useForm()
+    const { register, handleSubmit, formState: { errors } } = useForm()
     const { push } = useRouter()                                                                // IMPORT DA FUNÇÃO PUSH PARA A UTILIZAÇÃO
 
     function salvar(dados) {
@@ -23,11 +23,20 @@ const form = () => {
     return (
         <Pagina titulo='Formulário'>
             <Form>
-                <Test controlId="nome" label="Nome" placeholder="Digite o nome" register={register('nome')} />
-                
-                <Test controlId="capacidade" label="Capacidade" placeholder="Digite o capacidade" register={register('capacidade')} />
-                
-                <Test controlId="tipo" label="Tipo" placeholder="Digite o tipo" register={register('tipo')} />
+                <FloatingLabel controlId={"nome"} label="Nome" className="mb-3">
+                    <Form.Control type="text" isInvalid={errors.nome} placeholder="Digite o nome" {...register('nome', salasValidator.Nome)} />
+                    {errors.nome && <small className='text-danger'>{errors.nome.message}</small>}
+                </FloatingLabel>
+
+                <FloatingLabel controlId={"capacidade"} label="Capacidade" className="mb-3">
+                    <Form.Control type="number" isInvalid={errors.capacidade} placeholder="Digite o capacidade" {...register('capacidade', salasValidator.Capacidade)} />
+                    {errors.capacidade && <small className='text-danger'>{errors.capacidade.message}</small>}
+                </FloatingLabel>
+
+                <FloatingLabel controlId={"tipo"} label="Tipo" className="mb-3">
+                    <Form.Control type="text" isInvalid={errors.tipo} placeholder="Digite o tipo" {...register('tipo', salasValidator.Tipo)} />
+                    {errors.tipo && <small className='text-danger'>{errors.tipo.message}</small>}
+                </FloatingLabel>
 
                 <div className='text-center'>
                     <ButtonGroup className="mb-2">

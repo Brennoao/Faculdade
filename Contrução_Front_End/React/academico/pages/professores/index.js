@@ -7,6 +7,7 @@ import { AiFillEdit } from 'react-icons/Ai';
 import { Table } from 'react-bootstrap'
 import { capitalizeWords } from '@/components/CapitalizeWords';
 import { Button } from 'react-bootstrap';
+import { CpfFormat } from '@/components/CpfFormat';
 
 
 const index = () => {
@@ -63,7 +64,7 @@ const index = () => {
                                 <td><Link href={'/professores/' + item.id} className='btn btn-danger'><AiFillEdit /></Link></td>
                                 <td><Button variant='danger' onClick={() => excluir(item.id)}><BsTrashFill /></Button></td>
                                 <td>{capitalizeWords(item.nome)}</td>
-                                <td>{capitalizeWords(item.cpf)}</td>
+                                <td>{CpfFormat(item.cpf)}</td>
                                 <td>{capitalizeWords(item.matricula)}</td>
                                 <td>{capitalizeWords(item.salario)}</td>
                                 <td>{capitalizeWords(item.email)}</td>

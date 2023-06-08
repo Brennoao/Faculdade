@@ -7,7 +7,6 @@ import { useForm } from 'react-hook-form'
 import { BsCheck2Square } from 'react-icons/Bs';
 import { IoMdArrowRoundBack } from 'react-icons/Io';
 import axios from 'axios'
-import Test from '../../components/Test';
 import alunosValidator from '@/validators/alunosValidator'
 
 

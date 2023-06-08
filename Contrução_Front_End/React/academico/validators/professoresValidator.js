@@ -1,4 +1,4 @@
-const alunosValidator = {
+const professoresValidator = {
     Nome: {
         required: 'O nome é obrigatório',
         minLength: { value: 4, message: 'A quantidade minima é de 4 caracteres' },
@@ -12,6 +12,9 @@ const alunosValidator = {
     Matricula: {
         required: 'Matrícula é obrigatório',
         minLength: { value: 14, message: 'A quantidade minima é de 14 caracteres' },
+    },
+    salario: {
+        required: 'Salário é obrigatório'
     },
     Email: {
         required: 'Email é obrigatório',
@@ -29,4 +32,4 @@ const alunosValidator = {
     }
 }
 
-export default alunosValidator
+export default professoresValidator

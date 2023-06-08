@@ -12,7 +12,7 @@ import { IoMdArrowRoundBack } from 'react-icons/Io';
 
 const form = () => {
 
-    const { register, handleSubmit, setValue } = useForm()
+    const { register, handleSubmit, setValue, formState: { errors } } = useForm()
     const { push, query } = useRouter()
 
     useEffect(() => {
@@ -35,8 +35,9 @@ const form = () => {
     return (
         <Pagina titulo='Formulário'>
             <Form>
-                <FloatingLabel controlId="nome" label="nome:" className="mb-3">
-                    <Form.Control type="text" placeholder="name@example.com" {...register('nome')} />
+                <FloatingLabel controlId={"nome"} label="Nome" className="mb-3">
+                    <Form.Control type="text" isInvalid={errors.nome} placeholder="Digite o nome" {...register('nome', semestreValidator)} />
+                    {errors.nome && <small className='text-danger'>{errors.nome.message}</small>}
                 </FloatingLabel>
 
                 <FloatingLabel controlId="dataInicio:" label="dataInicio:" className="mb-3">

@@ -8,6 +8,7 @@ import { Table } from 'react-bootstrap'
 import { capitalizeWords } from '@/components/CapitalizeWords';
 import { Button } from 'react-bootstrap';
 import Counter from '@/components/Counter';
+import { CpfFormat } from '@/components/CpfFormat';
 
 
 const index = () => {
@@ -64,7 +65,7 @@ const index = () => {
                                 <td style={{ width: '2rem' }}><Link href={'/alunos/' + item.id} className='btn btn-danger'><AiFillEdit /></Link></td>
                                 <td style={{ width: '2rem' }}><Button variant='danger' onClick={() => excluir(item.id)}><BsTrashFill /></Button></td>
                                 <td>{capitalizeWords(item.nome)}</td>
-                                <td>{capitalizeWords(item.cpf)}</td>
+                                <td >{CpfFormat(item.cpf)}</td>
                                 <td>{capitalizeWords(item.matricula)}</td>
                                 <td>{capitalizeWords(item.email)}</td>
                                 <td>{capitalizeWords(item.telefone)}</td>
