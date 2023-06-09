@@ -1,11 +1,11 @@
 const fornecedoresValidator = {
-    RazãoSocial: {
+    razaoSocial: {
         required: {value: true, message: 'Campo obrigatório'},
     },
     Cnpj: {
         required: {value: true, message: 'Campo obrigatório'},
-        minLength: {value: 11, message: 'no mínimo 11 dígitos'},
-        maxLength: {value: 11, message: 'no máximo 11 dígitos'}
+        minLength: {value: 14, message: 'no mínimo 14 dígitos'},
+        maxLength: {value: 14, message: 'no máximo 14 dígitos'}
     },
 }
 

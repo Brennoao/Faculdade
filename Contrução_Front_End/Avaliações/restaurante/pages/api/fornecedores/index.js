@@ -3,7 +3,7 @@ import apiRestaurante from "../../../services/apiRestaurante";
 export default async function handler(req, res) {
     if (req.method == 'GET') {
         try {
-            const response = await apiRestaurante.get('/Restaurante');
+            const response = await apiRestaurante.get('/Fornecedores');
             const retorno = response.data;
             res.status(200).json(retorno);
         } catch (error) {
@@ -13,7 +13,7 @@ export default async function handler(req, res) {
     } else if (req.method == 'POST') {
         try {
             const dados = req.body;
-            await apiRestaurante.post('/Restaurante', dados);
+            await apiRestaurante.post('/Fornecedores', dados);
             res.status(200).json(dados);
         } catch (error) {
             console.error(error);

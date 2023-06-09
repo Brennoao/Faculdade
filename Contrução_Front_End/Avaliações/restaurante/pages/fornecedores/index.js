@@ -15,9 +15,9 @@ const index = ({ pullInfosRestaurante }) => {
 
     function deletar(id) {
         if(confirm('tem certeza que quer deletar o item')) {
-            axios.delete('/api/restaurante/' + id,)
+            axios.delete('/api/fornecedores/' + id)
             console.log(id)
-            push('/')
+            push('/fornecedores')
         }
     }
 
@@ -45,7 +45,7 @@ const index = ({ pullInfosRestaurante }) => {
                     <tbody>
                         {pullInfosRestaurante.map(item => (
                             <tr key={item.id}>
-                                <td style={{ width: '2rem' }}><Link href={'/fornecedores' + item.id} className='btn btn-danger'><AiFillEdit /></Link></td>
+                                <td style={{ width: '2rem' }}><Link href={'/fornecedores/' + item.id} className='btn btn-danger'><AiFillEdit /></Link></td>
                                 <td style={{ width: '2rem' }}><Button variant='danger' onClick={() => deletar(item.id)}><BsTrashFill /></Button></td>
                                 <td>{item.razao_social}</td>
                                 <td>{CnpjFormat(item.cnpj)}</td>
