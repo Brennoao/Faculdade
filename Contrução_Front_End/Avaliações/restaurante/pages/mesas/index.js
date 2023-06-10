@@ -43,7 +43,7 @@ const index = ({ pullMesas }) => {
                                 <td style={{ width: '2rem' }}><Link href={'/mesas/' + item.id} className='btn btn-danger'><AiFillEdit /></Link></td>
                                 <td style={{ width: '2rem' }}><Button variant='danger' onClick={() => deletar(item.id)}><BsTrashFill /></Button></td>
                                 <td>{item.numero}</td>
-                                <td>{item.restaurante_id}</td>
+                                <td>{item.restaurante.razao_social}</td>
                             </tr>
                         ))}
                     </tbody>
