@@ -15,5 +15,3 @@ const funcionariosValidator = {
 }
 
 export default funcionariosValidator
-
-// /^\d{3}\.\d{3}\.\d{3}-\d{2}$/

@@ -46,7 +46,7 @@ export default class FuncionariosController {
 
     async update({ request }) {
         const id = request.param('id')
-        const data = request.only(['nome', 'cpf', 'registroGeral', 'email', 'cargo', 'senha', 'restauranteId'])
+        const data = request.all()//only(['nome', 'cpf', 'registroGeral', 'email', 'cargo', 'senha', 'restauranteId'])
 
         const update = await Funcionario.findOrFail(id)
         update.merge(data).save()

@@ -55,9 +55,9 @@ const idRestaurante = () => {
                 </FloatingLabel>
 
                 <FloatingLabel controlId={"registro_geral"} label="Registro Geral" className="mb-3">
-                        <Form.Control type="number" isInvalid={errors.registro_geral} placeholder="Digite o registro_geral" {...register('registroGeral', funcionariosValidator.registroGeral)} />
-                        {errors.registro_geral && <small className='text-danger'>{errors.registro_geral.message}</small>}
-                    </FloatingLabel>
+                    <Form.Control type="number" isInvalid={errors.registro_geral} placeholder="Digite o registro_geral" {...register('registroGeral', funcionariosValidator.registroGeral)} />
+                    {errors.registro_geral && <small className='text-danger'>{errors.registro_geral.message}</small>}
+                </FloatingLabel>
 
                 <FloatingLabel controlId={"email"} label="Email" className="mb-3">
                     <Form.Control type="email" isInvalid={errors.email} placeholder="Digite o email" {...register('email', funcionariosValidator.email)} />
