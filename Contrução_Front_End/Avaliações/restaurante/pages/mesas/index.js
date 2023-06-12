@@ -9,6 +9,7 @@ import { BsTrashFill } from 'react-icons/Bs'
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import { capitalizeWords } from '../../components/CapitalizeWords'
+import Header from '../../components/Header'
 
 const index = ({ pullMesas }) => {
     const { push } = useRouter();
@@ -24,6 +25,7 @@ const index = ({ pullMesas }) => {
     console.log(pullMesas)
     return (
         <>
+        <Header />
             <Align>
                 <div className='d-flex justify-content-between mb-3'>
                     <Link href='/mesas/form' className='btn btn-primary'>Novo</Link>

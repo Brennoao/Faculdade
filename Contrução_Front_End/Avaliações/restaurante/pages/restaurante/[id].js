@@ -6,8 +6,8 @@ import { Button, FloatingLabel, Form } from 'react-bootstrap'
 import { useForm } from 'react-hook-form'
 import Align from '../../components/Align'
 import restauranteValidator from '../../validators/restauranteValidator'
-import {BsCheck2Square} from 'react-icons/Bs'
-import {IoMdArrowRoundBack} from 'react-icons/Io'
+import { BsCheck2Square } from 'react-icons/Bs'
+import { IoMdArrowRoundBack } from 'react-icons/Io'
 
 const idRestaurante = () => {
 
@@ -21,6 +21,7 @@ const idRestaurante = () => {
 
                 for (let atributo in alunos) {
                     setValue(atributo, alunos[atributo])
+                    console.log(atributo)
                 }
             })
         }
@@ -40,13 +41,13 @@ const idRestaurante = () => {
                     {errors.cnpj && <small className='text-danger'>{errors.cnpj.message}</small>}
                 </FloatingLabel>
 
-                <FloatingLabel controlId={"inscricaoEstadual"} label="InscricaoEstadual" className="mb-3">
-                    <Form.Control type="number" isInvalid={errors.inscricaoEstadual} placeholder="Digite o inscricao Estadual" {...register('inscricaoEstadual', restauranteValidator.InscricaoEstadual)} />
+                <FloatingLabel controlId={"inscricao_estadual"} label="Inscricao Estadual" className="mb-3">
+                    <Form.Control type="number" isInvalid={errors.inscricaoEstadual} placeholder="Digite o inscricaoEstadual" {...register('inscricao_estadual', restauranteValidator.InscricaoEstadual)} />
                     {errors.inscricaoEstadual && <small className='text-danger'>{errors.inscricaoEstadual.message}</small>}
                 </FloatingLabel>
 
-                <FloatingLabel controlId={"razaoSocial"} label="Razao Social" className="mb-3">
-                    <Form.Control type="text" isInvalid={errors.razaoSocial} placeholder="Digite o razaoSocial" {...register('razaoSocial', restauranteValidator.RazaoSocial)} />
+                <FloatingLabel controlId={"razao_social"} label="Razao Social" className="mb-3">
+                    <Form.Control type="text" isInvalid={errors.razaoSocial} placeholder="Digite o razaoSocial" {...register('razao_social', restauranteValidator.RazaoSocial)} />
                     {errors.razaoSocial && <small className='text-danger'>{errors.razaoSocial.message}</small>}
                 </FloatingLabel>
 

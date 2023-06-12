@@ -5,9 +5,8 @@ export default async function handler(req, res) {
 
     if (req.method == 'GET') {
         try {
-            const response = await apiRestaurante.get(`/Restaurante/${id}`);
+            const response = await apiRestaurante.get(`/Produtos/${id}`);
             res.status(200).json(response.data);
-            console.log(response)
         } catch (error) {
             console.error(error);
             res.status(500).json({ error: 'Failed to fetch student' });
@@ -16,7 +15,7 @@ export default async function handler(req, res) {
         const dados = req.body;
 
         try {
-            await apiRestaurante.put(`/Restaurante/${id}`, dados);
+            await apiRestaurante.put(`/Produtos/${id}`, dados);
             res.status(200).json(dados);
         } catch (error) {
             console.error(error);
@@ -24,11 +23,11 @@ export default async function handler(req, res) {
         }
     } else if (req.method == 'DELETE') {
         try {
-            await apiRestaurante.delete(`/Restaurante/${id}`);
+            await apiRestaurante.delete(`/Produtos/${id}`);
             res.status(200).json(id);
         } catch (error) {
             console.error(error);
-            res.status(500).json({ error: 'Failed to delete student' });
+            res.status(500).json({ error: 'Fornecedor não pode ter produtos relacionados' });
         }
     } else {
         res.status(404).json({ error: 'Method not allowed' });

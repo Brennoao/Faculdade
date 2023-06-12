@@ -14,12 +14,11 @@ const Header = () => {
                             <NavDropdown.Item href="/restaurante">Restaurantes</NavDropdown.Item>
                             <NavDropdown.Divider />
                             <NavDropdown.Item href="/funcionarios">Funcionarios</NavDropdown.Item>
-                            <NavDropdown.Divider />
                             <NavDropdown.Item href="/fornecedores">Fornecedores</NavDropdown.Item>
-                            <NavDropdown.Divider />
                             <NavDropdown.Item href="/mesas">Mesas</NavDropdown.Item>
-                            <NavDropdown.Divider />
                             <NavDropdown.Item href="/pedidos">Pedidos</NavDropdown.Item>
+                            <NavDropdown.Item href="/tipos">Tipos</NavDropdown.Item>
+                            <NavDropdown.Item href="/produtos">Produtos</NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
                 </Navbar.Collapse>

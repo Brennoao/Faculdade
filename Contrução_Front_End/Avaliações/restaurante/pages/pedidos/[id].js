@@ -74,7 +74,7 @@ const idRestaurante = () => {
                     {errors.senha && <small className='text-danger'>{errors.senha.message}</small>}
                 </FloatingLabel>
 
-                <Form.Select aria-label="Default select example" {...register('restauranteId')} className='mb-3'>
+                <Form.Select disabled aria-label="Default select example" {...register('restauranteId')} className='mb-3'>
                     <option>Selecione o Restaurante</option>
                     {restaurantes.map((item, i) => (
                         <option key={i} value={item.id}>{item.razao_social}</option>

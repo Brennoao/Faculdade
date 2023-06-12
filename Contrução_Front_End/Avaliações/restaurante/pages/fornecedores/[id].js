@@ -83,7 +83,7 @@ const idRestaurante = () => {
 
                 <div className='text-center'>
                     <Button variant="warning" onClick={handleSubmit(salvar)} >Salvar <BsCheck2Square /></Button>
-                    <Link href={'/cursos'} className='btn btn-success ms-2'>Voltar <IoMdArrowRoundBack /></Link>
+                    <Link href={'/fornecedores'} className='btn btn-success ms-2'>Voltar <IoMdArrowRoundBack /></Link>
                 </div>
             </Form>
         </Align>

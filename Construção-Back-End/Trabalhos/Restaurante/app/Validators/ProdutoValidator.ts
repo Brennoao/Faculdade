@@ -8,7 +8,7 @@ export default class ProdutoValidator {
     nome: schema.string(),
     quantidade: schema.number([rules.unsigned()]),
     caloria: schema.number([rules.unsigned()]),
-    fornecedorId: schema.number([rules.unsigned()]),
+    fornecedoreId: schema.number([rules.unsigned()]),
     valor: schema.number([rules.unsigned()]),
     tipoId: schema.number([rules.unsigned()])
   })

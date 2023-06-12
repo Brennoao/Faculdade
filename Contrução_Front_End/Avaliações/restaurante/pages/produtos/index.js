@@ -1,52 +1,60 @@
 import React from 'react'
 import { Button, Table } from 'react-bootstrap'
-import Align from '../../components/Align'
 import Link from 'next/link'
 import apiRestaurante from '../../services/apiRestaurante'
-import { CnpjFormat, Inscricaoestadual } from '../../components/CnpjFormat'
 import Counter from '../../components/Counter'
 import { AiFillEdit } from 'react-icons/Ai'
 import { BsTrashFill } from 'react-icons/Bs'
 import axios from 'axios'
 import { useRouter } from 'next/router'
-import { capitalizeWords } from '../../components/CapitalizeWords'
 import Header from '../../components/Header'
+import Align from '../../components/Align'
+import { capitalizeWords } from '../../components/CapitalizeWords'
+import formatacaoValue from '../../components/formatacaoValue'
 
-const index = ({ pullTipos }) => {
+const index = ({ pullProdutos }) => {
     const { push } = useRouter();
 
     function deletar(id) {
-        if(confirm('tem certeza que quer deletar o item')) {
-            axios.delete('/api/tipos/' + id)
-            console.log(id)
-            push('/tipos')
+        if (confirm('tem certeza que quer deletar o item')) {
+            axios.delete('/api/produtos/' + id)
+            // console.log(id)
+            push('/produtos')
         }
     }
 
-    console.log(pullTipos)
+    console.log(pullProdutos)
     return (
         <>
         <Header />
             <Align>
                 <div className='d-flex justify-content-between mb-3'>
-                    <Link href='/tipos/form' className='btn btn-primary'>Novo</Link>
-                    <Counter Variavel={pullTipos} Name='Contador'/>
+                    <Link href='/produtos/form' className='btn btn-primary'>Novo</Link>
+                    <Counter Variavel={pullProdutos} Name='Contador' />
                 </div>
                 <Table striped bordered>
                     <thead>
                         <tr>
                             <th colSpan={2}>#</th>
+                            <th>Classificação</th>
                             <th>Nome</th>
-                            <th>Produto</th>
+                            <th>Quantidade</th>
+                            <th>Fornecedores</th>
+                            <th>Pedidos</th>
+                            <th>Valor</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {pullTipos.map(item => (
+                        {pullProdutos.map(item => (
                             <tr key={item.id}>
-                                <td style={{ width: '2rem' }}><Link href={'/tipos/' + item.id} className='btn btn-danger'><AiFillEdit /></Link></td>
+                                <td style={{ width: '2rem' }}><Link href={'/produtos/' + item.id} className='btn btn-danger'><AiFillEdit /></Link></td>
                                 <td style={{ width: '2rem' }}><Button variant='danger' onClick={() => deletar(item.id)}><BsTrashFill /></Button></td>
+                                <td>{item.tipo.nome}</td>
                                 <td>{capitalizeWords(item.nome)}</td>
-                                <td>{item.produto.length}</td>
+                                <td>{item.quantidade}</td>
+                                <td>{}</td>
+                                <td>{item.pedido.length}</td>
+                                <td>{formatacaoValue(item.valor)}</td>
                             </tr>
                         ))}
                     </tbody>
@@ -62,10 +70,10 @@ export default index
 
 export async function getServerSideProps(context) {
 
-    const Tipos = await apiRestaurante.get('/Tipos')
-    const pullTipos = Tipos.data
+    const Produtos = await apiRestaurante.get('/Produtos')
+    const pullProdutos = Produtos.data
 
     return {
-        props: { pullTipos }, // will be passed to the page component as props
+        props: { pullProdutos }, // will be passed to the page component as props
     }
 }

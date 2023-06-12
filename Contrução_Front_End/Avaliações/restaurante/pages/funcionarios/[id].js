@@ -55,7 +55,7 @@ const idRestaurante = () => {
                 </FloatingLabel>
 
                 <FloatingLabel controlId={"registro_geral"} label="Registro Geral" className="mb-3">
-                        <Form.Control type="number" isInvalid={errors.registro_geral} placeholder="Digite o registro_geral" {...register('registroGeral', funcionariosValidator.registroGeral)} />
+                        <Form.Control type="number" isInvalid={errors.registro_geral} placeholder="Digite o registro_geral" {...register('registro_geral', funcionariosValidator.registroGeral)} />
                         {errors.registro_geral && <small className='text-danger'>{errors.registro_geral.message}</small>}
                     </FloatingLabel>
 

@@ -9,6 +9,7 @@ import { AiFillEdit } from 'react-icons/Ai'
 import { BsTrashFill } from 'react-icons/Bs'
 import axios from 'axios'
 import { useRouter } from 'next/router'
+import Header from '../../components/Header'
 
 const index = ({ pullInfosRestaurante }) => {
     const { push } = useRouter();
@@ -24,6 +25,7 @@ const index = ({ pullInfosRestaurante }) => {
     console.log(pullInfosRestaurante)
     return (
         <>
+        <Header />
             <Align>
                 <div className='d-flex justify-content-between mb-3'>
                     <Link href='/fornecedores/form' className='btn btn-primary'>Novo</Link>
