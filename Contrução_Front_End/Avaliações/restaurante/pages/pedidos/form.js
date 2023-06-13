@@ -7,8 +7,8 @@ import Align from '../../components/Align'
 import { useRouter } from 'next/router';
 import { BsCheck2Square } from 'react-icons/Bs'
 import { IoMdArrowRoundBack } from 'react-icons/Io'
-import funcionariosValidator from '../../validators/funcionariosValidator'
 import Header from '../../components/Header'
+import pedidosValidator from '../../validators/pedidosValidator'
 
 const form = () => {
     const { register, handleSubmit, formState: { errors } } = useForm()
@@ -37,32 +37,32 @@ const form = () => {
             <Align>
                 <Form>
                     <FloatingLabel controlId={"nome"} label="Nome" className="mb-3">
-                        <Form.Control type="text" isInvalid={errors.nome} placeholder="Digite o nome" {...register('nome', funcionariosValidator.nome)} />
+                        <Form.Control type="text" isInvalid={errors.nome} placeholder="Digite o nome" {...register('nome', pedidosValidator.nome)} />
                         {errors.nome && <small className='text-danger'>{errors.nome.message}</small>}
                     </FloatingLabel>
 
                     <FloatingLabel controlId={"cpf"} label="CPF" className="mb-3">
-                        <Form.Control type="number" isInvalid={errors.cpf} placeholder="Digite o cpf" {...register('cpf', funcionariosValidator.cpf)} />
+                        <Form.Control type="number" isInvalid={errors.cpf} placeholder="Digite o cpf" {...register('cpf', pedidosValidator.cpf)} />
                         {errors.cpf && <small className='text-danger'>{errors.cpf.message}</small>}
                     </FloatingLabel>
 
                     <FloatingLabel controlId={"registro_geral"} label="Registro Geral" className="mb-3">
-                        <Form.Control type="number" isInvalid={errors.registro_geral} placeholder="Digite o registro_geral" {...register('registroGeral', funcionariosValidator.registroGeral)} />
+                        <Form.Control type="number" isInvalid={errors.registro_geral} placeholder="Digite o registro_geral" {...register('registroGeral', pedidosValidator.registroGeral)} />
                         {errors.registro_geral && <small className='text-danger'>{errors.registro_geral.message}</small>}
                     </FloatingLabel>
 
                     <FloatingLabel controlId={"email"} label="Email" className="mb-3">
-                        <Form.Control type="email" isInvalid={errors.email} placeholder="Digite o email" {...register('email', funcionariosValidator.email)} />
+                        <Form.Control type="email" isInvalid={errors.email} placeholder="Digite o email" {...register('email', pedidosValidator.email)} />
                         {errors.email && <small className='text-danger'>{errors.email.message}</small>}
                     </FloatingLabel>
 
                     <FloatingLabel controlId={"cargo"} label="Cargo" className="mb-3">
-                        <Form.Control type="text" isInvalid={errors.cargo} placeholder="Digite o cargo" {...register('cargo', funcionariosValidator.cargo)} />
+                        <Form.Control type="text" isInvalid={errors.cargo} placeholder="Digite o cargo" {...register('cargo', pedidosValidator.cargo)} />
                         {errors.cargo && <small className='text-danger'>{errors.cargo.message}</small>}
                     </FloatingLabel>
 
                     <FloatingLabel controlId={"senha"} label="Senha" className="mb-3">
-                        <Form.Control type="password" isInvalid={errors.senha} placeholder="Digite o senha" {...register('senha', funcionariosValidator.senha)} />
+                        <Form.Control type="password" isInvalid={errors.senha} placeholder="Digite o senha" {...register('senha', pedidosValidator.senha)} />
                         {errors.senha && <small className='text-danger'>{errors.senha.message}</small>}
                     </FloatingLabel>
 

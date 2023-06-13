@@ -35,18 +35,19 @@ console.log(fornecedores, tipos)
 
                 for (let atributo in alunos) {
                     setValue(atributo, alunos[atributo])
-                    // console.log(atributo)
+                //    console.log(atributo)
                 }
+                console.log(resultado.data)
             })
         }
     }, [query.id])
 
     function salvar(dados) {
         axios.put('/api/produtos/' + dados.id, dados)
-        console.log(dados)
+        // console.log(dados)
         push('/produtos')
     }
-
+    
     return (
         <Align>
             <Form>
@@ -54,7 +55,7 @@ console.log(fornecedores, tipos)
                     <Form.Control type="text" isInvalid={errors.nome} placeholder="Digite o nome" {...register('nome', produtosValidator.nome)} />
                     {errors.nome && <small className='text-danger'>{errors.nome.message}</small>}
                 </FloatingLabel>
-
+                <input {...register("fornecedore_id")} />
                 <FloatingLabel controlId={"quantidade"} label="Quantidade" className="mb-3">
                     <Form.Control type="number" isInvalid={errors.quantidade} placeholder="Digite o quantidade" {...register('quantidade', produtosValidator.quantidade)} />
                     {errors.quantidade && <small className='text-danger'>{errors.quantidade.message}</small>}
@@ -70,17 +71,17 @@ console.log(fornecedores, tipos)
                     {errors.valor && <small className='text-danger'>{errors.valor.message}</small>}
                 </FloatingLabel>
 
-                <Form.Select aria-label="Default select example" {...register('fornecedoreId')} className='mb-3'>
-                    <option>Selecione o Fornecedor</option>
-                    {fornecedores.map((item, i) => (
-                        <option key={i} value={item.id}>{item.razao_social}</option>
+                <Form.Select aria-label="Default select example" {...register('fornecedore_id')} className='mb-3'>
+                    {/* <option>Selecione o Fornecedor</option> */}
+                    {fornecedores.map(item => (
+                        <option key={item.id} value={item.id}>{item.razao_social}</option>
                     ))}
                 </Form.Select>
-
-                <Form.Select aria-label="Default select example" {...register('tipoId')} className='mb-3'>
-                    <option>Selecione o Tipo</option>
-                    {tipos.map((item, i) => (
-                        <option key={i} value={item.id}>{item.nome}</option>
+                        
+                <Form.Select aria-label="Default select example" className='mb-3'>
+                        <option value={'...register("tipo_id")'}></option>
+                    {tipos.map(item => (
+                        <option defaultChecked={...register('fornecedore_id')} key={item.id} value={item.id}>{item.nome}</option>
                     ))}
                 </Form.Select>
 

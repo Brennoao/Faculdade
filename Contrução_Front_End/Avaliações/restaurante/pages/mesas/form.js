@@ -8,6 +8,7 @@ import { useRouter } from 'next/router';
 import { BsCheck2Square } from 'react-icons/Bs'
 import { IoMdArrowRoundBack } from 'react-icons/Io'
 import fornecedoresValidator from '../../validators/fornecedoresValidator'
+import mesasValidator from '../../validators/mesasValidator'
 
 const form = () => {
     const { register, handleSubmit, formState: { errors } } = useForm()
@@ -33,14 +34,14 @@ const form = () => {
             <Align>
                 <Form>
                     <FloatingLabel controlId={"numero"} label="Numero" className="mb-3">
-                        <Form.Control type="text" isInvalid={errors.numero} placeholder="Digite o numero" {...register('numero', fornecedoresValidator.Numero)} />
+                        <Form.Control type="text" isInvalid={errors.numero} placeholder="Digite o numero" {...register('numero', mesasValidator.Numero)} />
                         {errors.numero && <small className='text-danger'>{errors.numero.message}</small>}
                     </FloatingLabel>
 
-                    <Form.Select aria-label="Default select example" {...register('restauranteId')} className='mb-3'>
+                    <Form.Select aria-label="Default select example" {...register('restauranteId', mesasValidator.restaurante)} className='mb-3'>
                         <option>Selecione o Restaurante</option>
-                        {restaurantes.map((item, i) => (
-                            <option key={i} value={item.id}>{item.razao_social}</option>
+                        {restaurantes.map(item => (
+                            <option key={item.id} value={item.id}>{item.razao_social}</option>
                         ))}
                     </Form.Select>
 
