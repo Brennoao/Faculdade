@@ -23,10 +23,6 @@ const index = ({ pullProdutos }) => {
         }
     }
 
-    // axios.get('/api/fornecedores/' + id).then(resultado => {
-    //     setTipos(resultado.data);
-    // })
-
     console.log(pullProdutos)
     return (
         <>
@@ -49,7 +45,7 @@ const index = ({ pullProdutos }) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {pullProdutos.sort((a, b) => a.nome.localeCompare(b.nome)).map(item => (
+                        {pullProdutos.map(item => (
                             <tr key={item.id}>
                                 <td style={{ width: '2rem' }}><Link href={'/produtos/' + item.id} className='btn btn-danger'><AiFillEdit /></Link></td>
                                 <td style={{ width: '2rem' }}><Button variant='danger' onClick={() => deletar(item.id)}><BsTrashFill /></Button></td>

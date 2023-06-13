@@ -71,19 +71,19 @@ console.log(fornecedores, tipos)
                     {errors.valor && <small className='text-danger'>{errors.valor.message}</small>}
                 </FloatingLabel>
 
-                <Form.Select aria-label="Default select example" {...register('fornecedore_id')} className='mb-3'>
-                    {/* <option>Selecione o Fornecedor</option> */}
-                    {fornecedores.map(item => (
-                        <option key={item.id} value={item.id}>{item.razao_social}</option>
-                    ))}
-                </Form.Select>
-                        
-                <Form.Select aria-label="Default select example" className='mb-3'>
-                        <option value={'...register("tipo_id")'}></option>
-                    {tipos.map(item => (
-                        <option defaultChecked={...register('fornecedore_id')} key={item.id} value={item.id}>{item.nome}</option>
-                    ))}
-                </Form.Select>
+                <Form.Select aria-label="Default select example" {...register('fornecedoreId')} className='mb-3'>
+                        <option>Selecione o Fornecedor</option>
+                        {fornecedores.map((item, i) => (
+                            <option key={i} value={item.id}>{item.razao_social}</option>
+                        ))}
+                    </Form.Select>
+
+                    <Form.Select aria-label="Default select example" {...register('tipoId')} className='mb-3'>
+                        <option>Selecione o Tipo</option>
+                        {tipos.map((item, i) => (
+                            <option key={i} value={item.id}>{item.nome}</option>
+                        ))}
+                    </Form.Select>
 
                 <div className='text-center'>
                     <Button variant="warning" onClick={handleSubmit(salvar)} >Salvar <BsCheck2Square /></Button>

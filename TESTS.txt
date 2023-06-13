@@ -51,3 +51,7 @@ function salvar(dados) {
     push('/cursos')
     console.log(dados)
 }
+
+
+// ordenação a-z
+sort((a, b) => a.nome.localeCompare(b.nome)).
