@@ -15,6 +15,7 @@ const idRestaurante = () => {
     const { push, query } = useRouter()
 
     const [restaurantes, setRestaurantes] = useState([])
+    const [funcionarios, setFuncionarios] = useState([])
 
     useEffect(() => {
         axios.get('/api/restaurante').then(resultado => {
@@ -27,10 +28,13 @@ const idRestaurante = () => {
         if (query.id) {
             axios.get('/api/funcionarios/' + query.id).then(resultado => {
                 const Funcionarios = resultado.data
+                console.log(Funcionarios)
 
                 for (let atributo in Funcionarios) {
                     setValue(atributo, Funcionarios[atributo])
                 }
+
+                setFuncionarios(restaurantes)
             })
         }
     }, [query.id])
@@ -74,10 +78,12 @@ const idRestaurante = () => {
                     {errors.senha && <small className='text-danger'>{errors.senha.message}</small>}
                 </FloatingLabel>
 
-                <Form.Select aria-label="Default select example" {...register('restauranteId')} className='mb-3'>
+                <Form.Select aria-label="Default select example" {...register('restaurante_id')} className='mb-3'>
                     <option>Selecione o Restaurante</option>
-                    {restaurantes.map((item, i) => (
-                        <option key={i} value={item.id}>{item.razao_social}</option>
+                    {restaurantes.map(item => (
+                        <option key={item.id} value={item.id} selected={ item.id == restaurantes.restaurante_id ? true : false }>
+                            {item.razao_social}
+                        </option>
                     ))}
                 </Form.Select>
 

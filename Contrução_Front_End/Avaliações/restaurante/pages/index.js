@@ -5,10 +5,10 @@ import Header from '../components/Header'
 const index = () => {
   return (
     <>
-    <Header />
-    <Align>
+      <Header />
+      <Align>
         
-    </Align>
+      </Align>
     </>
   )
 }
