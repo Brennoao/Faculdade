@@ -25,7 +25,7 @@ const index = ({ pullInfosRestaurante }) => {
     console.log(pullInfosRestaurante)
     return (
         <>
-        <Header />
+            <Header />
             <Align>
                 <div className='d-flex justify-content-between mb-3'>
                     <Link href='/restaurante/form' className='btn btn-primary'>Novo</Link>

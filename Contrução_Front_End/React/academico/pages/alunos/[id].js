@@ -9,7 +9,7 @@ import { Button, Form } from 'react-bootstrap'
 import { useForm } from 'react-hook-form'
 import { BsCheck2Square } from 'react-icons/Bs';
 import { IoMdArrowRoundBack } from 'react-icons/Io';
-
+import { mask } from 'remask'
 
 const form = () => {
 
@@ -28,6 +28,14 @@ const form = () => {
         }
     }, [query.id])
 
+    function handleChange(event) {
+        const name = event.target.name
+        const value = event.target.value
+        const Mascara = event.target.getAttribute('mask')
+
+        setValue(name, mask(value, Mascara))
+    }
+
     function salvar(dados) {
         axios.put('/api/alunos/' + dados.id, dados)
         push('/alunos')
@@ -42,7 +50,7 @@ const form = () => {
                 </FloatingLabel>
 
                 <FloatingLabel controlId={"cpf"} label="CPF" className="mb-3">
-                    <Form.Control type="number" isInvalid={errors.cpf} placeholder="Digite o cpf" {...register('cpf', alunosValidator.Cpf)} />
+                    <Form.Control type="text" mask='999.999.999-99' isInvalid={errors.cpf} placeholder="Digite o cpf" {...register('cpf', alunosValidator.Cpf)} onChange={handleChange} />
                     {errors.cpf && <small className='text-danger'>{errors.cpf.message}</small>}
                 </FloatingLabel>
 
@@ -57,7 +65,7 @@ const form = () => {
                 </FloatingLabel>
 
                 <FloatingLabel controlId={"telefone"} label="Telefone" className="mb-3">
-                    <Form.Control type="tell" isInvalid={errors.telefone} placeholder="Digite o telefone" {...register('telefone', alunosValidator.Telefone)} />
+                    <Form.Control type="tell" mask='(99) 99999-9999' isInvalid={errors.telefone} placeholder="Digite o telefone" {...register('telefone', alunosValidator.Telefone)} onChange={handleChange} />
                     {errors.telefone && <small className='text-danger'>{errors.telefone.message}</small>}
                 </FloatingLabel>
 

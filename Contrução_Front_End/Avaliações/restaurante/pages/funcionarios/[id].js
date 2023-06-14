@@ -81,7 +81,7 @@ const idRestaurante = () => {
                 <Form.Select aria-label="Default select example" {...register('restaurante_id')} className='mb-3'>
                     <option>Selecione o Restaurante</option>
                     {restaurantes.map(item => (
-                        <option key={item.id} value={item.id} selected={ item.id == restaurantes.restaurante_id ? true : false }>
+                        <option key={item.id} value={item.id} selected={ item.id == funcionarios.restaurante_id ? true : false }>
                             {item.razao_social}
                         </option>
                     ))}

@@ -8,12 +8,20 @@ import { BsCheck2Square } from 'react-icons/Bs';
 import { IoMdArrowRoundBack } from 'react-icons/Io';
 import axios from 'axios'
 import professoresValidator from '@/validators/professoresValidator'
-
+import { mask } from 'remask'
 
 const form = () => {
 
-    const { register, handleSubmit, formState: { errors } } = useForm()
+    const { register, handleSubmit, setValue, formState: { errors } } = useForm();
     const { push } = useRouter()                                                                // IMPORT DA FUNÇÃO PUSH PARA A UTILIZAÇÃO
+
+    function handleChange(event) {
+        const name = event.target.name
+        const value = event.target.value
+        const Mascara = event.target.getAttribute('mask')
+
+        setValue(name, mask(value, Mascara))
+    }
 
     function salvar(dados) {                                                                       // FUNÇÃO DO NEXT/ROUTER => TE LEVA PARA A PÁGINA DEFINIDA
         axios.post('/api/professores', dados)                                                   // FUNÇÃO DO NEXT/ROUTER => TE LEVA PARA A PÁGINA DEFINIDA
@@ -29,7 +37,7 @@ const form = () => {
                 </FloatingLabel>
 
                 <FloatingLabel controlId={"cpf"} label="CPF" className="mb-3">
-                    <Form.Control type="number" isInvalid={errors.cpf} placeholder="Digite o cpf" {...register('cpf', professoresValidator.Cpf)} />
+                    <Form.Control type="text" mask='999.999.999-99' isInvalid={errors.cpf} placeholder="Digite o cpf" {...register('cpf', professoresValidator.Cpf)} onChange={handleChange}/>
                     {errors.cpf && <small className='text-danger'>{errors.cpf.message}</small>}
                 </FloatingLabel>
 
@@ -49,7 +57,7 @@ const form = () => {
                 </FloatingLabel>
 
                 <FloatingLabel controlId={"telefone"} label="Telefone" className="mb-3">
-                    <Form.Control type="tell" isInvalid={errors.telefone} placeholder="Digite o telefone" {...register('telefone', professoresValidator.Telefone)} />
+                    <Form.Control type="tell" mask='(99) 99999-9999' isInvalid={errors.telefone} placeholder="Digite o telefone" {...register('telefone', professoresValidator.Telefone)} onChange={handleChange}/>
                     {errors.telefone && <small className='text-danger'>{errors.telefone.message}</small>}
                 </FloatingLabel>
 

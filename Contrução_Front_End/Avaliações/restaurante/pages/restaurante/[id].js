@@ -27,6 +27,14 @@ const idRestaurante = () => {
         }
     }, [query.id])
 
+    function handleChange(event) {
+        const name = event.target.name
+        const value = event.target.value
+        const Mascara = event.target.getAttribute('mask')
+
+        setValue(name, mask(value, Mascara))
+    }
+
     function salvar(dados) {
         axios.put('/api/restaurante/' + dados.id, dados)
         console.log(dados)
@@ -37,12 +45,12 @@ const idRestaurante = () => {
         <Align>
             <Form>
                 <FloatingLabel controlId={"cnpj"} label="CNPJ" className="mb-3">
-                    <Form.Control type="number" isInvalid={errors.cnpj} placeholder="Digite o cnpj" {...register('cnpj', restauranteValidator.Cnpj)} />
+                    <Form.Control type="text" mask='99.999.999/9999-99' isInvalid={errors.cnpj} placeholder="Digite o cnpj" {...register('cnpj', restauranteValidator.Cnpj)} onChange={handleChange} />
                     {errors.cnpj && <small className='text-danger'>{errors.cnpj.message}</small>}
                 </FloatingLabel>
 
-                <FloatingLabel controlId={"inscricao_estadual"} label="Inscricao Estadual" className="mb-3">
-                    <Form.Control type="number" isInvalid={errors.inscricaoEstadual} placeholder="Digite o inscricaoEstadual" {...register('inscricao_estadual', restauranteValidator.InscricaoEstadual)} />
+                <FloatingLabel controlId={"inscricaoEstadual"} label="Inscricao Estadual" className="mb-3">
+                    <Form.Control type="number" mask='9999999999-99' isInvalid={errors.inscricaoEstadual} placeholder="Digite o inscricaoEstadual" {...register('inscricaoEstadual', restauranteValidator.InscricaoEstadual)} onChange={handleChange} />
                     {errors.inscricaoEstadual && <small className='text-danger'>{errors.inscricaoEstadual.message}</small>}
                 </FloatingLabel>
 

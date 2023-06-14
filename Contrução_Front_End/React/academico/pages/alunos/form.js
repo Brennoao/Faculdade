@@ -54,7 +54,7 @@ const form = () => {
                 </FloatingLabel>
 
                 <FloatingLabel controlId={"telefone"} label="Telefone" className="mb-3">
-                    <Form.Control type="tell" isInvalid={errors.telefone} placeholder="Digite o telefone" {...register('telefone', alunosValidator.Telefone)} />
+                    <Form.Control type="tell" mask='(99) 99999-9999' isInvalid={errors.telefone} placeholder="Digite o telefone" {...register('telefone', alunosValidator.Telefone)} onChange={handleChange} />
                     {errors.telefone && <small className='text-danger'>{errors.telefone.message}</small>}
                 </FloatingLabel>
 

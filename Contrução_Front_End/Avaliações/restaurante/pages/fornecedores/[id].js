@@ -8,13 +8,15 @@ import Align from '../../components/Align'
 import { BsCheck2Square } from 'react-icons/Bs'
 import { IoMdArrowRoundBack } from 'react-icons/Io'
 import fornecedoresValidator from '../../validators/fornecedoresValidator'
+import { mask } from 'remask'
 
 const idRestaurante = () => {
 
     const { register, handleSubmit, setValue, formState: { errors } } = useForm()
     const { push, query } = useRouter()
 
-    const [restaurantes, setRestaurantes] = useState([])    
+    const [fornecedores, setFornecedores] = useState([])
+    const [restaurantes, setRestaurantes] = useState([])
 
     useEffect(() => {
         axios.get('/api/restaurante').then(resultado => {
@@ -32,10 +34,18 @@ const idRestaurante = () => {
                     setValue(atributo, alunos[atributo])
                 }
 
-                setFuncionarios(Funcionarios)
+                setFornecedores(restaurantes)
             })
         }
     }, [query.id])
+
+    function handleChange(event) {
+        const name = event.target.name
+        const value = event.target.value
+        const Mascara = event.target.getAttribute('mask')
+
+        setValue(name, mask(value, Mascara))
+    }
 
     function salvar(dados) {
         axios.put('/api/fornecedores/' + dados.id, dados)
@@ -52,17 +62,17 @@ const idRestaurante = () => {
                 </FloatingLabel>
 
                 <FloatingLabel controlId={"cnpj"} label="Cnpj" className="mb-3">
-                    <Form.Control type="number" isInvalid={errors.cnpj} placeholder="Digite o cnpj" {...register('cnpj', fornecedoresValidator.Cnpj)} />
+                    <Form.Control type="text" mask='99.999.999/9999-99' isInvalid={errors.cnpj} placeholder="Digite o cnpj" {...register('cnpj', fornecedoresValidator.Cnpj)} onChange={handleChange} />
                     {errors.cnpj && <small className='text-danger'>{errors.cnpj.message}</small>}
                 </FloatingLabel>
 
                 <FloatingLabel controlId={"celular"} label="Celular" className="mb-3">
-                    <Form.Control type="tell" isInvalid={errors.celular} placeholder="Digite o celular" {...register('celular', fornecedoresValidator.Celular)} />
+                    <Form.Control type="tell" mask='(99) 99999-9999' isInvalid={errors.celular} placeholder="Digite o celular" {...register('celular', fornecedoresValidator.Celular)} onChange={handleChange} />
                     {errors.celular && <small className='text-danger'>{errors.celular.message}</small>}
                 </FloatingLabel>
 
                 <FloatingLabel controlId={"telefone"} label="Telefone" className="mb-3">
-                    <Form.Control type="tell" isInvalid={errors.telefone} placeholder="Digite o telefone" {...register('telefone', fornecedoresValidator.Telefone)} />
+                    <Form.Control type="tell" mask='(99) 9999-9999' isInvalid={errors.telefone} placeholder="Digite o telefone" {...register('telefone', fornecedoresValidator.Telefone)} onChange={handleChange} />
                     {errors.telefone && <small className='text-danger'>{errors.telefone.message}</small>}
                 </FloatingLabel>
 
@@ -79,7 +89,7 @@ const idRestaurante = () => {
                 <Form.Select aria-label="Default select example" {...register('restaurante_id')} className='mb-3'>
                     <option>Selecione o Restaurante</option>
                     {restaurantes.map(item => (
-                        <option key={item.id} value={item.id} selected={item.id == funcionarios.restaurante_id ? true : false}>
+                        <option key={item.id} value={item.id} selected={item.id == fornecedores.restaurante_id ? true : false}>
                             {item.razao_social}
                         </option>
                     ))}

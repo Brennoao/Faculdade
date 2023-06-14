@@ -15,7 +15,7 @@ const index = ({ pullInfosRestaurante }) => {
     const { push } = useRouter();
 
     function deletar(id) {
-        if(confirm('tem certeza que quer deletar o item')) {
+        if (confirm('tem certeza que quer deletar o item')) {
             axios.delete('/api/fornecedores/' + id)
             console.log(id)
             push('/fornecedores')
@@ -25,11 +25,11 @@ const index = ({ pullInfosRestaurante }) => {
     console.log(pullInfosRestaurante)
     return (
         <>
-        <Header />
+            <Header />
             <Align>
                 <div className='d-flex justify-content-between mb-3'>
                     <Link href='/fornecedores/form' className='btn btn-primary'>Novo</Link>
-                    <Counter Variavel={pullInfosRestaurante} Name='Contador'/>
+                    <Counter Variavel={pullInfosRestaurante} Name='Contador' />
                 </div>
                 <Table striped bordered>
                     <thead>

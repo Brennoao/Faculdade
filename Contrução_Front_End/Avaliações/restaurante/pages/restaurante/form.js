@@ -8,29 +8,38 @@ import { useRouter } from 'next/router';
 import { BsCheck2Square } from 'react-icons/Bs'
 import { IoMdArrowRoundBack } from 'react-icons/Io'
 import restauranteValidator from '../../validators/restauranteValidator'
+import { mask, unmask } from 'remask'
 
 
 const form = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm()
+    const { register, handleSubmit, setValue, formState: { errors } } = useForm()
     const { push } = useRouter();
 
-    function Save(dados) {
-        axios.post('/api/restaurante', dados)                                                   // FUNÇÃO DO NEXT/ROUTER => TE LEVA PARA A PÁGINA DEFINIDA
-        console.log(dados)
-        push('/restaurante')
+    function handleChange(event) {
+        const name = event.target.name
+        const value = event.target.value
+        const Mascara = event.target.getAttribute('mask')
+
+        setValue(name, mask(value, Mascara))
     }
 
+    function Save(dados) {
+        dados.cnpj = unmask(dados.cnpj)
+        axios.post('/api/restaurante', dados)                                                   // FUNÇÃO DO NEXT/ROUTER => TE LEVA PARA A PÁGINA DEFINIDA
+        push('/restaurante')
+    }
+    
     return (
         <>
             <Align>
                 <Form>
                     <FloatingLabel controlId={"cnpj"} label="CNPJ" className="mb-3">
-                        <Form.Control type="number" isInvalid={errors.cnpj} placeholder="Digite o cnpj" {...register('cnpj', restauranteValidator.Cnpj)} />
+                        <Form.Control type="text" mask='99.999.999/9999-99' isInvalid={errors.cnpj} placeholder="Digite o cnpj" {...register('cnpj', restauranteValidator.Cnpj)} onChange={handleChange} />
                         {errors.cnpj && <small className='text-danger'>{errors.cnpj.message}</small>}
                     </FloatingLabel>
 
                     <FloatingLabel controlId={"inscricaoEstadual"} label="Inscricao Estadual" className="mb-3">
-                        <Form.Control type="number" isInvalid={errors.inscricaoEstadual} placeholder="Digite o inscricaoEstadual" {...register('inscricaoEstadual', restauranteValidator.InscricaoEstadual)} />
+                        <Form.Control type="text" mask='9999999999-99' isInvalid={errors.inscricaoEstadual} placeholder="Digite o inscricaoEstadual" {...register('inscricaoEstadual', restauranteValidator.InscricaoEstadual)} onChange={handleChange}/>
                         {errors.inscricaoEstadual && <small className='text-danger'>{errors.inscricaoEstadual.message}</small>}
                     </FloatingLabel>
 
