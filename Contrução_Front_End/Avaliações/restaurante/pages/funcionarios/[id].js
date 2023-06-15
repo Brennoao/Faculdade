@@ -8,6 +8,7 @@ import Align from '../../components/Align'
 import { BsCheck2Square } from 'react-icons/Bs'
 import { IoMdArrowRoundBack } from 'react-icons/Io'
 import funcionariosValidator from '../../validators/funcionariosValidator'
+import { mask, unmask } from 'remask'
 
 const idRestaurante = () => {
 
@@ -39,9 +40,17 @@ const idRestaurante = () => {
         }
     }, [query.id])
 
+    function handleChange(event) {
+        const name = event.target.name
+        const value = event.target.value
+        const Mascara = event.target.getAttribute('mask')
+
+        setValue(name, mask(value, Mascara))
+    }
+
     function salvar(dados) {
+        dados.cpf = unmask(dados.cpf);
         axios.put('/api/funcionarios/' + dados.id, dados)
-        console.log(dados)
         push('/funcionarios')
     }
 
@@ -54,14 +63,14 @@ const idRestaurante = () => {
                 </FloatingLabel>
 
                 <FloatingLabel controlId={"cpf"} label="CPF" className="mb-3">
-                    <Form.Control type="number" isInvalid={errors.cpf} placeholder="Digite o cpf" {...register('cpf', funcionariosValidator.cpf)} />
+                    <Form.Control type="text" mask='999.999.999-99' isInvalid={errors.cpf} placeholder="Digite o cpf" {...register('cpf', funcionariosValidator.cpf)} onChange={handleChange} />
                     {errors.cpf && <small className='text-danger'>{errors.cpf.message}</small>}
                 </FloatingLabel>
 
-                <FloatingLabel controlId={"registro_geral"} label="Registro Geral" className="mb-3">
-                        <Form.Control type="number" isInvalid={errors.registro_geral} placeholder="Digite o registro_geral" {...register('registro_geral', funcionariosValidator.registroGeral)} />
-                        {errors.registro_geral && <small className='text-danger'>{errors.registro_geral.message}</small>}
-                    </FloatingLabel>
+                <FloatingLabel controlId={"registroGeral"} label="Registro Geral" className="mb-3">
+                    <Form.Control type="number" isInvalid={errors.registroGeral} placeholder="Digite o registroGeral" {...register('registro_geral', funcionariosValidator.registroGeral)} />
+                    {errors.registroGeral && <small className='text-danger'>{errors.registroGeral.message}</small>}
+                </FloatingLabel>
 
                 <FloatingLabel controlId={"email"} label="Email" className="mb-3">
                     <Form.Control type="email" isInvalid={errors.email} placeholder="Digite o email" {...register('email', funcionariosValidator.email)} />
@@ -81,7 +90,7 @@ const idRestaurante = () => {
                 <Form.Select aria-label="Default select example" {...register('restaurante_id')} className='mb-3'>
                     <option>Selecione o Restaurante</option>
                     {restaurantes.map(item => (
-                        <option key={item.id} value={item.id} selected={ item.id == funcionarios.restaurante_id ? true : false }>
+                        <option key={item.id} value={item.id} selected={item.id == funcionarios.restaurante_id ? true : false}>
                             {item.razao_social}
                         </option>
                     ))}

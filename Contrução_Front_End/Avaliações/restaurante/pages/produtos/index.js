@@ -52,7 +52,7 @@ const index = ({ pullProdutos }) => {
                                 <td>{item.tipo.nome}</td>
                                 <td>{capitalizeWords(item.nome)}</td>
                                 <td>{item.quantidade}</td>
-                                <td>{}</td>
+                                <td>{item.fornecedor.razao_social}</td>
                                 <td>{item.pedido.length}</td>
                                 <td>{formatacaoValue(item.valor)}</td>
                             </tr>

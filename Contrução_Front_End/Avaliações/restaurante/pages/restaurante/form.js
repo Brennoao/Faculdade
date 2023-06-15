@@ -24,7 +24,7 @@ const form = () => {
     }
 
     function Save(dados) {
-        dados.cnpj = unmask(dados.cnpj)
+        dados.cnpj = unmask(dados.cnpj); dados.inscricaoEstadual = unmask(dados.inscricaoEstadual)
         axios.post('/api/restaurante', dados)                                                   // FUNÇÃO DO NEXT/ROUTER => TE LEVA PARA A PÁGINA DEFINIDA
         push('/restaurante')
     }

@@ -36,6 +36,7 @@ const idRestaurante = () => {
     }
 
     function salvar(dados) {
+        dados.cnpj = unmask(dados.cnpj); dados.inscricaoEstadual = unmask(dados.inscricaoEstadual)
         axios.put('/api/restaurante/' + dados.id, dados)
         console.log(dados)
         // push('/restaurante')

@@ -8,7 +8,7 @@ import Align from '../../components/Align'
 import { BsCheck2Square } from 'react-icons/Bs'
 import { IoMdArrowRoundBack } from 'react-icons/Io'
 import fornecedoresValidator from '../../validators/fornecedoresValidator'
-import { mask } from 'remask'
+import { mask, unmask } from 'remask'
 
 const idRestaurante = () => {
 
@@ -48,6 +48,7 @@ const idRestaurante = () => {
     }
 
     function salvar(dados) {
+        dados.cnpj = unmask(dados.cnpj); dados.celular = unmask(dados.celular); dados.telefone = unmask(dados.telefone)
         axios.put('/api/fornecedores/' + dados.id, dados)
         console.log(dados)
         push('/fornecedores')

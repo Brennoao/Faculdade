@@ -9,9 +9,10 @@ import { BsCheck2Square } from 'react-icons/Bs'
 import { IoMdArrowRoundBack } from 'react-icons/Io'
 import funcionariosValidator from '../../validators/funcionariosValidator'
 import Header from '../../components/Header'
+import { mask, unmask } from 'remask'
 
 const form = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm()
+    const { register, handleSubmit, setValue, formState: { errors } } = useForm()
     const { push } = useRouter();
 
     const [restaurantes, setRestaurantes] = useState([])
@@ -19,15 +20,20 @@ const form = () => {
     useEffect(() => {
         axios.get('/api/restaurante').then(resultado => {
             setRestaurantes(resultado.data);
-            // console.log(resultado.data)
         })
     }, [])
 
-    console.log(restaurantes)
+    function handleChange(event) {
+        const name = event.target.name
+        const value = event.target.value
+        const Mascara = event.target.getAttribute('mask')
+
+        setValue(name, mask(value, Mascara))
+    }
 
     function Save(dados) {
+        dados.cpf = unmask(dados.cpf);
         axios.post('/api/funcionarios', dados)                                                   // FUNÇÃO DO NEXT/ROUTER => TE LEVA PARA A PÁGINA DEFINIDA
-        console.log(dados)
         push('/funcionarios')
     }
 
@@ -42,13 +48,13 @@ const form = () => {
                     </FloatingLabel>
 
                     <FloatingLabel controlId={"cpf"} label="CPF" className="mb-3">
-                        <Form.Control type="number" isInvalid={errors.cpf} placeholder="Digite o cpf" {...register('cpf', funcionariosValidator.cpf)} />
+                        <Form.Control type="text" mask='999.999.999-99' isInvalid={errors.cpf} placeholder="Digite o cpf" {...register('cpf', funcionariosValidator.cpf)} onChange={handleChange}/>
                         {errors.cpf && <small className='text-danger'>{errors.cpf.message}</small>}
                     </FloatingLabel>
 
-                    <FloatingLabel controlId={"registro_geral"} label="Registro Geral" className="mb-3">
-                        <Form.Control type="number" isInvalid={errors.registro_geral} placeholder="Digite o registro_geral" {...register('registroGeral', funcionariosValidator.registroGeral)} />
-                        {errors.registro_geral && <small className='text-danger'>{errors.registro_geral.message}</small>}
+                    <FloatingLabel controlId={"registroGeral"} label="Registro Geral" className="mb-3">
+                        <Form.Control type="number" isInvalid={errors.registroGeral} placeholder="Digite o registroGeral" {...register('registroGeral', funcionariosValidator.registroGeral)} />
+                        {errors.registroGeral && <small className='text-danger'>{errors.registroGeral.message}</small>}
                     </FloatingLabel>
 
                     <FloatingLabel controlId={"email"} label="Email" className="mb-3">

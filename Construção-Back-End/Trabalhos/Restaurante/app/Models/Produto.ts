@@ -26,6 +26,9 @@ export default class Produtos extends BaseModel {
   @column()
   public tipoId: number
 
+  @column()
+  public pedidoId: number
+
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 

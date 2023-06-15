@@ -8,7 +8,7 @@ import { useRouter } from 'next/router';
 import { BsCheck2Square } from 'react-icons/Bs'
 import { IoMdArrowRoundBack } from 'react-icons/Io'
 import fornecedoresValidator from '../../validators/fornecedoresValidator'
-import { mask } from 'remask'
+import { mask, unmask } from 'remask'
 
 const form = () => {
     const { register, handleSubmit, setValue, formState: { errors } } = useForm()
@@ -32,6 +32,7 @@ const form = () => {
     }
 
     function Save(dados) {
+        dados.cnpj = unmask(dados.cnpj); dados.celular = unmask(dados.celular); dados.telefone = unmask(dados.telefone)
         axios.post('/api/fornecedores', dados)                                                   // FUNÇÃO DO NEXT/ROUTER => TE LEVA PARA A PÁGINA DEFINIDA
         console.log(dados)
         push('/fornecedores')
