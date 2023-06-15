@@ -9,11 +9,14 @@ import { BsCheck2Square } from 'react-icons/Bs'
 import { IoMdArrowRoundBack } from 'react-icons/Io'
 import Header from '../../components/Header'
 import pedidosValidator from '../../validators/pedidosValidator'
+import { unmask } from 'remask'
 
 const form = () => {
     const { register, handleSubmit, formState: { errors } } = useForm()
     const { push } = useRouter();
 
+    const [funcionarios, setFuncionarios] = useState([])
+    const [mesas, setMesas] = useState([])
     const [restaurantes, setRestaurantes] = useState([])
 
     useEffect(() => {
@@ -21,14 +24,23 @@ const form = () => {
             setRestaurantes(resultado.data);
             // console.log(resultado.data)
         })
+        axios.get('/api/funcionarios').then(resultado => {
+            setFuncionarios(resultado.data);
+            // console.log(resultado.data)
+        })
+        axios.get('/api/mesas').then(resultado => {
+            setMesas(resultado.data);
+            // console.log(resultado.data)
+        })
     }, [])
 
-    console.log(restaurantes)
+    console.log(funcionarios, mesas)
 
     function Save(dados) {
-        axios.post('/api/funcionarios', dados)                                                   // FUNÇÃO DO NEXT/ROUTER => TE LEVA PARA A PÁGINA DEFINIDA
+        dados.data = unmask(dados.data)
+        axios.post('/api/pedidos', dados)                                                   // FUNÇÃO DO NEXT/ROUTER => TE LEVA PARA A PÁGINA DEFINIDA
         console.log(dados)
-        push('/funcionarios')
+        push('/pedidos')
     }
 
     return (
@@ -36,16 +48,27 @@ const form = () => {
             <Header />
             <Align>
                 <Form>
-                    <FloatingLabel controlId={"nome"} label="Nome" className="mb-3">
-                        <Form.Control type="date"  placeholder="Digite o nome" {...register('nome')} />
-                    </FloatingLabel>
-
-                    <Form.Select aria-label="Default select example" {...register('restauranteId')} className='mb-3'>
-                        <option>Selecione o Restaurante</option>
-                        {restaurantes.map((item, i) => (
-                            <option key={i} value={item.id}>{item.razao_social}</option>
+                    <Form.Select aria-label="Default select example" {...register('mesaId')} className='mb-3'>
+                        <option>Selecione o Mesas</option>
+                        {mesas.map(item => (
+                            <option key={item.id} value={item.id}>{item.id}</option>
                         ))}
                     </Form.Select>
+
+                    <Form.Select aria-label="Default select example" {...register('funcionarioId')} className='mb-3'>
+                        <option>Selecione o Funcionarios</option>
+                        {funcionarios.map(item => (
+                            <option key={item.id} value={item.id}>{item.nome}</option>
+                        ))}
+                    </Form.Select>
+
+                    <FloatingLabel controlId={"formaPagamento"} label="Forma de Pagamento" className="mb-3">
+                        <Form.Control type="text"  placeholder="Digite o formaPagamento" {...register('formaPagamento')} />
+                    </FloatingLabel>
+
+                    <FloatingLabel controlId={"Data"} label="Data" className="mb-3">
+                        <Form.Control type="date"  placeholder="Digite o Data" {...register('data')} />
+                    </FloatingLabel>
 
                     <div className='text-center'>
                         <ButtonGroup className="mb-2">

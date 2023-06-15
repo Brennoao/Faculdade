@@ -8,7 +8,6 @@ import { AiFillEdit } from 'react-icons/Ai'
 import { BsTrashFill } from 'react-icons/Bs'
 import axios from 'axios'
 import { useRouter } from 'next/router'
-import { CpfFormat } from '../../components/CnpjFormat'
 import Header from '../../components/Header'
 
 const index = ({ pullPedidos }) => {
@@ -42,7 +41,7 @@ const index = ({ pullPedidos }) => {
                             <th>Data</th>
                             <th>Forma de Pagamento</th>
                             <th>Produtos</th>
-                            <th>Valor Total</th>
+                            {/* <th>Valor Total</th> */}
                         </tr>
                     </thead>
                     <tbody>
@@ -55,9 +54,9 @@ const index = ({ pullPedidos }) => {
                                 <td>{item.data}</td>
                                 <td>{item.forma_pagamento}</td>
                                 <td>{item.produtos.length}</td>
-                                <td>{item.produtos.map(item => (
+                                {/* <td>{item.produtos.map(item => (
                                     valoTotal + item.valor
-                                ))}</td>
+                                ))}</td> */}
                             </tr>
                         ))}
                     </tbody>
