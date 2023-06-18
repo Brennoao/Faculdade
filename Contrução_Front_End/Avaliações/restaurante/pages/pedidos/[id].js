@@ -14,72 +14,60 @@ const idRestaurante = () => {
     const { register, handleSubmit, setValue, formState: { errors } } = useForm()
     const { push, query } = useRouter()
 
-    const [restaurantes, setRestaurantes] = useState([])
+    const [funcionarios, setFuncionarios] = useState([])
+    const [mesas, setMesas] = useState([])
 
     useEffect(() => {
-        axios.get('/api/restaurante').then(resultado => {
-            setRestaurantes(resultado.data);
-            // console.log(resultado.data)
+        axios.get('/api/funcionarios').then(resultado => {
+            setFuncionarios(resultado.data);
+        })
+        axios.get('/api/mesas').then(resultado => {
+            setMesas(resultado.data);
         })
     }, [])
 
     useEffect(() => {
         if (query.id) {
-            axios.get('/api/funcionarios/' + query.id).then(resultado => {
-                const Funcionarios = resultado.data
+            axios.get('/api/pedidos/' + query.id).then(resultado => {
+                const pedidos = resultado.data
 
-                for (let atributo in Funcionarios) {
-                    setValue(atributo, Funcionarios[atributo])
+                for (let atributo in pedidos) {
+                    setValue(atributo, pedidos[atributo])
                 }
             })
         }
     }, [query.id])
 
     function salvar(dados) {
-        axios.put('/api/funcionarios/' + dados.id, dados)
+        axios.put('/api/pedidos/' + dados.id, dados)
         console.log(dados)
-        push('/funcionarios')
+        push('/pedidos')
     }
 
     return (
         <Align>
             <Form>
-                <FloatingLabel controlId={"nome"} label="Nome" className="mb-3">
-                    <Form.Control type="text" isInvalid={errors.nome} placeholder="Digite o nome" {...register('nome', funcionariosValidator.nome)} />
-                    {errors.nome && <small className='text-danger'>{errors.nome.message}</small>}
-                </FloatingLabel>
-
-                <FloatingLabel controlId={"cpf"} label="CPF" className="mb-3">
-                    <Form.Control type="number" isInvalid={errors.cpf} placeholder="Digite o cpf" {...register('cpf', funcionariosValidator.cpf)} />
-                    {errors.cpf && <small className='text-danger'>{errors.cpf.message}</small>}
-                </FloatingLabel>
-
-                <FloatingLabel controlId={"registro_geral"} label="Registro Geral" className="mb-3">
-                    <Form.Control type="number" isInvalid={errors.registro_geral} placeholder="Digite o registro_geral" {...register('registroGeral', funcionariosValidator.registroGeral)} />
-                    {errors.registro_geral && <small className='text-danger'>{errors.registro_geral.message}</small>}
-                </FloatingLabel>
-
-                <FloatingLabel controlId={"email"} label="Email" className="mb-3">
-                    <Form.Control type="email" isInvalid={errors.email} placeholder="Digite o email" {...register('email', funcionariosValidator.email)} />
-                    {errors.email && <small className='text-danger'>{errors.email.message}</small>}
-                </FloatingLabel>
-
-                <FloatingLabel controlId={"cargo"} label="Cargo" className="mb-3">
-                    <Form.Control type="text" isInvalid={errors.cargo} placeholder="Digite o cargo" {...register('cargo', funcionariosValidator.cargo)} />
-                    {errors.cargo && <small className='text-danger'>{errors.cargo.message}</small>}
-                </FloatingLabel>
-
-                <FloatingLabel controlId={"senha"} label="Senha" className="mb-3">
-                    <Form.Control type="password" isInvalid={errors.senha} placeholder="Digite o senha" {...register('senha', funcionariosValidator.senha)} />
-                    {errors.senha && <small className='text-danger'>{errors.senha.message}</small>}
-                </FloatingLabel>
-
-                <Form.Select disabled aria-label="Default select example" {...register('restauranteId')} className='mb-3'>
-                    <option>Selecione o Restaurante</option>
-                    {restaurantes.map((item, i) => (
-                        <option key={i} value={item.id}>{item.razao_social}</option>
+                <Form.Select aria-label="Default select example" {...register('mesaId')} className='mb-3'>
+                    <option>Selecione o Mesas</option>
+                    {mesas.map(item => (
+                        <option key={item.id} value={item.id}>{item.id}</option>
                     ))}
                 </Form.Select>
+
+                <Form.Select aria-label="Default select example" {...register('funcionarioId')} className='mb-3'>
+                    <option>Selecione o Funcionarios</option>
+                    {funcionarios.map(item => (
+                        <option key={item.id} value={item.id}>{item.nome}</option>
+                    ))}
+                </Form.Select>
+
+                <FloatingLabel controlId={"formaPagamento"} label="Forma de Pagamento" className="mb-3">
+                    <Form.Control type="text" placeholder="Digite o formaPagamento" {...register('forma_pagamento')} />
+                </FloatingLabel>
+
+                <FloatingLabel controlId={"Data"} label="Data" className="mb-3">
+                    <Form.Control type="date" placeholder="Digite o Data" {...register('data')} />
+                </FloatingLabel>
 
                 <div className='text-center'>
                     <Button variant="warning" onClick={handleSubmit(salvar)} >Salvar <BsCheck2Square /></Button>

@@ -1,8 +1,9 @@
 import { DateTime } from 'luxon'
-import { BaseModel, BelongsTo, belongsTo, column, ManyToMany, manyToMany } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, BelongsTo, belongsTo, column, hasMany, HasMany, ManyToMany, manyToMany } from '@ioc:Adonis/Lucid/Orm'
 import Fornecedore from './Fornecedore'
 import Tipo from './Tipo'
 import Pedido from './Pedido'
+import PedidosProduto from './PedidosProduto'
 
 export default class Produtos extends BaseModel {
   @column({ isPrimary: true })
@@ -26,9 +27,6 @@ export default class Produtos extends BaseModel {
   @column()
   public tipoId: number
 
-  @column()
-  public pedidoId: number
-
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 
@@ -41,6 +39,9 @@ export default class Produtos extends BaseModel {
   @belongsTo(() => Tipo)
   public tipo: BelongsTo <typeof Tipo>
 
-  @manyToMany(() => Pedido, {pivotTable: "pedidosProdutos"})
+  @hasMany(() => PedidosProduto)
+  public pedidoProdutos: HasMany <typeof PedidosProduto> 
+
+  @manyToMany(() => Pedido, {pivotTable: "pedidos_produto"})
   public pedido: ManyToMany <typeof Pedido>
 }

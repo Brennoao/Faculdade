@@ -48,4 +48,20 @@ function Inscricaoestadual(numero) {
 
 }
 
-export { CnpjFormat, Inscricaoestadual, CpfFormat }
+function RegistroGeral(numero) {
+
+    if (typeof numero !== 'string') {
+        numero = String(numero); // Convert para string
+    }
+
+    const bloco1 = numero.slice(0, 3);
+    const bloco2 = numero.slice(3, 6);
+    const bloco3 = numero.slice(6, 7);
+
+    const numeroFormatado = bloco1 + '.' + bloco2 + '-' + bloco3
+
+    return numeroFormatado;
+
+}
+
+export { CnpjFormat, Inscricaoestadual, CpfFormat, RegistroGeral }

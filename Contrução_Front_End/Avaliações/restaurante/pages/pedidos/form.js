@@ -17,20 +17,13 @@ const form = () => {
 
     const [funcionarios, setFuncionarios] = useState([])
     const [mesas, setMesas] = useState([])
-    const [restaurantes, setRestaurantes] = useState([])
 
     useEffect(() => {
-        axios.get('/api/restaurante').then(resultado => {
-            setRestaurantes(resultado.data);
-            // console.log(resultado.data)
-        })
         axios.get('/api/funcionarios').then(resultado => {
             setFuncionarios(resultado.data);
-            // console.log(resultado.data)
         })
         axios.get('/api/mesas').then(resultado => {
             setMesas(resultado.data);
-            // console.log(resultado.data)
         })
     }, [])
 

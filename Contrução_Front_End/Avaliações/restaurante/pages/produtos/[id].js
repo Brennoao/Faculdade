@@ -17,7 +17,6 @@ const idRestaurante = () => {
     const [fornecedores, setFornecedores] = useState([])
     const [tipos, setTipos] = useState([])
 
-console.log(fornecedores, tipos)
 
     useEffect(() => {
         axios.get('/api/fornecedores').then(resultado => {
@@ -35,7 +34,7 @@ console.log(fornecedores, tipos)
 
                 for (let atributo in alunos) {
                     setValue(atributo, alunos[atributo])
-                //    console.log(atributo)
+                    //    console.log(atributo)
                 }
                 console.log(resultado.data)
             })
@@ -47,7 +46,7 @@ console.log(fornecedores, tipos)
         // console.log(dados)
         push('/produtos')
     }
-    
+
     return (
         <Align>
             <Form>
@@ -55,7 +54,7 @@ console.log(fornecedores, tipos)
                     <Form.Control type="text" isInvalid={errors.nome} placeholder="Digite o nome" {...register('nome', produtosValidator.nome)} />
                     {errors.nome && <small className='text-danger'>{errors.nome.message}</small>}
                 </FloatingLabel>
-                <input {...register("fornecedore_id")} />
+
                 <FloatingLabel controlId={"quantidade"} label="Quantidade" className="mb-3">
                     <Form.Control type="number" isInvalid={errors.quantidade} placeholder="Digite o quantidade" {...register('quantidade', produtosValidator.quantidade)} />
                     {errors.quantidade && <small className='text-danger'>{errors.quantidade.message}</small>}
@@ -72,18 +71,18 @@ console.log(fornecedores, tipos)
                 </FloatingLabel>
 
                 <Form.Select aria-label="Default select example" {...register('fornecedoreId')} className='mb-3'>
-                        <option>Selecione o Fornecedor</option>
-                        {fornecedores.map((item, i) => (
-                            <option key={i} value={item.id}>{item.razao_social}</option>
-                        ))}
-                    </Form.Select>
+                    <option>Selecione o Fornecedor</option>
+                    {fornecedores.map((item, i) => (
+                        <option key={i} value={item.id}>{item.razao_social}</option>
+                    ))}
+                </Form.Select>
 
-                    <Form.Select aria-label="Default select example" {...register('tipoId')} className='mb-3'>
-                        <option>Selecione o Tipo</option>
-                        {tipos.map((item, i) => (
-                            <option key={i} value={item.id}>{item.nome}</option>
-                        ))}
-                    </Form.Select>
+                <Form.Select aria-label="Default select example" {...register('tipoId')} className='mb-3'>
+                    <option>Selecione o Tipo</option>
+                    {tipos.map((item, i) => (
+                        <option key={i} value={item.id}>{item.nome}</option>
+                    ))}
+                </Form.Select>
 
                 <div className='text-center'>
                     <Button variant="warning" onClick={handleSubmit(salvar)} >Salvar <BsCheck2Square /></Button>

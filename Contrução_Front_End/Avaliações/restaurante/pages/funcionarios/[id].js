@@ -49,7 +49,7 @@ const idRestaurante = () => {
     }
 
     function salvar(dados) {
-        dados.cpf = unmask(dados.cpf);
+        dados.cpf = unmask(dados.cpf); dados.registro_geral = unmask(dados.registro_geral)
         axios.put('/api/funcionarios/' + dados.id, dados)
         push('/funcionarios')
     }
@@ -57,35 +57,35 @@ const idRestaurante = () => {
     return (
         <Align>
             <Form>
-                <FloatingLabel controlId={"nome"} label="Nome" className="mb-3">
-                    <Form.Control type="text" isInvalid={errors.nome} placeholder="Digite o nome" {...register('nome', funcionariosValidator.nome)} />
-                    {errors.nome && <small className='text-danger'>{errors.nome.message}</small>}
-                </FloatingLabel>
+            <FloatingLabel controlId={"nome"} label="Nome" className="mb-3">
+                        <Form.Control type="text" isInvalid={errors.nome} placeholder="Digite o nome" {...register('nome', funcionariosValidator.nome)} />
+                        {errors.nome && <small className='text-danger'>{errors.nome.message}</small>}
+                    </FloatingLabel>
 
-                <FloatingLabel controlId={"cpf"} label="CPF" className="mb-3">
-                    <Form.Control type="text" mask='999.999.999-99' isInvalid={errors.cpf} placeholder="Digite o cpf" {...register('cpf', funcionariosValidator.cpf)} onChange={handleChange} />
-                    {errors.cpf && <small className='text-danger'>{errors.cpf.message}</small>}
-                </FloatingLabel>
+                    <FloatingLabel controlId={"cpf"} label="CPF" className="mb-3">
+                        <Form.Control type="text" mask='999.999.999-99' isInvalid={errors.cpf} placeholder="Digite o cpf" {...register('cpf', funcionariosValidator.cpf)} onChange={handleChange}/>
+                        {errors.cpf && <small className='text-danger'>{errors.cpf.message}</small>}
+                    </FloatingLabel>
 
-                <FloatingLabel controlId={"registroGeral"} label="Registro Geral" className="mb-3">
-                    <Form.Control type="number" isInvalid={errors.registroGeral} placeholder="Digite o registroGeral" {...register('registro_geral', funcionariosValidator.registroGeral)} />
-                    {errors.registroGeral && <small className='text-danger'>{errors.registroGeral.message}</small>}
-                </FloatingLabel>
+                    <FloatingLabel controlId={"registroGeral"} label="Registro Geral" className="mb-3">
+                        <Form.Control type="text" mask='999.999-9' isInvalid={errors.registroGeral} placeholder="Digite o registroGeral" {...register('registro_geral', funcionariosValidator.registroGeral)} onChange={handleChange}/>
+                        {errors.registroGeral && <small className='text-danger'>{errors.registroGeral.message}</small>}
+                    </FloatingLabel>
 
-                <FloatingLabel controlId={"email"} label="Email" className="mb-3">
-                    <Form.Control type="email" isInvalid={errors.email} placeholder="Digite o email" {...register('email', funcionariosValidator.email)} />
-                    {errors.email && <small className='text-danger'>{errors.email.message}</small>}
-                </FloatingLabel>
+                    <FloatingLabel controlId={"email"} label="Email" className="mb-3">
+                        <Form.Control type="email" isInvalid={errors.email} placeholder="Digite o email" {...register('email', funcionariosValidator.email)} />
+                        {errors.email && <small className='text-danger'>{errors.email.message}</small>}
+                    </FloatingLabel>
 
-                <FloatingLabel controlId={"cargo"} label="Cargo" className="mb-3">
-                    <Form.Control type="text" isInvalid={errors.cargo} placeholder="Digite o cargo" {...register('cargo', funcionariosValidator.cargo)} />
-                    {errors.cargo && <small className='text-danger'>{errors.cargo.message}</small>}
-                </FloatingLabel>
+                    <FloatingLabel controlId={"cargo"} label="Cargo" className="mb-3">
+                        <Form.Control type="text" isInvalid={errors.cargo} placeholder="Digite o cargo" {...register('cargo', funcionariosValidator.cargo)} />
+                        {errors.cargo && <small className='text-danger'>{errors.cargo.message}</small>}
+                    </FloatingLabel>
 
-                <FloatingLabel controlId={"senha"} label="Senha" className="mb-3">
-                    <Form.Control type="password" isInvalid={errors.senha} placeholder="Digite o senha" {...register('senha', funcionariosValidator.senha)} />
-                    {errors.senha && <small className='text-danger'>{errors.senha.message}</small>}
-                </FloatingLabel>
+                    <FloatingLabel controlId={"senha"} label="Senha" className="mb-3">
+                        <Form.Control type="password" isInvalid={errors.senha} placeholder="Digite o senha" {...register('senha', funcionariosValidator.senha)} />
+                        {errors.senha && <small className='text-danger'>{errors.senha.message}</small>}
+                    </FloatingLabel>
 
                 <Form.Select aria-label="Default select example" {...register('restaurante_id')} className='mb-3'>
                     <option>Selecione o Restaurante</option>

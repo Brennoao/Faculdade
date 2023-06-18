@@ -4,9 +4,6 @@ import Produto from './Produto'
 import Pedido from './Pedido'
 
 export default class PedidosProduto extends BaseModel {
-
-  public static table = 'pedidosprodutos' 
-
   @column({ isPrimary: true })
   public id: number
 

@@ -12,7 +12,7 @@ export default class extends BaseSchema {
       table.string('email').notNullable().unique()
       table.string('cargo').notNullable()
       table.string('senha').notNullable()
-      table.integer('restaurante_id').references('id').inTable('restaurantes').notNullable().unsigned()
+      table.integer('restaurante_id').references('id').inTable('restaurantes').notNullable().unsigned().onDelete('CASCADE')
 
       table.timestamp('created_at', { useTz: true })
       table.timestamp('updated_at', { useTz: true })

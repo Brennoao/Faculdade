@@ -32,7 +32,7 @@ const form = () => {
     }
 
     function Save(dados) {
-        dados.cpf = unmask(dados.cpf);
+        dados.cpf = unmask(dados.cpf); dados.registroGeral = unmask(dados.registroGeral)
         axios.post('/api/funcionarios', dados)                                                   // FUNÇÃO DO NEXT/ROUTER => TE LEVA PARA A PÁGINA DEFINIDA
         push('/funcionarios')
     }
@@ -53,7 +53,7 @@ const form = () => {
                     </FloatingLabel>
 
                     <FloatingLabel controlId={"registroGeral"} label="Registro Geral" className="mb-3">
-                        <Form.Control type="number" isInvalid={errors.registroGeral} placeholder="Digite o registroGeral" {...register('registroGeral', funcionariosValidator.registroGeral)} />
+                        <Form.Control type="text" mask='999.999-9' isInvalid={errors.registroGeral} placeholder="Digite o registroGeral" {...register('registroGeral', funcionariosValidator.registroGeral)} onChange={handleChange}/>
                         {errors.registroGeral && <small className='text-danger'>{errors.registroGeral.message}</small>}
                     </FloatingLabel>
 

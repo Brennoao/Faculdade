@@ -6,7 +6,7 @@ import ProdutoValidator from "App/Validators/ProdutoValidator";
 export default class ProdutosController {
     index({request}) {
         const {nome, quantidade, caloria, fornecedoreId, valor, tipoId} = request.all()
-        const produtos = Produtos.query().preload("pedido").preload("fornecedor").preload("tipo").select(['id', 'nome', 'quantidade', 'caloria', 'fornecedoreId', 'valor', 'tipoId', 'pedidoId'])
+        const produtos = Produtos.query().preload("pedido").preload("fornecedor").preload("tipo").select(['id', 'nome', 'quantidade', 'caloria', 'fornecedoreId', 'valor', 'tipoId'])
 
         if (nome) {
             produtos.where('nome', nome)
@@ -21,7 +21,6 @@ export default class ProdutosController {
         } else if (tipoId) {
             produtos.where('tipoId', tipoId)
         }
-
         return produtos
     }
 
@@ -46,7 +45,7 @@ export default class ProdutosController {
 
     async update({request}) {
         const id = request.param('id')
-        const data = request.only(['nome', 'quantidade', 'caloria', 'fornecedorId', 'valor', 'tipoId', 'pedidoId'])
+        const data = request.only(['nome', 'quantidade', 'caloria', 'fornecedorId', 'valor', 'tipoId'])
 
         const update = await Produtos.findOrFail(id)
         update.merge(data).save()

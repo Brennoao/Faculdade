@@ -4,8 +4,8 @@ const fornecedoresValidator = {
     },
     Cnpj: {
         required: {value: true, message: 'Campo obrigatório'},
-        minLength: {value: 14, message: 'no mínimo 14 dígitos'},
-        maxLength: {value: 14, message: 'no máximo 14 dígitos'}
+        minLength: {value: 18, message: 'no mínimo 18 dígitos'},
+        maxLength: {value: 18, message: 'no máximo 18 dígitos'}
     },
 }
 

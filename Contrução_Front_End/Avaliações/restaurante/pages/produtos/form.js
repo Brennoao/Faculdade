@@ -17,6 +17,7 @@ const form = () => {
     const [fornecedores, setFornecedores] = useState([])
     const [tipos, setTipos] = useState([])
 
+
     useEffect(() => {
         axios.get('/api/fornecedores').then(resultado => {
             setFornecedores(resultado.data);
@@ -28,7 +29,6 @@ const form = () => {
 
     function Save(dados) {
         axios.post('/api/produtos', dados)                                                   // FUNÇÃO DO NEXT/ROUTER => TE LEVA PARA A PÁGINA DEFINIDA
-        console.log(dados)
         push('/produtos')
     }
 

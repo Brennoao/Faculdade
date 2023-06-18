@@ -10,7 +10,7 @@ export default class ProdutoValidator {
     caloria: schema.number([rules.unsigned()]),
     fornecedoreId: schema.number([rules.unsigned()]),
     valor: schema.number([rules.unsigned()]),
-    tipoId: schema.number([rules.unsigned()])
+    tipoId: schema.number([rules.unsigned()]),
   })
 
   public messages: CustomMessages = {

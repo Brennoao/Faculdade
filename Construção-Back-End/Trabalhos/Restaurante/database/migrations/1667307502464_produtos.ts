@@ -9,10 +9,9 @@ export default class extends BaseSchema {
       table.string('nome').notNullable()
       table.integer('quantidade').notNullable().unsigned()
       table.integer('caloria').notNullable().unsigned()
-      table.integer('fornecedore_id').references('id').inTable('fornecedores').notNullable().unsigned()
+      table.integer('fornecedore_id').references('id').inTable('fornecedores').notNullable().unsigned().onDelete('CASCADE')
       table.integer('valor').notNullable().unsigned()
-      table.integer('tipo_id').references('id').inTable('tipos').notNullable().unsigned()
-      table.integer('pedido_id').references('id').inTable('pedidos').unsigned().notNullable()
+      table.integer('tipo_id').references('id').inTable('tipos').notNullable().unsigned().onDelete('CASCADE')
 
       table.timestamp('created_at', { useTz: true })
       table.timestamp('updated_at', { useTz: true })

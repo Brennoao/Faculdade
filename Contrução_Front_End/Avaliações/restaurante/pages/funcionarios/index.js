@@ -8,7 +8,7 @@ import { AiFillEdit } from 'react-icons/Ai'
 import { BsTrashFill } from 'react-icons/Bs'
 import axios from 'axios'
 import { useRouter } from 'next/router'
-import { CpfFormat } from '../../components/CnpjFormat'
+import { CpfFormat, RegistroGeral } from '../../components/CnpjFormat'
 import Header from '../../components/Header'
 
 const index = ({ pullFuncionarios }) => {
@@ -45,13 +45,13 @@ const index = ({ pullFuncionarios }) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {pullFuncionarios.map(item => (
+                        { pullFuncionarios.map(item => (
                             <tr key={item.id}>
                                 <td style={{ width: '2rem' }}><Link href={'/funcionarios/' + item.id} className='btn btn-danger'><AiFillEdit /></Link></td>
                                 <td style={{ width: '2rem' }}><Button variant='danger' onClick={() => deletar(item.id)}><BsTrashFill /></Button></td>
                                 <td>{item.nome}</td>
                                 <td>{CpfFormat(item.cpf)}</td>
-                                <td>{item.registro_geral}</td>
+                                <td>{RegistroGeral(item.registro_geral)}</td>
                                 <td>{item.email}</td>
                                 <td>{item.cargo}</td>
                                 <td>{item.senha}</td>

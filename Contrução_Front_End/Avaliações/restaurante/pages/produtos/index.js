@@ -45,7 +45,7 @@ const index = ({ pullProdutos }) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {pullProdutos.map(item => (
+                        {/* {pullProdutos.map(item => (
                             <tr key={item.id}>
                                 <td style={{ width: '2rem' }}><Link href={'/produtos/' + item.id} className='btn btn-danger'><AiFillEdit /></Link></td>
                                 <td style={{ width: '2rem' }}><Button variant='danger' onClick={() => deletar(item.id)}><BsTrashFill /></Button></td>
@@ -56,7 +56,7 @@ const index = ({ pullProdutos }) => {
                                 <td>{item.pedido.length}</td>
                                 <td>{formatacaoValue(item.valor)}</td>
                             </tr>
-                        ))}
+                        ))} */}
                     </tbody>
                 </Table>
             </Align>

@@ -9,8 +9,8 @@ const funcionariosValidator = {
     },
     registroGeral: {
         required: { value: true, message: 'Campo obrigatório' },
-        minLength: { value: 7, message: 'no mínimo 7 dígitos' },
-        maxLength: { value: 7, message: 'no máximo 7 dígitos' }
+        minLength: { value: 9, message: 'no mínimo 9 dígitos' },
+        maxLength: { value: 9, message: 'no máximo 9 dígitos' }
     },
     email: {
         required: { value: true, message: 'Campo obrigatório' },
