@@ -1,4 +1,4 @@
-function capitalizeWords(str) {
+function CapitalizeWords(str) {
     const wordsToIgnore = ['de', 'do', 'da', 'em', 'e'];
     let words = str.split(' ');
 
@@ -27,4 +27,4 @@ function capitalizeFirstLetter(word) {
     return capitalizedWord;
 }
 
-export { capitalizeWords }
+export { CapitalizeWords }

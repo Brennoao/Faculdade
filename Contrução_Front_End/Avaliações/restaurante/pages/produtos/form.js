@@ -8,10 +8,11 @@ import { useRouter } from 'next/router';
 import { BsCheck2Square } from 'react-icons/Bs'
 import { IoMdArrowRoundBack } from 'react-icons/Io'
 import produtosValidator from '../../validators/produtosValidator'
+import { currency, mask, unmask } from 'remask'
 
 
 const form = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm()
+    const { register, handleSubmit, setValue, formState: { errors } } = useForm()
     const { push } = useRouter();
 
     const [fornecedores, setFornecedores] = useState([])
@@ -27,9 +28,22 @@ const form = () => {
         })
     }, [])
 
+    function handleChange(event) {
+        const name = event.target.name;
+        const value = event.target.value;
+        
+        const maskedValue = currency.mask({ locale: 'pt-BR', currency: 'BRL', value: value });
+        console.log(maskedValue)
+        setValue(name, maskedValue)
+    }
+
+    // function handleChange(event) {
+    //     currency.mask({ locale: 'pt-BR', currency: 'BRL', value: 123456.78 })
+    // }
+
     function Save(dados) {
         axios.post('/api/produtos', dados)                                                   // FUNÇÃO DO NEXT/ROUTER => TE LEVA PARA A PÁGINA DEFINIDA
-        push('/produtos')
+        // push('/produtos')
     }
 
     return (
@@ -52,7 +66,7 @@ const form = () => {
                     </FloatingLabel>
 
                     <FloatingLabel controlId={"valor"} label="Valor" className="mb-3">
-                        <Form.Control type="number" isInvalid={errors.valor} placeholder="Digite o valor" {...register('valor', produtosValidator.valor)} />
+                        <Form.Control type="text" isInvalid={errors.valor} placeholder="Digite o valor" {...register('valor', produtosValidator.valor)} onChange={handleChange}/>
                         {errors.valor && <small className='text-danger'>{errors.valor.message}</small>}
                     </FloatingLabel>
 

@@ -10,7 +10,7 @@ const Header = () => {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
                         <Nav.Link href="/">Home</Nav.Link>
-                        <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+                        <NavDropdown title="Manu" id="basic-nav-dropdown">
                             <NavDropdown.Item href="/restaurante">Restaurantes</NavDropdown.Item>
                             <NavDropdown.Divider />
                             <NavDropdown.Item href="/fornecedores">Fornecedores</NavDropdown.Item>

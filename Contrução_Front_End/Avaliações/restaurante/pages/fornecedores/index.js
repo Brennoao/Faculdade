@@ -11,7 +11,7 @@ import axios from 'axios'
 import { useRouter } from 'next/router'
 import Header from '../../components/Header'
 import { Celular } from '../../components/Call'
-import { capitalizeWords } from '../../components/CapitalizeWords'
+import { CapitalizeWords } from '../../components/CapitalizeWords'
 
 const index = ({ pullInfosRestaurante }) => {
     const { push } = useRouter();
@@ -51,13 +51,13 @@ const index = ({ pullInfosRestaurante }) => {
                             <tr key={item.id}>
                                 <td style={{ width: '2rem' }}><Link href={'/fornecedores/' + item.id} className='btn btn-danger'><AiFillEdit /></Link></td>
                                 <td style={{ width: '2rem' }}><Button variant='danger' onClick={() => deletar(item.id)}><BsTrashFill /></Button></td>
-                                <td>{capitalizeWords(item.razao_social)}</td>
+                                <td>{CapitalizeWords(item.razao_social)}</td>
                                 <td>{CnpjFormat(item.cnpj)}</td>
                                 <td>{Celular(item.celular)}</td>
                                 <td>{item.cep}</td>
                                 <td>{item.endereco}</td>
                                 <td>{item.produto.length}</td>
-                                <td>{item.restaurante.razao_social}</td>
+                                <td>{CapitalizeWords(item.restaurante.razao_social)}</td>
                             </tr>
                         ))}
                     </tbody>

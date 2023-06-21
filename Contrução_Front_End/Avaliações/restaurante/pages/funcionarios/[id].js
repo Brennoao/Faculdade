@@ -9,6 +9,7 @@ import { BsCheck2Square } from 'react-icons/Bs'
 import { IoMdArrowRoundBack } from 'react-icons/Io'
 import funcionariosValidator from '../../validators/funcionariosValidator'
 import { mask, unmask } from 'remask'
+import Cargos from '../../components/Cargos'
 
 const idRestaurante = () => {
 
@@ -77,10 +78,12 @@ const idRestaurante = () => {
                         {errors.email && <small className='text-danger'>{errors.email.message}</small>}
                     </FloatingLabel>
 
-                    <FloatingLabel controlId={"cargo"} label="Cargo" className="mb-3">
-                        <Form.Control type="text" isInvalid={errors.cargo} placeholder="Digite o cargo" {...register('cargo', funcionariosValidator.cargo)} />
-                        {errors.cargo && <small className='text-danger'>{errors.cargo.message}</small>}
-                    </FloatingLabel>
+                    <Form.Select aria-label="Default select example" {...register('cargo')} className='mb-3'>
+                        <option>Selecione o Cargo</option>
+                        {Cargos.map((item, i) => (
+                            <option key={i} value={item.nome}>{item.nome}</option>
+                        ))}
+                    </Form.Select>
 
                     <FloatingLabel controlId={"senha"} label="Senha" className="mb-3">
                         <Form.Control type="password" isInvalid={errors.senha} placeholder="Digite o senha" {...register('senha', funcionariosValidator.senha)} />

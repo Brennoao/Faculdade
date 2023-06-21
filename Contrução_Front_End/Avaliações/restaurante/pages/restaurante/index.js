@@ -10,7 +10,7 @@ import axios from 'axios'
 import { useRouter } from 'next/router'
 import Header from '../../components/Header'
 import Align from '../../components/Align'
-import { capitalizeWords } from '../../components/CapitalizeWords'
+import { CapitalizeWords } from '../../components/CapitalizeWords'
 
 const index = ({ pullInfosRestaurante }) => {
     const { push } = useRouter();
@@ -48,7 +48,7 @@ const index = ({ pullInfosRestaurante }) => {
                             <tr key={item.id}>
                                 <td style={{ width: '2rem' }}><Link href={'/restaurante/' + item.id} className='btn btn-danger'><AiFillEdit /></Link></td>
                                 <td style={{ width: '2rem' }}><Button variant='danger' onClick={() => deletar(item.id)}><BsTrashFill /></Button></td>
-                                <td>{capitalizeWords(item.razao_social)}</td>
+                                <td>{CapitalizeWords(item.razao_social)}</td>
                                 <td>{CnpjFormat(item.cnpj)}</td>
                                 <td>{Inscricaoestadual(item.inscricao_estadual)}</td>
                                 <td>{item.fornecedore.length}</td>

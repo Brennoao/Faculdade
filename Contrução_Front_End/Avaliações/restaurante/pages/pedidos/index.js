@@ -9,6 +9,7 @@ import { BsTrashFill } from 'react-icons/Bs'
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import Header from '../../components/Header'
+import { CapitalizeWords } from '../../components/CapitalizeWords'
 
 const index = ({ pullPedidos }) => {
     const { push } = useRouter();
@@ -50,7 +51,7 @@ const index = ({ pullPedidos }) => {
                                 <td style={{ width: '2rem' }}><Link href={'/pedidos/' + item.id} className='btn btn-danger'><AiFillEdit /></Link></td>
                                 <td style={{ width: '2rem' }}><Button variant='danger' onClick={() => deletar(item.id)}><BsTrashFill /></Button></td>
                                 <td>{item.mesa_id}</td>
-                                <td>{item.funcionario.nome}</td>
+                                <td>{CapitalizeWords(item.funcionario.nome)}</td>
                                 <td>{item.data}</td>
                                 <td>{item.forma_pagamento}</td>
                                 <td>{item.produtos.length}</td>

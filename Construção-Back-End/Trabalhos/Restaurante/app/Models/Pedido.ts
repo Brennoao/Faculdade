@@ -36,6 +36,6 @@ export default class Pedido extends BaseModel {
   @hasMany(() => PedidosProduto)
   public pedidoProdutos: HasMany <typeof PedidosProduto> 
 
-  @manyToMany(() => Produto, {pivotTable: "pedidos_produto"})
+  @manyToMany(() => Produto, {pivotTable: "pedidos_produtos"})
   public produtos: ManyToMany <typeof Produto>
 }

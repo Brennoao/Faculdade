@@ -9,7 +9,7 @@ import axios from 'axios'
 import { useRouter } from 'next/router'
 import Header from '../../components/Header'
 import Align from '../../components/Align'
-import { capitalizeWords } from '../../components/CapitalizeWords'
+import { CapitalizeWords } from '../../components/CapitalizeWords'
 import formatacaoValue from '../../components/formatacaoValue'
 
 const index = ({ pullProdutos }) => {
@@ -45,18 +45,18 @@ const index = ({ pullProdutos }) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {/* {pullProdutos.map(item => (
+                        {pullProdutos.map(item => (
                             <tr key={item.id}>
                                 <td style={{ width: '2rem' }}><Link href={'/produtos/' + item.id} className='btn btn-danger'><AiFillEdit /></Link></td>
                                 <td style={{ width: '2rem' }}><Button variant='danger' onClick={() => deletar(item.id)}><BsTrashFill /></Button></td>
-                                <td>{item.tipo.nome}</td>
-                                <td>{capitalizeWords(item.nome)}</td>
+                                <td>{CapitalizeWords(item.tipo.nome)}</td>
+                                <td>{CapitalizeWords(item.nome)}</td>
                                 <td>{item.quantidade}</td>
-                                <td>{item.fornecedor.razao_social}</td>
+                                <td>{CapitalizeWords(item.fornecedor.razao_social)}</td>
                                 <td>{item.pedido.length}</td>
                                 <td>{formatacaoValue(item.valor)}</td>
                             </tr>
-                        ))} */}
+                        ))}
                     </tbody>
                 </Table>
             </Align>
@@ -65,8 +65,6 @@ const index = ({ pullProdutos }) => {
 }
 
 export default index
-
-{/* <td colSpan={2}>Larry the Bird</td> */ }
 
 export async function getServerSideProps(context) {
 

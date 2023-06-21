@@ -9,7 +9,7 @@ import { AiFillEdit } from 'react-icons/Ai'
 import { BsTrashFill } from 'react-icons/Bs'
 import axios from 'axios'
 import { useRouter } from 'next/router'
-import { capitalizeWords } from '../../components/CapitalizeWords'
+import { CapitalizeWords } from '../../components/CapitalizeWords'
 import Header from '../../components/Header'
 
 const index = ({ pullTipos }) => {
@@ -45,7 +45,7 @@ const index = ({ pullTipos }) => {
                             <tr key={item.id}>
                                 <td style={{ width: '2rem' }}><Link href={'/tipos/' + item.id} className='btn btn-danger'><AiFillEdit /></Link></td>
                                 <td style={{ width: '2rem' }}><Button variant='danger' onClick={() => deletar(item.id)}><BsTrashFill /></Button></td>
-                                <td>{capitalizeWords(item.nome)}</td>
+                                <td>{CapitalizeWords(item.nome)}</td>
                                 <td>{item.produto.length}</td>
                             </tr>
                         ))}

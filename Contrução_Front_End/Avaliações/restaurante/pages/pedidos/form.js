@@ -32,7 +32,6 @@ const form = () => {
     function Save(dados) {
         dados.data = unmask(dados.data)
         axios.post('/api/pedidos', dados)                                                   // FUNÇÃO DO NEXT/ROUTER => TE LEVA PARA A PÁGINA DEFINIDA
-        console.log(dados)
         push('/pedidos')
     }
 

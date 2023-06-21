@@ -7,7 +7,6 @@ import Align from '../../components/Align'
 import { useRouter } from 'next/router';
 import { BsCheck2Square } from 'react-icons/Bs'
 import { IoMdArrowRoundBack } from 'react-icons/Io'
-import fornecedoresValidator from '../../validators/fornecedoresValidator'
 import mesasValidator from '../../validators/mesasValidator'
 
 const form = () => {
