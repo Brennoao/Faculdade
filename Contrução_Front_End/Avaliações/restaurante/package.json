@@ -6,6 +6,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@sweetalert2/theme-dark": "^5.0.15",
     "axios": "^1.4.0",
     "bootstrap": "^5.3.0",
     "chart.js": "^4.3.0",
@@ -16,6 +17,7 @@
     "react-dom": "18.2.0",
     "react-hook-form": "^7.44.3",
     "react-icons": "^4.9.0",
-    "remask": "^1.2.2"
+    "remask": "^1.2.2",
+    "sweetalert2": "^11.7.12"
   }
 }

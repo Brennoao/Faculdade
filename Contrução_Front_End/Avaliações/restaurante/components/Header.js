@@ -1,11 +1,10 @@
 import React from 'react'
 import { Nav, Navbar, NavDropdown } from 'react-bootstrap'
 
-const Header = () => {
+const Header = (props) => {
     return (
         <>
-            <Navbar bg="primary" variant='dark' expand="lg" className='px-5 mb-5'>
-                <Navbar.Brand href="/">Controle Geral</Navbar.Brand>
+            <Navbar bg="dark" variant='dark' className='px-5'>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
@@ -23,6 +22,11 @@ const Header = () => {
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
+
+            <div className='px-5 mb-5 d-flex justify-content-center bg-secondary'>
+                <h3 className='text-light'>{props.Title}</h3>
+            </div>
+
         </>
     )
 }

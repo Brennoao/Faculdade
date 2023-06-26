@@ -15,20 +15,33 @@ const index = ({ pullMesas }) => {
     const { push } = useRouter();
 
     function deletar(id) {
-        if (confirm('tem certeza que quer deletar o item')) {
-            axios.delete('/api/mesas/' + id)
-            console.log(id)
-            push('/mesas')
-        }
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: { confirmButton: 'btn btn-success', cancelButton: 'btn btn-danger' },
+            buttonsStyling: false
+        })
+
+        swalWithBootstrapButtons.fire({ title: 'Tem certeza?', text: "Ação sem volta!", icon: 'warning', showCancelButton: true, confirmButtonText: 'Deletar', cancelButtonText: 'Cancelar', reverseButtons: true }).then((result) => {
+            if (result.isConfirmed) {
+                swalWithBootstrapButtons.fire('Removido!', 'Seu arquivo foi excluído.', 'success')
+                axios.delete('/api/mesas/' + id)
+                push('/mesas')
+            }
+            else if (
+                /* Read more about handling dismissals below */
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire('Ação cancelada', 'Seu arquivo está seguro', 'error')
+            }
+        })
     }
 
     console.log(pullMesas)
     return (
         <>
-        <Header />
+        <Header Title='Mesas'/>
             <Align>
                 <div className='d-flex justify-content-between mb-3'>
-                    <Link href='/mesas/form' className='btn btn-primary'>Novo</Link>
+                    <Link href='/mesas/form' className='btn btn-dark'>Novo</Link>
                     <Counter Variavel={pullMesas} Name='Contador' />
                 </div>
                 <Table striped bordered>

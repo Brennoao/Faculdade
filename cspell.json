@@ -13,6 +13,7 @@
         "Chatbox",
         "cnpj",
         "DATABASEURL",
+        "describedby",
         "duracao",
         "endereco",
         "firebaseapp",
@@ -37,6 +38,7 @@
         "razao",
         "remask",
         "STORAGEBUCKET",
+        "Swal",
         "Trab",
         "UNICO",
         "USESTATE",
@@ -53,7 +55,9 @@
         "globalMiddleware",
         "ordenacao",
         "rxui",
-        "situacao"
+        "situacao",
+        "swal",
+        "sweetalert"
     ],
     "import": []
 }

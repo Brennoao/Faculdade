@@ -11,15 +11,30 @@ import { useRouter } from 'next/router'
 import { CpfFormat, RegistroGeral } from '../../components/CnpjFormat'
 import Header from '../../components/Header'
 import { CapitalizeWords } from '../../components/CapitalizeWords'
+import Swal from 'sweetalert2'
 
 const index = ({ pullFuncionarios }) => {
     const { push } = useRouter();
 
     function deletar(id) {
-        if (confirm('tem certeza que quer deletar o item')) {
-            axios.delete('/api/funcionarios/' + id)
-            push('/funcionarios')
-        }
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: { confirmButton: 'btn btn-success', cancelButton: 'btn btn-danger' },
+            buttonsStyling: false
+        })
+
+        swalWithBootstrapButtons.fire({ title: 'Tem certeza?', text: "Ação sem volta!", icon: 'warning', showCancelButton: true, confirmButtonText: 'Deletar', cancelButtonText: 'Cancelar', reverseButtons: true }).then((result) => {
+            if (result.isConfirmed) {
+                swalWithBootstrapButtons.fire('Removido!', 'Seu arquivo foi excluído.', 'success')
+                axios.delete('/api/funcionarios/' + id)
+                push('/funcionarios')
+            }
+            else if (
+                /* Read more about handling dismissals below */
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire('Ação cancelada', 'Seu arquivo está seguro', 'error')
+            }
+        })
     }
 
     const formatPassword = (senha) => {
@@ -29,10 +44,10 @@ const index = ({ pullFuncionarios }) => {
     console.log(pullFuncionarios)
     return (
         <>
-            <Header />
+            <Header Title='Funcionarios'/>
             <Align>
                 <div className='d-flex justify-content-between mb-3'>
-                    <Link href='/funcionarios/form' className='btn btn-primary'>Novo</Link>
+                    <Link href='/funcionarios/form' className='btn btn-dark'>Novo</Link>
                     <Counter Variavel={pullFuncionarios} Name='Contador' />
                 </div>
                 <Table striped bordered>

@@ -11,25 +11,39 @@ import Header from '../../components/Header'
 import Align from '../../components/Align'
 import { CapitalizeWords } from '../../components/CapitalizeWords'
 import formatacaoValue from '../../components/formatacaoValue'
+import Swal from 'sweetalert2'
 
 const index = ({ pullProdutos }) => {
     const { push } = useRouter();
 
     function deletar(id) {
-        if (confirm('tem certeza que quer deletar o item')) {
-            axios.delete('/api/produtos/' + id)
-            // console.log(id)
-            push('/produtos')
-        }
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: { confirmButton: 'btn btn-success', cancelButton: 'btn btn-danger' },
+            buttonsStyling: false
+        })
+
+        swalWithBootstrapButtons.fire({ title: 'Tem certeza?', text: "Ação sem volta!", icon: 'warning', showCancelButton: true, confirmButtonText: 'Deletar', cancelButtonText: 'Cancelar', reverseButtons: true }).then((result) => {
+            if (result.isConfirmed) {
+                swalWithBootstrapButtons.fire('Removido!', 'Seu arquivo foi excluído.', 'success')
+                axios.delete('/api/produtos/' + id)
+                push('/produtos')
+            }
+            else if (
+                /* Read more about handling dismissals below */
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire('Ação cancelada', 'Seu arquivo está seguro', 'error')
+            }
+        })
     }
 
     console.log(pullProdutos)
     return (
         <>
-        <Header />
+            <Header Title='Produtos' />
             <Align>
                 <div className='d-flex justify-content-between mb-3'>
-                    <Link href='/produtos/form' className='btn btn-primary'>Novo</Link>
+                    <Link href='/produtos/form' className='btn btn-dark'>Novo</Link>
                     <Counter Variavel={pullProdutos} Name='Contador' />
                 </div>
                 <Table striped bordered>

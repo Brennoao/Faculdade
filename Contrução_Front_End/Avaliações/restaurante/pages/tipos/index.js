@@ -10,26 +10,40 @@ import axios from 'axios'
 import { useRouter } from 'next/router'
 import { CapitalizeWords } from '../../components/CapitalizeWords'
 import Header from '../../components/Header'
+import Swal from 'sweetalert2'
 
 const index = ({ pullTipos }) => {
     const { push } = useRouter();
 
     function deletar(id) {
-        if(confirm('tem certeza que quer deletar o item')) {
-            axios.delete('/api/tipos/' + id)
-            console.log(id)
-            push('/tipos')
-        }
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: { confirmButton: 'btn btn-success', cancelButton: 'btn btn-danger' },
+            buttonsStyling: false
+        })
+
+        swalWithBootstrapButtons.fire({ title: 'Tem certeza?', text: "Ação sem volta!", icon: 'warning', showCancelButton: true, confirmButtonText: 'Deletar', cancelButtonText: 'Cancelar', reverseButtons: true }).then((result) => {
+            if (result.isConfirmed) {
+                swalWithBootstrapButtons.fire('Removido!', 'Seu arquivo foi excluído.', 'success')
+                axios.delete('/api/tipos/' + id)
+                push('/tipos')
+            }
+            else if (
+                /* Read more about handling dismissals below */
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire('Ação cancelada', 'Seu arquivo está seguro', 'error')
+            }
+        })
     }
 
     console.log(pullTipos)
     return (
         <>
-        <Header />
+            <Header Title='Tipos'/>
             <Align>
                 <div className='d-flex justify-content-between mb-3'>
-                    <Link href='/tipos/form' className='btn btn-primary'>Novo</Link>
-                    <Counter Variavel={pullTipos} Name='Contador'/>
+                    <Link href='/tipos/form' className='btn btn-dark'>Novo</Link>
+                    <Counter Variavel={pullTipos} Name='Contador' />
                 </div>
                 <Table striped bordered>
                     <thead>

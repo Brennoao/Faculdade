@@ -11,25 +11,41 @@ import { useRouter } from 'next/router'
 import Header from '../../components/Header'
 import Align from '../../components/Align'
 import { CapitalizeWords } from '../../components/CapitalizeWords'
+import 'sweetalert2/dist/sweetalert2.min.css';
+import 'sweetalert2/dist/themes/dark.css';
+import Swal from 'sweetalert2'
 
 const index = ({ pullInfosRestaurante }) => {
     const { push } = useRouter();
 
     function deletar(id) {
-        if (confirm('tem certeza que quer deletar o item')) {
-            axios.delete('/api/restaurante/' + id,)
-            console.log(id)
-            push('/restaurante')
-        }
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: { confirmButton: 'btn btn-success', cancelButton: 'btn btn-danger' },
+            buttonsStyling: false
+        })
+
+        swalWithBootstrapButtons.fire({ title: 'Tem certeza?', text: "Ação sem volta!", icon: 'warning', showCancelButton: true, confirmButtonText: 'Deletar', cancelButtonText: 'Cancelar', theme: 'dark', reverseButtons: true }).then((result) => {
+            if (result.isConfirmed) {
+                swalWithBootstrapButtons.fire('Removido!', 'Seu arquivo foi excluído.', 'success')
+                axios.delete('/api/restaurante/' + id)
+                push('/restaurante')
+            }
+            else if (
+                /* Read more about handling dismissals below */
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire('Ação cancelada', 'Seu arquivo está seguro', 'error')
+            }
+        })
     }
 
     console.log(pullInfosRestaurante)
     return (
         <>
-            <Header />
+            <Header Title='Restaurante'/>
             <Align>
                 <div className='d-flex justify-content-between mb-3'>
-                    <Link href='/restaurante/form' className='btn btn-primary'>Novo</Link>
+                    <Link href='/restaurante/form' className='btn btn-dark'>Novo</Link>
                     <Counter Variavel={pullInfosRestaurante} Name='Contador' />
                 </div>
                 <Table striped bordered>
@@ -63,8 +79,6 @@ const index = ({ pullInfosRestaurante }) => {
 }
 
 export default index
-
-{/* <td colSpan={2}>Larry the Bird</td> */ }
 
 export async function getServerSideProps(context) {
 

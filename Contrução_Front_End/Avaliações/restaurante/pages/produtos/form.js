@@ -1,7 +1,7 @@
 import axios from 'axios'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
-import { Button, ButtonGroup, Form, FloatingLabel } from 'react-bootstrap'
+import { Button, ButtonGroup, Form, FloatingLabel, InputGroup } from 'react-bootstrap'
 import { useForm } from 'react-hook-form'
 import Align from '../../components/Align'
 import { useRouter } from 'next/router';
@@ -18,7 +18,6 @@ const form = () => {
     const [fornecedores, setFornecedores] = useState([])
     const [tipos, setTipos] = useState([])
 
-
     useEffect(() => {
         axios.get('/api/fornecedores').then(resultado => {
             setFornecedores(resultado.data);
@@ -28,22 +27,9 @@ const form = () => {
         })
     }, [])
 
-    function handleChange(event) {
-        const name = event.target.name;
-        const value = event.target.value;
-        
-        const maskedValue = currency.mask({ locale: 'pt-BR', currency: 'BRL', value: value });
-        console.log(maskedValue)
-        setValue(name, maskedValue)
-    }
-
-    // function handleChange(event) {
-    //     currency.mask({ locale: 'pt-BR', currency: 'BRL', value: 123456.78 })
-    // }
-
     function Save(dados) {
-        axios.post('/api/produtos', dados)                                                   // FUNÇÃO DO NEXT/ROUTER => TE LEVA PARA A PÁGINA DEFINIDA
-        // push('/produtos')
+        axios.post('/api/produtos', dados)
+        push('/produtos')
     }
 
     return (
@@ -65,10 +51,13 @@ const form = () => {
                         {errors.caloria && <small className='text-danger'>{errors.caloria.message}</small>}
                     </FloatingLabel>
 
-                    <FloatingLabel controlId={"valor"} label="Valor" className="mb-3">
-                        <Form.Control type="text" isInvalid={errors.valor} placeholder="Digite o valor" {...register('valor', produtosValidator.valor)} onChange={handleChange}/>
-                        {errors.valor && <small className='text-danger'>{errors.valor.message}</small>}
-                    </FloatingLabel>
+                    <Form.Group controlId="validationCustomUsername" className='mb-3'>
+                        <InputGroup hasValidation>
+                            <InputGroup.Text id="inputGroupPrepend">R$:</InputGroup.Text>
+                            <Form.Control type="text" placeholder="Valor" isInvalid={errors.valor} aria-describedby="inputGroupPrepend" required {...register('valor', produtosValidator.valor)}/>
+                            {errors.valor && <small className='text-danger'>{errors.valor.message}</small>}
+                        </InputGroup>
+                    </Form.Group>
 
                     <Form.Select aria-label="Default select example" {...register('fornecedoreId')} className='mb-3'>
                         <option>Selecione o Fornecedor</option>
