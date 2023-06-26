@@ -26,7 +26,7 @@ const Counter = (props) => {
     }
 
     return (
-        <Button variant="dark">
+        <Button variant="outline-dark">
             {props.Name} <Badge bg="secondary">{props.Variavel.length}</Badge>
             <span className="visually-hidden">unread messages</span>
         </Button>
