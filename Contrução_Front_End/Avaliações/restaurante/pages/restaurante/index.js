@@ -60,7 +60,7 @@ const index = ({ pullInfosRestaurante, pullFuncionarios, pullFornecedores }) => 
         axios.post('/api/restaurante', dados)
         handleClose()
         // setIsVisible(!isVisible);
-        
+
         setValue('cnpj', ''); setValue('inscricaoEstadual', ''); setValue('razaoSocial', '')
         push('/restaurante')
     }
@@ -68,6 +68,12 @@ const index = ({ pullInfosRestaurante, pullFuncionarios, pullFornecedores }) => 
     function SaveFuncionario(dados) {
         dados.cpf = unmask(dados.cpf); dados.registroGeral = unmask(dados.registroGeral)
         axios.post('/api/funcionarios', dados)
+        setIsVisible(!isVisible);
+    }
+
+    function UpdateFuncionario(dados) {
+        dados.cpf = unmask(dados.cpf); dados.registroGeral = unmask(dados.registroGeral)
+        axios.put('/api/funcionarios', dados)
         setIsVisible(!isVisible);
     }
 
@@ -279,7 +285,7 @@ const index = ({ pullInfosRestaurante, pullFuncionarios, pullFornecedores }) => 
                             </Form.Select>
 
                             <div className='text-center'>
-                                <Button variant="warning" onClick={handleSubmit(SaveFuncionario)} >Salvar <BsCheck2Square /></Button>
+                                <Button variant="warning" onClick={handleSubmit(UpdateFuncionario)} >Salvar <BsCheck2Square /></Button>
                             </div>
                         </Form>
                     </div>
@@ -367,26 +373,52 @@ const index = ({ pullInfosRestaurante, pullFuncionarios, pullFornecedores }) => 
                     </Modal.Header>
                     <Modal.Body>
                         <Form>
-                            <FloatingLabel controlId={"cnpj"} label="CNPJ" className="mb-3">
-                                <Form.Control type="text" mask='99.999.999/9999-99' isInvalid={errors.cnpj} placeholder="Digite o cnpj" {...register('cnpj', restauranteValidator.Cnpj)} onChange={handleChange} />
-                                {errors.cnpj && <small className='text-danger'>{errors.cnpj.message}</small>}
+                            <FloatingLabel controlId={"nome"} label="Nome" className="mb-3">
+                                <Form.Control type="text" isInvalid={errors.nome} placeholder="Digite o nome" {...register('nome', funcionariosValidator.nome)} />
+                                {errors.nome && <small className='text-danger'>{errors.nome.message}</small>}
                             </FloatingLabel>
 
-                            <FloatingLabel controlId={"inscricaoEstadual"} label="Inscricao Estadual" className="mb-3">
-                                <Form.Control type="text" mask='9999999999-99' isInvalid={errors.inscricaoEstadual} placeholder="Digite o inscricaoEstadual" {...register('inscricaoEstadual', restauranteValidator.InscricaoEstadual)} onChange={handleChange} />
-                                {errors.inscricaoEstadual && <small className='text-danger'>{errors.inscricaoEstadual.message}</small>}
+                            <FloatingLabel controlId={"cpf"} label="CPF" className="mb-3">
+                                <Form.Control type="text" mask='999.999.999-99' isInvalid={errors.cpf} placeholder="Digite o cpf" {...register('cpf', funcionariosValidator.cpf)} onChange={handleChange} />
+                                {errors.cpf && <small className='text-danger'>{errors.cpf.message}</small>}
                             </FloatingLabel>
 
-                            <FloatingLabel controlId={"razaoSocial"} label="RazaoSocial" className="mb-3">
-                                <Form.Control type="text" isInvalid={errors.razaoSocial} placeholder="Digite o razaoSocial" {...register('razaoSocial', restauranteValidator.RazaoSocial)} />
-                                {errors.razaoSocial && <small className='text-danger'>{errors.razaoSocial.message}</small>}
+                            <FloatingLabel controlId={"registroGeral"} label="Registro Geral" className="mb-3">
+                                <Form.Control type="text" mask='999.999-9' isInvalid={errors.registroGeral} placeholder="Digite o registroGeral" {...register('registroGeral', funcionariosValidator.registroGeral)} onChange={handleChange} />
+                                {errors.registroGeral && <small className='text-danger'>{errors.registroGeral.message}</small>}
                             </FloatingLabel>
 
+                            <FloatingLabel controlId={"email"} label="Email" className="mb-3">
+                                <Form.Control type="email" isInvalid={errors.email} placeholder="Digite o email" {...register('email', funcionariosValidator.email)} />
+                                {errors.email && <small className='text-danger'>{errors.email.message}</small>}
+                            </FloatingLabel>
+
+                            <Form.Select aria-label="Default select example" {...register('cargo')} className='mb-3'>
+                                <option>Selecione o Cargo</option>
+                                {Cargos.map((item, i) => (
+                                    <option key={i} value={item.nome}>{item.nome}</option>
+                                ))}
+                            </Form.Select>
+
+                            <FloatingLabel controlId={"senha"} label="Senha" className="mb-3">
+                                <Form.Control type="password" isInvalid={errors.senha} placeholder="Digite o senha" {...register('senha', funcionariosValidator.senha)} />
+                                {errors.senha && <small className='text-danger'>{errors.senha.message}</small>}
+                            </FloatingLabel>
+
+                            <Form.Select aria-label="Default select example" {...register('restauranteId')} className='mb-3'>
+                                <option>Selecione o Restaurante</option>
+                                {restaurantes.map((item, i) => (
+                                    <option key={i} value={item.id}>{item.razao_social}</option>
+                                ))}
+                            </Form.Select>
+
+                            <div className='text-center'>
+                                <Button variant="warning" onClick={handleSubmit(SaveFuncionario)} >Salvar <BsCheck2Square /></Button>
+                            </div>
                         </Form>
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button variant="secondary" onClick={handleCloseFuncionario}>Close</Button>
-                        <Button variant="warning" onClick={handleSubmit(SaveRestaurante)} >Salvar <BsCheck2Square /></Button>
+                        <Button variant="warning" onClick={handleSubmit(SaveFuncionario)} >Salvar <BsCheck2Square /></Button>
                     </Modal.Footer>
                 </Modal>
             </Align>
