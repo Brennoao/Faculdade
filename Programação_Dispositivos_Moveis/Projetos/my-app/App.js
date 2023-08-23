@@ -6,7 +6,7 @@ export default function App() {
     <ScrollView>
       <View style={styles.container}>
         <Text>Open up App.js to start working on your app!</Text>
-        <Image  style={{width: 300, height: 300}} source={require('./assets/icon.png')}/>
+        <Image  style={{width: 350, height: 350}} source={require('./assets/icon.png')}/>
         <StatusBar style="auto" />
       </View>
     </ScrollView>
@@ -19,10 +19,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'red',
     alignItems: 'center',
     justifyContent: 'center',
+    // height: 100
   },
 
-  // img: {
-  //   width: '90%',
-  //   // height: '35%',
-  // }
 });
