@@ -5,6 +5,7 @@ import MeuComponente from './components/Semana02/MeuComponente';
 import DigiteSeuNome from './components/semana03/DigiteSeuNome.js';
 import NumeroAleatorio from './components/semana03/NumeroAleatorio';
 import BiscoitoSorte from './components/Semana05/BiscoitoSorte';
+import Profile from './components/Semana05/Profile';
 
 export default function App() {
   return (
@@ -15,7 +16,8 @@ export default function App() {
       <DigiteSeuNome />
       <NumeroAleatorio min={1} max={60} /> */}
 
-      <BiscoitoSorte />
+      {/* <BiscoitoSorte /> */}
+      <Profile img="https://fakepersongenerator.com/Face/female/female2016102532723011.jpg" Nome="Brenno" Genero="Masculino" Cell="(61) 99656-5606" Email="brennoao@outlook.com"/>
     </View>
   );
 }
