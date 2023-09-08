@@ -60,6 +60,7 @@
         "globalMiddleware",
         "noanim",
         "ordenacao",
+        "ormatted",
         "rxui",
         "situacao",
         "swal",

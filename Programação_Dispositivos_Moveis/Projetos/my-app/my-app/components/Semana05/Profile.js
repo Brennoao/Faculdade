@@ -3,7 +3,7 @@ import React from 'react'
 
 export default function Profile(props) {
 
-    // const {image} = props
+    const itens = ["Nome:", "Genero:", "Telefone:", "Email:"]
 
     return (
         <View style={styles.Principal}>
@@ -11,10 +11,10 @@ export default function Profile(props) {
 
             <View style={styles.Flex}>
                 <View style={[styles.text1]}>
-                    <Text style={[styles.Font, styles.Color]}>Nome</Text>
-                    <Text style={[styles.Font, styles.Color]}>Genero</Text>
-                    <Text style={[styles.Font, styles.Color]}>Telefone</Text>
-                    <Text style={[styles.Font, styles.Color]}>Email</Text>
+                    <Text style={[styles.Font, styles.Color]}>Nome:</Text>
+                    <Text style={[styles.Font, styles.Color]}>Genero:</Text>
+                    <Text style={[styles.Font, styles.Color]}>Telefone:</Text>
+                    <Text style={[styles.Font, styles.Color]}>Email:</Text>
                 </View>
                 <View style={styles.text1}>
                     <Text style={styles.Font}>{props.Nome}</Text>
