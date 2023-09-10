@@ -44,48 +44,60 @@ export default function Cronometro(props) {
 
     return (
         <View style={styles.Complete}>
-            <Image source={require('../../assets/Cronometro1.png')} style={styles.Image} />
-            <View style={[styles.Timer1, styles.Equal]}>
-                <Text style={styles.textTimer}>{formattedTime}</Text>
+            <View style={styles.T1}>
+                <Image source={require('../../assets/Cronometro1.png')} style={styles.Image} />
+                <View style={[styles.Timer1, styles.Equal]}>
+                    <Text style={styles.textTimer}>{formattedTime}</Text>
+                </View>
+                <View style={styles.viewButton}>
+                    <TouchableOpacity style={[styles.Button, styles.Equal]} onPress={controlTimer}>
+                        <Text style={styles.buttonText}>{active ? 'Stop' : 'Start'}</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={[styles.Button, styles.Equal]} onPress={resetTimer}>
+                        <Text style={styles.buttonText}>Reset</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
-            <View style={styles.viewButton}>
-                <TouchableOpacity style={[styles.Button, styles.Equal]} onPress={controlTimer}>
-                    <Text style={styles.buttonText}>{active ? 'Stop' : 'Start'}</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={[styles.Button, styles.Equal]} onPress={resetTimer}>
-                    <Text style={styles.buttonText}>Reset</Text>
-                </TouchableOpacity>
-            </View>
-            {history.length > 0 ? <>
-                <Text style={[styles.buttonText, styles.Traco]}>History:</Text>
-                <ScrollView style={[styles.Scroll, styles.Equal]}>
-                    {history.map((record, index) => (
-                        <Text key={index} style={[styles.buttonText, styles.Map]}>{`Tempo ${index + 1}: ${String(record.hours).padStart(2, '0')}:${String(record.minutes).padStart(2, '0')}:${String(record.seconds).padStart(2, '0')}`}</Text>
-                    ))}
-                </ScrollView>
-            </> : null}
 
+            <View style={styles.T2}>
+                {history.length > 0 ? <>
+                    <Text style={styles.buttonText}>History:</Text>
+                    <View style={styles.Scroll}>
+                        <ScrollView style={[styles.Equal]}>
+                            {history.map((record, index) => (
+                                <Text key={index} style={[styles.buttonText, styles.Map]}>{`Time: ${String(record.hours).padStart(2, '0')}:${String(record.minutes).padStart(2, '0')}:${String(record.seconds).padStart(2, '0')}`}</Text>
+                            ))}
+                        </ScrollView>
+                    </View>
+                </> : null}
+            </View>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
+    T1: {
+        flex: 2,
+        backgroundColor: 'black',
+        justifyContent: 'center', alignItems: 'center', gap: 30
+    },
+
     Complete: {
-        justifyContent: 'center', alignItems: 'center', gap: 20
+        justifyContent: 'center', alignItems: 'center'
     },
 
     Image: {
-        width: 200, height: 200
+        width: 260, height: 260
     },
 
     Timer1: {
         alignItems: 'center',
         paddingVertical: 5,
-        width: 220,
+        width: 260,
     },
 
     textTimer: {
-        fontSize: 30,
+        fontSize: 40,
         color: 'white',
     },
 
@@ -96,7 +108,7 @@ const styles = StyleSheet.create({
     Button: {
         alignItems: "center", justifyContent: 'center',
         padding: 5,
-        width: 100, height: 40,
+        width: 120, height: 50,
     },
 
     buttonText: {
@@ -109,9 +121,14 @@ const styles = StyleSheet.create({
         borderWidth: 2, borderColor: 'yellow'
     },
 
+    T2: {
+        flex: 1,
+        backgroundColor: 'black',
+    },
+
     Scroll: {
         padding: 10,
-        width: 230, maxHeight: 200
+        width: 280, maxHeight: 200
     },
 
     Map: {
