@@ -11,11 +11,11 @@ import Cronometro from './components/Semana05/Cronometro';
 export default function App() {
   return (
     <View style={styles.container}>
-      {/* <MeuComponente />
-      <MinMax min={10} max={22} />
+      <MeuComponente />
+      {/* <MinMax min={100} max={90} /> */}
 
-      <DigiteSeuNome />
-      <NumeroAleatorio min={1} max={60} /> */}
+      {/* <DigiteSeuNome /> */}
+      {/* <NumeroAleatorio min={9} max={60} /> */}
 
       {/* <BiscoitoSorte /> */}
       {/* <Profile img="https://fakepersongenerator.com/Face/female/female2016102532723011.jpg" Nome="Brenno" Genero="Masculino" Cell="(61) 99656-5606" Email="brennoao@outlook.com"/> */}

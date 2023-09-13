@@ -6,6 +6,7 @@ export default function Cronometro(props) {
     const [time, setTime] = useState({ hours: 0, minutes: 0, seconds: 0 });
     const [active, setActive] = useState(false);
     const [history, setHistory] = useState([]);
+    // const [off, setOff] = useState(false);
 
     useEffect(() => {
         let interval;
@@ -39,6 +40,14 @@ export default function Cronometro(props) {
         setActive(false);
     };
 
+    const off = () => {
+        setHistory([])
+    }
+
+    // const switchOff = () => {
+    //     setOff(false)
+    // }
+
     // const formattedTime = `${String(time.hours).padStart(2, '0')}:${String(time.minutes).padStart(2, '0')}:${String(time.seconds).padStart(2, '0')}`; ormattedTime = `${String(time.hours).padStart(2, '0')}:${String(time.minutes).padStart(2, '0')}:${String(time.seconds).padStart(2, '0')}`;
     const formattedTime = `${String(time.hours).padStart(2, '0')}:${String(time.minutes).padStart(2, '0')}:${String(time.seconds).padStart(2, '0')}`;
 
@@ -50,12 +59,16 @@ export default function Cronometro(props) {
                     <Text style={styles.textTimer}>{formattedTime}</Text>
                 </View>
                 <View style={styles.viewButton}>
-                    <TouchableOpacity style={[styles.Button, styles.Equal]} onPress={controlTimer}>
+                    <TouchableOpacity style={[history.length <= 0 ? styles.ButtonClose : styles.Button, styles.Equal]} onPress={controlTimer}>
                         <Text style={styles.buttonText}>{active ? 'Stop' : 'Start'}</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={[styles.Button, styles.Equal]} onPress={resetTimer}>
+                    <TouchableOpacity style={[history.length <= 0 ? styles.ButtonClose : styles.Button, styles.Equal]} onPress={resetTimer}>
                         <Text style={styles.buttonText}>Reset</Text>
                     </TouchableOpacity>
+                    {history.length <= 0 ? ''
+                        : <TouchableOpacity style={[styles.Button, styles.Equal]} onPress={off}>
+                            <Text style={styles.buttonText}>Delet</Text>
+                        </TouchableOpacity>}
                 </View>
             </View>
 
@@ -76,18 +89,18 @@ export default function Cronometro(props) {
 }
 
 const styles = StyleSheet.create({
-    T1: {
-        flex: 2,
-        backgroundColor: 'black',
-        justifyContent: 'center', alignItems: 'center', gap: 30
+    Complete: {
+        justifyContent: 'center', alignItems: 'center', gap: 50,
+        marginVertical: 70
     },
 
-    Complete: {
-        justifyContent: 'center', alignItems: 'center'
+    T1: {
+        justifyContent: 'center', alignItems: 'center', gap: 30,
+        backgroundColor: 'black',
     },
 
     Image: {
-        width: 260, height: 260
+        width: 260, height: 230, resizeMode: 'stretch'
     },
 
     Timer1: {
@@ -97,8 +110,7 @@ const styles = StyleSheet.create({
     },
 
     textTimer: {
-        fontSize: 40,
-        color: 'white',
+        fontSize: 40, color: 'white',
     },
 
     viewButton: {
@@ -108,17 +120,21 @@ const styles = StyleSheet.create({
     Button: {
         alignItems: "center", justifyContent: 'center',
         padding: 5,
+        width: 75, height: 50,
+    },
+
+    ButtonClose: {
+        alignItems: "center", justifyContent: 'center',
+        padding: 5,
         width: 120, height: 50,
     },
 
     buttonText: {
-        fontSize: 22, textAlign: 'center',
-        color: 'white'
+        fontSize: 22, textAlign: 'center', color: 'white'
     },
 
     Equal: {
-        borderRadius: 10,
-        borderWidth: 2, borderColor: 'yellow'
+        borderRadius: 10, borderWidth: 2, borderColor: 'yellow'
     },
 
     T2: {
@@ -132,8 +148,7 @@ const styles = StyleSheet.create({
     },
 
     Map: {
-        marginVertical: 5,
-        paddingVertical: 2
+        marginVertical: 5, paddingVertical: 2
     }
 
 })
