@@ -6,7 +6,6 @@ export default function Cronometro(props) {
     const [time, setTime] = useState({ hours: 0, minutes: 0, seconds: 0 });
     const [active, setActive] = useState(false);
     const [history, setHistory] = useState([]);
-    // const [off, setOff] = useState(false);
 
     useEffect(() => {
         let interval;
@@ -44,11 +43,6 @@ export default function Cronometro(props) {
         setHistory([])
     }
 
-    // const switchOff = () => {
-    //     setOff(false)
-    // }
-
-    // const formattedTime = `${String(time.hours).padStart(2, '0')}:${String(time.minutes).padStart(2, '0')}:${String(time.seconds).padStart(2, '0')}`; ormattedTime = `${String(time.hours).padStart(2, '0')}:${String(time.minutes).padStart(2, '0')}:${String(time.seconds).padStart(2, '0')}`;
     const formattedTime = `${String(time.hours).padStart(2, '0')}:${String(time.minutes).padStart(2, '0')}:${String(time.seconds).padStart(2, '0')}`;
 
     return (
@@ -78,7 +72,7 @@ export default function Cronometro(props) {
                     <View style={styles.Scroll}>
                         <ScrollView style={[styles.Equal]}>
                             {history.map((record, index) => (
-                                <Text key={index} style={[styles.buttonText, styles.Map]}>{`Time: ${String(record.hours).padStart(2, '0')}:${String(record.minutes).padStart(2, '0')}:${String(record.seconds).padStart(2, '0')}`}</Text>
+                                <Text key={index} style={[styles.buttonText1, styles.Map]}>{`${String(record.hours).padStart(2, '0')}:${String(record.minutes).padStart(2, '0')}:${String(record.seconds).padStart(2, '0')}`}</Text>
                             ))}
                         </ScrollView>
                     </View>
@@ -132,6 +126,10 @@ const styles = StyleSheet.create({
     buttonText: {
         fontSize: 22, textAlign: 'center', color: 'white'
     },
+
+    buttonText1: {
+        fontSize: 40, color: 'white', textAlign: 'center'
+    },  
 
     Equal: {
         borderRadius: 10, borderWidth: 2, borderColor: 'yellow'
