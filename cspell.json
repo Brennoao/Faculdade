@@ -53,19 +53,23 @@
         "Aleatorio",
         "Alfabetica",
         "Brenno",
+        "Creen",
         "Genero",
         "Inscricaoestadual",
         "botao",
         "funcionario",
         "funcionarios",
         "globalMiddleware",
+        "listad",
         "noanim",
         "ordenacao",
         "ormatted",
         "rxui",
         "situacao",
         "swal",
-        "sweetalert"
+        "sweetalert",
+        "usuario",
+        "usuarios"
     ],
     "import": []
 }

@@ -85,7 +85,7 @@ export default function Cronometro(props) {
 const styles = StyleSheet.create({
     Complete: {
         justifyContent: 'center', alignItems: 'center', gap: 50,
-        marginVertical: 70
+        marginVertical: 70,
     },
 
     T1: {
@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
     },  
 
     Equal: {
-        borderRadius: 10, borderWidth: 2, borderColor: 'yellow'
+        borderRadius: 10, borderWidth: 2, borderColor: 'yellow', backgroundColor: 'black'
     },
 
     T2: {
