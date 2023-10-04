@@ -58,6 +58,7 @@
         "Inscricaoestadual",
         "OADSN",
         "botao",
+        "descricao",
         "funcionario",
         "funcionarios",
         "globalMiddleware",
