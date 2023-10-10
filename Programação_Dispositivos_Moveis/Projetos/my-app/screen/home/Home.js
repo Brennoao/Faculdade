@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { FlatList, StyleSheet, Text, View } from 'react-native'
-import usuarios from '../../mocks/users.json'
 import Pessoa from './Components/Pessoa'
 import { Button } from 'react-native-paper'
-import Api from '../../services/api'
+import Api from '../../services/Api'
 
 
 export default function Home(props) {
+    const [usuarios, setUsuarios] = useState([])
      
 
     Api.get('/users').then(response => {
