@@ -1,11 +1,16 @@
 import { StyleSheet} from 'react-native';
 import { PaperProvider } from 'react-native-paper';
-import Router from './routes/Router';
+import { NavigationContainer } from '@react-navigation/native';
+// import Router from './routes/Router';
+import DrawerRoutes from './routes/DrawerRoutes';
 
 export default function App() {
   return (
     <PaperProvider>
-      <Router />
+      {/* <Router /> */}
+      <NavigationContainer>
+        <DrawerRoutes />
+      </NavigationContainer>
     </PaperProvider>
   );
 }

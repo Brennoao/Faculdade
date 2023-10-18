@@ -18,7 +18,7 @@ export default function Posts() {
                     <View style={{marginTop: 10}}>
                         <Card mode='outlined'>
 
-                            <Card.Title title={item.title} />
+                            <Card.Title title={item.title} titleStyle={{color: 'blue'}}/>
                             <Card.Content>
                                 <Text variant="titleLarge">{item.body}</Text>
 
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     Container: {
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: 10
+        marginTop: 4
     },
 
     listPessoas: {

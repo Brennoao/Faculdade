@@ -16,3 +16,7 @@ npx expo install react-native-screens react-native-safe-area-context
 npx pod-install ios
 ```
 
+# Limpar cache
+```
+npx expor start -c
+```

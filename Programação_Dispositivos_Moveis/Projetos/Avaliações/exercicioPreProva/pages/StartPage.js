@@ -14,7 +14,7 @@ export default function startPage(props) {
         props.navigation.navigate('users')
     }
 
-    console.log(posts)
+    // console.log(posts)
 
     return (
         <View style={styles.Back}>

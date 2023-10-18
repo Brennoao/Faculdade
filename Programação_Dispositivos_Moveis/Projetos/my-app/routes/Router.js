@@ -3,6 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Home from '../screen/home/Home';
 import Posts from '../screen/posts/posts';
+import DrawerRoutes from './DrawerRoutes';
 
 
 
@@ -26,6 +27,7 @@ export default function Router(props) {
             <Tab.Navigator>
                 <Tab.Screen name="Home" component={Home} />
                 <Tab.Screen name="Posts" component={Posts} />
+                <Tab.Screen name="Carros" component={DrawerRoutes} />
             </Tab.Navigator>
         </NavigationContainer>
     )

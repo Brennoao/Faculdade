@@ -13,7 +13,7 @@ export default function usuarios(props) {
     Api.get('/users/' + idUser).then(resultado => {
       setUsuario(resultado.data)
     }).catch(error => {
-      console.log('DEU ERRO NA CHAMADA DE USUARIOS:', error)
+      // console.log('DEU ERRO NA CHAMADA DE USUARIOS:', error)
     })
 
   }, [])
@@ -26,7 +26,7 @@ export default function usuarios(props) {
     return <Avatar.Image size={48} source={{ uri: usuario.image }} />
   }
 
-  console.log(posts)
+  // console.log(posts)
 
   return (
     <View style={{gap: 10, paddingHorizontal: 10}}>
