@@ -11,8 +11,11 @@ npm install @react-navigation/native
 
 npx expo install react-native-screens react-native-safe-area-context
 
+```
+
 # Necessário para rodar no IOS
 
+```
 npx pod-install ios
 ```
 
